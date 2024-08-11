@@ -1,0 +1,8 @@
+[THEORY]
+
+	
+
+[MAKEFILE]
+
+	Integrate Libft if necessary and MLX42, properly and with flags
+
