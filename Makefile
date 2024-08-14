@@ -28,10 +28,12 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	@echo "$(YELLOW)Compiling $<...$(RESET)"
 	$(CC) $(CFLAGS) -I$(INCLUDE_DIR) -c $< -o $@
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re run
 
 all: $(NAME)
 
+run:
+	./$(NAME) 
 clean:
 	rm -f $(OBJ)
 
