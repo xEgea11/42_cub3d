@@ -14,7 +14,9 @@ LIBMLX = $(MLX_DIR)libmlx42.a
 FLAGSMLX = -framework Cocoa -framework OpenGL -framework IOKit -Iinclude -lglfw -L"/opt/homebrew/Cellar/glfw/3.4/lib/"
 #FLAGS = -Lmlx -lmlx -framework OpenGL -framework AppKit
 
-SRC_FILES = main.c
+SRC_FILES = main.c \
+			player.c \
+			
 SRC = $(addprefix $(SRC_DIR)/, $(SRC_FILES))
 OBJ = $(SRC:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 

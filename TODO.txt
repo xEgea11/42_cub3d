@@ -1,8 +1,28 @@
 [THEORY]
 
+	- Player position
+		* x_pos  -- unit?
+		* y_pos  -- unit?
+		* angle (alfa) of PoV -- unit? (radians?)
+		* vector (angle) of player PoV  -- unit? 
 	
+	- Coordinates:
+		* Top left corner --> 0,0
+	
+	- Map:
+		2 dimensional array [][]
+	
+	- Angle (PoV) of player:
+	 * Must stay at 2(pi) to avoid overflow --> Add 2(pi) if negative; substract 2(pi) if overflows that amount
+	 * Radians?
+	
+	- Unit vector:
+		* Vector from 0,0 to where the player is
+		* Every time we move, we have to add or substract to or from that position
+			[x0,y0] +- [x1,y1]
 
 [MAKEFILE]
 
-	Integrate Libft if necessary and MLX42, properly and with flags
+	Put an option to compile with Linux
+
 
