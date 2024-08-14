@@ -6,7 +6,12 @@ CFLAGS = -Wall -Wextra -Werror
 SRC_DIR = src
 OBJ_DIR = obj
 INCLUDE_DIR = include
+INCLUDE_MLX = MLX42/include/MLX42/
+MLX_DIR = MLX42/build/
+LIBMLX = $(MLX_DIR)libmlx42.a
 
+#For MacOS
+FLAGSMLX = -framework Cocoa -framework OpenGL -framework IOKit -Iinclude -lglfw -L"/opt/homebrew/Cellar/glfw/3.4/lib/"
 #FLAGS = -Lmlx -lmlx -framework OpenGL -framework AppKit
 
 SRC_FILES = main.c
@@ -21,12 +26,12 @@ RESET = \033[0m
 
 $(NAME): $(OBJ)
 	@echo "$(YELLOW)Linking...$(RESET)"
-	$(CC) $(CFLAGS) -o $(NAME) $(OBJ) $(FLAGS)
+	$(CC)  -o $(NAME) $(OBJ) $(LIBMLX) $(FLAGSMLX)
 	@echo "$(GREEN)Build successful!$(RESET)"
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	@echo "$(YELLOW)Compiling $<...$(RESET)"
-	$(CC) $(CFLAGS) -I$(INCLUDE_DIR) -c $< -o $@
+	$(CC) $(CFLAGS) -I $(INCLUDE_DIR) -I $(INCLUDE_MLX) -c $< -o $@
 
 .PHONY: all clean fclean re run
 
