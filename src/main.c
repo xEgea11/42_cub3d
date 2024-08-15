@@ -24,9 +24,7 @@ int main(void) {
     }
 
     // Fill the screen with black color
-    memset(game->img->pixels, 0xFFFFFFFF, WIDTH * HEIGHT * sizeof(uint32_t));
-    draw_square(game);
-    mlx_image_to_window(game->mlx, game->img, 0, 0);          //<--- Da shit is not gud
+    ft_draw(game, 100);
     
     mlx_key_hook(game->mlx, move_player, game);
     

@@ -23,6 +23,6 @@
 
 [MAKEFILE]
 
-	Put an option to compile with Linux
+	Check whether Linux option compiles just fine
 
 
