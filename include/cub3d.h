@@ -16,7 +16,7 @@
 # define TRUE 1
 # define FALSE 0
 
-# define VISION_LENGTH 100
+# define VISION_LENGTH 200
 
 // Blues
 #define DARK_BLUE       0x00008BFF  // Dark Blue

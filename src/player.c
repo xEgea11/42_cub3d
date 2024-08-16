@@ -12,15 +12,15 @@ double scale_minimap_y_axis(double y)                   //<------------- DIS NO 
 
 void draw_square(t_game *game)
 {
-    mlx_put_pixel(game->img, (int)game->player->x, (int)game->player->y, 0xFF0000FF);
-    mlx_put_pixel(game->img, (int)game->player->x + 1, (int)game->player->y, 0xFF0000FF);
-    mlx_put_pixel(game->img, (int)game->player->x, (int)game->player->y + 1, 0xFF0000FF);
-    mlx_put_pixel(game->img, (int)game->player->x + 1, (int)game->player->y + 1, 0xFF0000FF);
-    mlx_put_pixel(game->img, (int)game->player->x + 1, (int)game->player->y - 1, 0xFF0000FF);
-    mlx_put_pixel(game->img, (int)game->player->x - 1, (int)game->player->y, 0xFF0000FF);
-    mlx_put_pixel(game->img, (int)game->player->x, (int)game->player->y - 1, 0xFF0000FF);
-    mlx_put_pixel(game->img, (int)game->player->x - 1, (int)game->player->y - 1, 0xFF0000FF);
-    mlx_put_pixel(game->img, (int)game->player->x - 1, (int)game->player->y + 1, 0xFF0000FF);
+    mlx_put_pixel(game->img, (int)game->player->x, (int)game->player->y, GOLD);
+    mlx_put_pixel(game->img, (int)game->player->x + 1, (int)game->player->y, GOLD);
+    mlx_put_pixel(game->img, (int)game->player->x, (int)game->player->y + 1, GOLD);
+    mlx_put_pixel(game->img, (int)game->player->x + 1, (int)game->player->y + 1, GOLD);
+    mlx_put_pixel(game->img, (int)game->player->x + 1, (int)game->player->y - 1, GOLD);
+    mlx_put_pixel(game->img, (int)game->player->x - 1, (int)game->player->y, GOLD);
+    mlx_put_pixel(game->img, (int)game->player->x, (int)game->player->y - 1, GOLD);
+    mlx_put_pixel(game->img, (int)game->player->x - 1, (int)game->player->y - 1, GOLD);
+    mlx_put_pixel(game->img, (int)game->player->x - 1, (int)game->player->y + 1, GOLD);
 }
 
 void draw_pov(mlx_image_t *img, t_player *player, int length) {
@@ -37,8 +37,8 @@ void draw_pov(mlx_image_t *img, t_player *player, int length) {
 
 void draw_cone(mlx_image_t *img, t_player *player, int length) {
     for (double angle1 = player->angle - M_PI / 6; angle1 <= player->angle + M_PI / 6; angle1 += 0.01) {
-        double x1 = player->x + length * cos(angle1); // + M_PI / 6
-        double y1 = player->y + length * sin(angle1); // + M_PI / 6
+        double x1 = player->x + length * cos(angle1);
+        double y1 = player->y + length * sin(angle1);
 
         // Loop through the line length and put each pixel
         for (int i = 0; i <= length; i++) {
@@ -51,7 +51,7 @@ void draw_cone(mlx_image_t *img, t_player *player, int length) {
 
 void ft_draw(t_game *game, int length)
 {
-    memset(game->img->pixels, 0xFFFFFFFF, WIDTH * HEIGHT * sizeof(uint32_t));
+    memset(game->img->pixels, DARK_RED, WIDTH * HEIGHT * sizeof(uint32_t));         //<---- Dis no gud
     draw_square(game);
     draw_cone(game->img, game->player, length);
     draw_pov(game->img, game->player, length);
@@ -115,7 +115,7 @@ void move_player(mlx_key_data_t keydata, void* param) {
         }
         printf("Player position: (%f, %f)\n", game->player->x, game->player->y);
         printf("Player angle: %f\n", game->player->angle);
-        ft_draw(game, 100);
+        ft_draw(game, VISION_LENGTH);
     }
 }
 

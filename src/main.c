@@ -24,7 +24,7 @@ int main(void) {
     }
 
     // Fill the screen with black color
-    ft_draw(game, 100);
+    ft_draw(game, VISION_LENGTH);
     
     mlx_key_hook(game->mlx, move_player, game);
     
