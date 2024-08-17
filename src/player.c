@@ -1,5 +1,6 @@
 #include "cub3d.h"
 
+// Functions to try and draw the minimap (not working yet)
 double scale_minimap_x_axis(double x)                   //<------------- DIS NO GUD
 {
     return (x * (MINIMAP_WIDTH / WIDTH));
@@ -10,7 +11,7 @@ double scale_minimap_y_axis(double y)                   //<------------- DIS NO 
     return (y * (MINIMAP_HEIGHT / HEIGHT));
 }
 
-void draw_square(t_game *game)
+void draw_square(t_game *game)          //<------ Change this 
 {
     mlx_put_pixel(game->img, (int)game->player->x, (int)game->player->y, GOLD);
     mlx_put_pixel(game->img, (int)game->player->x + 1, (int)game->player->y, GOLD);
