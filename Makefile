@@ -7,6 +7,8 @@ SRC_DIR = src
 OBJ_DIR = obj
 INCLUDE_DIR = include
 INCLUDE_MLX = MLX42/include/MLX42/
+LIBFT_DIR = libft/
+LIBFT = libft/libft.a
 MLX_DIR = MLX42/build/
 LIBMLX = $(MLX_DIR)libmlx42.a
 
@@ -36,8 +38,9 @@ OBJ = $(SRC:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 
 $(NAME): $(OBJ)
 	@echo "$(GREEN)OS is... $(UNAME_S)$(RESET)"
-	@echo "$(YELLOW)Linking...$(RESET)"
-	$(CC)  -o $(NAME) $(OBJ) $(LIBMLX) $(FLAGSMLX)
+	@echo "$(YELLOW)Lin-king...$(RESET)"
+	@make -s -C $(LIBFT_DIR)
+	$(CC)  -o $(NAME) $(OBJ) $(LIBFT)  $(LIBMLX) $(FLAGSMLX) 
 	@echo "$(GREEN)Build successful!$(RESET)"
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
