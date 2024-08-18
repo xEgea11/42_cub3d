@@ -6,20 +6,17 @@
 # include "ft_printf.h"
 # include "get_next_line.h"
 # include "player.h"
+# include "drawings.h"
 # include <stdlib.h>
 # include <stdio.h>
 # include <string.h>
 # include <math.h>
 
-//Window size
-# define WIDTH 800
-# define HEIGHT 600
+
 
 //Still not in use
 # define MINIMAP_WIDTH WIDTH / 10
 # define MINIMAP_HEIGHT HEIGHT / 10
-
-# define VISION_LENGTH 100
 
 typedef struct s_data t_player;
 
@@ -31,5 +28,7 @@ typedef struct s_game
 
 }   t_game;
 
+int init_game(t_game *game);
+int end_game(t_game *game);
 
 #endif  

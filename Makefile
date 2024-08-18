@@ -31,6 +31,8 @@ endif
 
 SRC_FILES = main.c \
 			player.c \
+			init_game.c \
+			drawings.c
 
 SRC = $(addprefix $(SRC_DIR)/, $(SRC_FILES))
 OBJ = $(SRC:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)

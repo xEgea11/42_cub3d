@@ -13,6 +13,13 @@
 #ifndef DEFINES_H
 # define DEFINES_H
 
+/* PLAYER POV */                      //Not definitive
+# define VISION_LENGTH 100
+
+/* MAP SIZE */
+# define WIDTH 800
+# define HEIGHT 600
+
 /* EXIT & ERROR MANAGE */
 # define EXIT_SUCCESS 0
 # define EXIT_FAILURE 1
