@@ -20,7 +20,7 @@ RESET = \033[0m
 
 #For MacOS
 FLAGSMLX_MAC = -framework Cocoa -framework OpenGL -framework IOKit -Iinclude -lglfw -L"/opt/homebrew/Cellar/glfw/3.4/lib/"
-FLAGSMLX_LINUX = -ldl -lglfw -lGL -lX11 -lpthread -lm
+FLAGSMLX_LINUX =  
 
 UNAME_S := $(shell uname -s)
 ifeq ($(UNAME_S),Linux)					# Check the name of your OS
