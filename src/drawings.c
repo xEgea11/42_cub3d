@@ -47,8 +47,8 @@ void draw_player(t_game *game)
     int player_x;
     int player_y;
     // Scaling factors to fit the player within the minimap based on the window size
-    player_x = (int)(game->player->x * game->x_scale);
-    player_y = (int)(game->player->y * game->y_scale);
+    player_x = (int)(game->player->x_pos * game->x_scale);
+    player_y = (int)(game->player->y_pos * game->y_scale);
     printf("MAP_SCALE: Player x: %d, Player y: %d\n", player_x, player_y);
     //Draw point
     if (player_x >= 0 && player_x < WIDTH && player_y >= 0 && player_y < HEIGHT)
@@ -78,15 +78,15 @@ void draw_pov(t_game *game)
     i = 0;
     //int x_scaled = game->player->x * game->x_scale;
     //int y_scaled = game->player->y * game->y_scale;
-    double x1 = game->player->x + VISION_LENGTH * cos(game->player->angle);
-    double y1 = game->player->y + VISION_LENGTH * sin(game->player->angle);
+    double x1 = game->player->x_pos + VISION_LENGTH * cos(game->player->angle);
+    double y1 = game->player->y_pos + VISION_LENGTH * sin(game->player->angle);
 
     // Loop through the line length and put each pixel
     while (i < VISION_LENGTH)
     {
         // Calculate the current x and y positions along the line
-        double x = (double)(game->player->x + i * (x1 - game->player->x) / VISION_LENGTH);
-        double y = (double)(game->player->y + i * (y1 - game->player->y) / VISION_LENGTH);
+        double x = (double)(game->player->x_pos + i * (x1 - game->player->x_pos) / VISION_LENGTH);
+        double y = (double)(game->player->y_pos + i * (y1 - game->player->y_pos) / VISION_LENGTH);
         
         // Scale the coordinates to the window's pixel size
         double x_window = x * game->x_scale;

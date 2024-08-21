@@ -13,16 +13,33 @@
 #ifndef DEFINES_H
 # define DEFINES_H
 
+/* PLAYER */
+/* Distance at each button pressed*/
+# define SPEED_PLAYER 0.5
+# define ANGLE_MODIFIER 0.1
+
+/* INITIAL PLAYER POSITION*/
+# define X_PLAYER 6
+# define Y_PLAYER 6
+
 /* PLAYER POV */                      //Not definitive
 # define VISION_LENGTH 500
+# define FOV_ANGLE (60.0 * M_PI / 180.0)  // 60 degrees in radians
+# define NUM_RAYS 500  // Number of rays to cast
+
+/* OPCODES FOR MOVEMENT */
+# define LEFT 0
+# define RIGHT 1
 
 /* MAP SIZE */
 # define WIDTH 600
 # define HEIGHT 600
 
+/* MAP LEFT, POV RIGHT*/
 # define WIDTH_SCREEN 1200
 # define HEIGHT_SCREEN 600
 
+/* MAP SIZE */
 # define WIDTH_MAP 15
 # define HEIGHT_MAP 15
 

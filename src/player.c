@@ -1,66 +1,106 @@
 #include "cub3d.h"
 
-//int check_position(t_player *player, int delta_x, int delta_y)
+//static void ft_check_initial_position(t_game *game, int x, int y)         //<----Gives segfault, dont use it
 //{
-//    if (delta_x + player->x >= 0 && delta_x + player->x < WIDTH_MAP && delta_y + player->y >= 0 && delta_y + player->y < HEIGHT_MAP)
-//        return (TRUE);
+//    if (game->map[y][x] == 0)
+//    {
+//        game->player->x_pos = x;
+//        game->player->y_pos = y;
+//    }
 //    else
-//        return (FALSE);
+//    {
+//        printf("Invalid initial position, relocating...\n");        //Look for a good position to spaw
+//        game->player->x_pos = 6;
+//        game->player->y_pos = 6;
+//    }
 //}
+
+static void rotate_player(t_game *game, double rotation, int op_code)
+{
+    double new_angle;
+
+    new_angle = 0;
+    if (op_code == LEFT)                                //<----- Movements 
+        new_angle = game->player->angle - rotation;
+    else if(op_code == RIGHT)
+        new_angle = game->player->angle + rotation;
+    if (new_angle < 0)                                  //<----- Overflow
+        game->player->angle += 2 * M_PI;
+    else if (new_angle > 2 * M_PI)
+        game->player->angle -= 2 * M_PI;
+    else
+        game->player->angle = new_angle;
+}
+
+static int ft_inrange(double x, double y)
+{
+    if (x >= 0 && x < WIDTH_MAP && y >= 0 && y < HEIGHT_MAP)
+        return (TRUE);
+    return (FALSE);
+}
+
+static int ft_no_obstacle(t_game *game, double x, double y)
+{
+    if (game->map[(int)y][(int)x] == 0)
+        return (TRUE);
+    return (FALSE);
+}
+
+static void check_position(t_game *game, double delta_x, double delta_y)
+{
+    double new_x;
+    double new_y;
+
+    new_x = delta_x + game->player->x_pos;
+    new_y = delta_y + game->player->y_pos;
+    if (ft_inrange(new_x, new_y) == TRUE && ft_no_obstacle(game, new_x, new_y) == TRUE)
+    {
+        game->player->x_pos += delta_x;
+        game->player->y_pos += delta_y;
+    }
+}
+
 // Function to move the player forward
 void move_forward(t_game *game) {
-    double delta_x = cos(game->player->angle) * game->player->speed;
-    double delta_y = sin(game->player->angle) * game->player->speed;
-    double new_x = delta_x + game->player->x;
-    double new_y = delta_y + game->player->y;
-    if (new_x >= 0 && new_x < WIDTH_MAP && new_y >= 0 && new_y < HEIGHT_MAP && game->map[(int)new_y][(int)new_x] == 0)
-    {
-        game->player->x += delta_x;
-        game->player->y += delta_y;
-    }
+    double delta_x;
+    double delta_y;
+
+    delta_x = cos(game->player->angle) * game->player->speed;
+    delta_y = sin(game->player->angle) * game->player->speed;
+    check_position(game, delta_x, delta_y);
 }
 
 // Function to move the player backward
 void move_backwards(t_game *game) {
-    double delta_x = -cos(game->player->angle) * game->player->speed;
-    double delta_y = -sin(game->player->angle) * game->player->speed;
-    double new_x = delta_x + game->player->x;
-    double new_y = delta_y + game->player->y;
-    if (new_x >= 0 && new_x < WIDTH_MAP && new_y >= 0 && new_y < HEIGHT_MAP && game->map[(int)new_y][(int)new_x] == 0)
-    {
-        game->player->x += delta_x;
-        game->player->y += delta_y;
-    }
+    double delta_x;
+    double delta_y;
+
+    delta_x = -cos(game->player->angle) * game->player->speed;
+    delta_y = -sin(game->player->angle) * game->player->speed;
+    check_position(game, delta_x, delta_y);
 }
 // Function to move the player left
 void move_left(t_game *game) {
-    double delta_x = sin(game->player->angle) * game->player->speed;
-    double delta_y = -cos(game->player->angle) * game->player->speed;
-    double new_x = delta_x + game->player->x;
-    double new_y = delta_y + game->player->y;
-    if (new_x >= 0 && new_x < WIDTH_MAP && new_y >= 0 && new_y < HEIGHT_MAP && game->map[(int)new_y][(int)new_x] == 0)
-    {
-        game->player->x += delta_x;
-        game->player->y += delta_y;
-    }
+    double delta_x;
+    double delta_y;
+
+    delta_x = sin(game->player->angle) * game->player->speed;
+    delta_y = -cos(game->player->angle) * game->player->speed;
+    check_position(game, delta_x, delta_y);
 }
 
 // Function to move the player right
 void move_right(t_game *game) {
-    double delta_x = -sin(game->player->angle) * game->player->speed;
-    double delta_y = cos(game->player->angle) * game->player->speed;
-    double new_x = delta_x + game->player->x;
-    double new_y = delta_y + game->player->y;
-    if (new_x >= 0 && new_x < WIDTH_MAP && new_y >= 0 && new_y < HEIGHT_MAP && game->map[(int)new_y][(int)new_x] == 0)
-    {
-        game->player->x += delta_x;
-        game->player->y += delta_y;
-    }
+    double delta_x;
+    double delta_y;
+
+    delta_x = -sin(game->player->angle) * game->player->speed;
+    delta_y = cos(game->player->angle) * game->player->speed;
+    check_position(game, delta_x, delta_y);
 }
 
-//Following Yolanthe's tutorial, change of position should be done by multiplying for a 2D matrix
-//Be careful and watch for the signs of the trigonometric functions
-void move_player(mlx_key_data_t keydata, void *param) {
+void move_player(mlx_key_data_t keydata, void *param)
+{
     t_game *game = (t_game *)param;
 
     if (keydata.action == MLX_PRESS || keydata.action == MLX_REPEAT) {
@@ -73,14 +113,14 @@ void move_player(mlx_key_data_t keydata, void *param) {
                 move_left(game);
             else if (keydata.key == MLX_KEY_D) // Move East
                 move_right(game);
-            else if (keydata.key == MLX_KEY_LEFT) // Rotate Left            //<----Maybe do a wrapper to handle overflow in both of rotationss
-                game->player->angle -= 0.2;                                 
+            else if (keydata.key == MLX_KEY_LEFT) // Rotate Left
+                rotate_player(game, ANGLE_MODIFIER, LEFT);   //-=                          
             else if (keydata.key == MLX_KEY_RIGHT) // Rotate Right
-                game->player->angle += 0.2;
+                rotate_player(game, ANGLE_MODIFIER, RIGHT); //+=
             else
                 printf ("Invalid key\n");           //<--- Handle error
         }
-        printf("Player OG: (%f, %f)\n", game->player->x, game->player->y);    //Testing purposes
+        printf("Player OG: (%f, %f)\n", game->player->x_pos, game->player->y_pos);    //Testing purposes
         printf("Player angle: %f\n", game->player->angle);
         ft_draw(game);
     }
@@ -91,13 +131,15 @@ t_player *init_player()
     t_player *player = malloc(sizeof(t_player));
     if (!player) {
         fprintf(stderr, "Player allocation failed\n");          //<---- Change this later
-        return NULL;
+        return (NULL);
     }
-    player->x = 6;                                   //<---- Change this later, needs to be a param
-    player->y = 6;
+
+    //ft_check_initial_position(game, X_PLAYER, Y_PLAYER);
+    player->x_pos = X_PLAYER;
+    player->y_pos = Y_PLAYER;
     player->angle = ((double)random() / RAND_MAX);
     player->speed = SPEED_PLAYER;
-    printf("Initial player OG: (%f, %f)\n", player->x, player->y);
+    printf("Initial player OG: (%f, %f)\n", player->x_pos, player->y_pos);
     printf("Initial player angle: %f\n", player->angle);
 
     return (player);

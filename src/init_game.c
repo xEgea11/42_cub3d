@@ -2,18 +2,6 @@
 
 void create_map(t_game *game)           // For testing purposes, remove later
 {
-    //game->map = {
-    //    {0, 0, 0, 0, 0, 1, 0, 0, 0, 0},
-    //    {0, 0, 0, 0, 0, 1, 0, 0, 0, 0},
-    //    {0, 0, 0, 0, 0, 1, 0, 0, 0, 0},
-    //    {0, 0, 0, 0, 0, 1, 0, 0, 0, 0},
-    //    {0, 0, 0, 0, 0, 1, 0, 0, 0, 0},
-    //    {0, 0, 0, 0, 0, 1, 0, 0, 0, 0},
-    //    {0, 0, 0, 0, 0, 1, 0, 0, 0, 0},
-    //    {0, 0, 0, 0, 0, 1, 0, 0, 0, 0},
-    //    {0, 0, 0, 0, 0, 1, 0, 0, 0, 0},
-    //    {0, 0, 0, 0, 0, 1, 0, 0, 0, 0},
-    //};
     int i;
     int j;
 
@@ -42,19 +30,18 @@ int init_game(t_game *game)
         fprintf(stderr, "Memory allocation failed\n");
         return (EXIT_FAILURE);
     }
+    create_map(game);
     game->player = init_player();
     if (!game->player) {
         return (EXIT_FAILURE);
     }
     game->y_scale = (double)HEIGHT / HEIGHT_MAP;
     game->x_scale = (double)WIDTH / WIDTH_MAP;
-    create_map(game);
     game->mlx = mlx_init(WIDTH_SCREEN, HEIGHT_SCREEN, "Cub3d", true);
     if (!game->mlx) {
         fprintf(stderr, "MLX42 initialization failed\n");
         return (EXIT_FAILURE);
     }
-
     // Create an image
     game->img = mlx_new_image(game->mlx, WIDTH_SCREEN, HEIGHT_SCREEN);
     if (!game->img) {

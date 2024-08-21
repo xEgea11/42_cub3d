@@ -45,7 +45,7 @@ $(NAME): $(OBJ)
 	$(CC)  -o $(NAME) $(OBJ) $(LIBFT)  $(LIBMLX) $(FLAGSMLX) 
 	@echo "$(GREEN)Build successful!$(RESET)"
 
-$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c $(INCLUDE_DIR)/*.h			# Remove later, wildcards not allowed
 	@echo "$(YELLOW)Compiling $<...$(RESET)"
 	$(CC) $(CFLAGS) -I $(INCLUDE_DIR) -I $(INCLUDE_MLX) -c $< -o $@
 

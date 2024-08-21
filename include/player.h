@@ -2,14 +2,12 @@
 # define PLAYER_H
 # include "cub3d.h"
 
-# define SPEED_PLAYER 0.5
-
 typedef struct s_game t_game; 
 
 typedef struct s_data
 {
-    double  x;
-    double  y;
+    double  x_pos;
+    double  y_pos;
     double  angle;
     float   speed;
 
