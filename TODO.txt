@@ -16,4 +16,13 @@
 
 - Put an option to recompile libft when compile the whole project
 
+[RAYCASTING]
+
+	1) Calculate ray direction
+	2) Calculate delta distance
+	3) Calculate the distance that the ray must travel to reach the next grid (from position of the ray to the next grid)
+	4) Perform Digital Diferential Analysis (DDA)
+	5) (FINAL) Calculate the wall height, based on the distance between the player and the wall
+
+
 

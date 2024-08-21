@@ -14,11 +14,17 @@
 # define DEFINES_H
 
 /* PLAYER POV */                      //Not definitive
-# define VISION_LENGTH 100
+# define VISION_LENGTH 500
 
 /* MAP SIZE */
-# define WIDTH 800
+# define WIDTH 600
 # define HEIGHT 600
+
+# define WIDTH_SCREEN 1200
+# define HEIGHT_SCREEN 600
+
+# define WIDTH_MAP 15
+# define HEIGHT_MAP 15
 
 /* EXIT & ERROR MANAGE */
 # define EXIT_SUCCESS 0
