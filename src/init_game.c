@@ -15,7 +15,7 @@ void create_map(t_game *game)           // For testing purposes, remove later
                 game->map[i][j] = 1;
             else
                 game->map[i][j] = 0;
-            printf("%d", game->map[i][j]);
+            printf("%d  ", game->map[i][j]);
             j++;
         }
         i++;

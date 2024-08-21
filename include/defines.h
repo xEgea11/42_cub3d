@@ -83,7 +83,6 @@
 
 // Yellows/Oranges
 #define GOLD            0xFFD700FF  // Gold
-#define ORANGE          0xFFA500FF  // Orange
 #define DARK_ORANGE     0xFF8C00FF  // Dark Orange
 #define LIGHT_YELLOW    0xFFFFE0FF  // Light Yellow
 
@@ -104,6 +103,13 @@
 #define LIGHT_GRAY      0xD3D3D3FF  // Light Gray
 #define GRAY            0x808080FF  // Gray
 #define BLACK           0x000000FF  // Black
+
+#define GREEN           "\033[0;32m"
+#define RED             "\033[0;31m"
+#define YELLOW          "\033[0;33m"
+#define BLUE            "\033[0;34m"
+#define ORANGE          "\033[0;33m"
+#define RESET           "\033[0m"
 
 
 #endif

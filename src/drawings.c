@@ -1,71 +1,17 @@
 #include "cub3d.h"
 
-// Minimap purposes 
-void fill_background(t_game *game)
-{
-    int y;
-    int x;
-    int i;
-    int j;
-
-    y = 0;
-    x = 0;
-    i = 0;
-    j = 0;
-   // Iterate over the map
-   while (y < HEIGHT_MAP)
-   {
-        x = 0;
-        while (x < WIDTH_MAP)
-        {
-            i = 0;
-            // Check if the map cell is 1
-            uint32_t color = (game->map[y][x] == 1) ? DARK_GREEN : DARK_ORANGE;
-            // Draw a filled rectangle for this cell
-            while (i < (int)game->y_scale)
-            {
-                j = 0;
-                while (j < (int)game->x_scale)
-                {
-                    int draw_x = (int)(x * game->x_scale) + j;
-                    int draw_y = (int)(y * game->y_scale) + i;
-                    if (draw_x >= 0 && draw_x < WIDTH && draw_y >= 0 && draw_y < HEIGHT) {
-                        mlx_put_pixel(game->img, draw_x, draw_y, color);
-                    }
-                    j++;
-                }
-                i++;
-            }
-            x++;
-        }
-    y++;
-    }
-}
 
 void draw_player(t_game *game) 
 {
     int player_x;
     int player_y;
-    // Scaling factors to fit the player within the minimap based on the window size
-    player_x = (int)(game->player->x_pos * game->x_scale);
+    
+    player_x = (int)(game->player->x_pos * game->x_scale);      // Scaling factors to fit the player within the minimap based on the window size
     player_y = (int)(game->player->y_pos * game->y_scale);
-    printf("MAP_SCALE: Player x: %d, Player y: %d\n", player_x, player_y);
-    //Draw point
+    printf(YELLOW"SCALED position: Player x: %d, Player y: %d\n"RESET, player_x, player_y);
+    //Draw 3x3 square player
     if (player_x >= 0 && player_x < WIDTH && player_y >= 0 && player_y < HEIGHT)
-    {
-        int i = -1;
-        int j = -1;
-        while (i < 2)
-        {
-            j = -1;
-            while (j < 2)
-            {
-                mlx_put_pixel(game->img, player_x + i, player_y + j, DARK_RED);
-                j++;
-            }
-            i++;
-        }
-    }
+        draw_square(game, player_x, player_y);
 }
 
 
@@ -136,7 +82,7 @@ void ft_draw(t_game *game)
     fill_background(game);
     draw_player(game);
     draw_cone(game);
-    //draw_pov(game);
+    //draw_pov(game);                   //<------ For testing purposes, it tests a straight line
     mlx_image_to_window(game->mlx, game->img, 0, 0); 
 }
 
