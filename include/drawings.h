@@ -12,7 +12,7 @@ void draw_square(t_game *game, int player_x, int player_y) ;
 void fill_background(t_game *game);
 void draw_player(t_game *game); // For testing purposes, position of the player
 //Vision
-void draw_pov(t_game *game);
+void draw_pov(t_game *game, double angle);
 //void draw_cone(t_game *game, int length);
 void draw_cone(t_game *game);
 

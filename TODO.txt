@@ -18,11 +18,7 @@
 
 [RAYCASTING]
 
-	1) Calculate ray direction
-	2) Calculate delta distance
-	3) Calculate the distance that the ray must travel to reach the next grid (from position of the ray to the next grid)
-	4) Perform Digital Diferential Analysis (DDA)
-	5) (FINAL) Calculate the wall height, based on the distance between the player and the wall
-
-
-
+	- [DRAWINGS.C] Apply DDA algorithm, right now is a brute force calculation 
+	- [DRAWINGS.C] We need to implement and insert the drawing from the POV (maybe make a 3D_drawings.c)
+	- 
+  

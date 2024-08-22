@@ -18,7 +18,7 @@ void put_color(t_game *game, int x, int y)           //<---- It needs to be refa
         j = 0;
         while (j < (int)game->x_scale)
         {
-            int draw_x = (int)(x * game->x_scale) + j;
+            int draw_x = (int)(x * game->x_scale) + j;              //<----- We need to change that
             int draw_y = (int)(y * game->y_scale) + i;
             if (draw_x >= 0 && draw_x < WIDTH && draw_y >= 0 && draw_y < HEIGHT) {
                 mlx_put_pixel(game->img, draw_x, draw_y, color);
@@ -45,7 +45,7 @@ void fill_background(t_game *game)
         y++;
     }
 }
-void draw_square(t_game *game, int player_x, int player_y)   //Instead of drawing a point as a player, it draws a 3x3 square
+void draw_square(t_game *game, int player_x, int player_y)   //Instead of drawing a point as a player, it draws a square
 {
         int i;
         int j;
