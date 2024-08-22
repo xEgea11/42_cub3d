@@ -31,8 +31,11 @@ endif
 
 SRC_FILES = main.c \
 			player.c \
+			player_movement.c \
+			movement_utils.c \
 			init_game.c \
-			drawings.c
+			map_drawings.c \
+			map_drawings_utils.c \
 
 SRC = $(addprefix $(SRC_DIR)/, $(SRC_FILES))
 OBJ = $(SRC:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
@@ -45,7 +48,7 @@ $(NAME): $(OBJ)
 	$(CC)  -o $(NAME) $(OBJ) $(LIBFT)  $(LIBMLX) $(FLAGSMLX) 
 	@echo "$(GREEN)Build successful!$(RESET)"
 
-$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c $(INCLUDE_DIR)/*.h			# Remove later, wildcards not allowed
 	@echo "$(YELLOW)Compiling $<...$(RESET)"
 	$(CC) $(CFLAGS) -I $(INCLUDE_DIR) -I $(INCLUDE_MLX) -c $< -o $@
 

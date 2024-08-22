@@ -13,16 +13,33 @@
 #ifndef DEFINES_H
 # define DEFINES_H
 
+/* PLAYER */
+/* Distance at each button pressed*/
+# define SPEED_PLAYER 0.5
+# define ANGLE_MODIFIER 0.1
+
+/* INITIAL PLAYER POSITION*/
+# define X_PLAYER 6
+# define Y_PLAYER 6
+
 /* PLAYER POV */                      //Not definitive
 # define VISION_LENGTH 500
+# define FOV_ANGLE (60.0 * M_PI / 180.0)  // 60 degrees in radians
+# define NUM_RAYS 500  // Number of rays to cast
+
+/* OPCODES FOR MOVEMENT */
+# define LEFT 0
+# define RIGHT 1
 
 /* MAP SIZE */
 # define WIDTH 600
 # define HEIGHT 600
 
+/* MAP LEFT, POV RIGHT*/
 # define WIDTH_SCREEN 1200
 # define HEIGHT_SCREEN 600
 
+/* MAP SIZE */
 # define WIDTH_MAP 15
 # define HEIGHT_MAP 15
 
@@ -66,7 +83,6 @@
 
 // Yellows/Oranges
 #define GOLD            0xFFD700FF  // Gold
-#define ORANGE          0xFFA500FF  // Orange
 #define DARK_ORANGE     0xFF8C00FF  // Dark Orange
 #define LIGHT_YELLOW    0xFFFFE0FF  // Light Yellow
 
@@ -87,6 +103,13 @@
 #define LIGHT_GRAY      0xD3D3D3FF  // Light Gray
 #define GRAY            0x808080FF  // Gray
 #define BLACK           0x000000FF  // Black
+
+#define GREEN           "\033[0;32m"
+#define RED             "\033[0;31m"
+#define YELLOW          "\033[0;33m"
+#define BLUE            "\033[0;34m"
+#define ORANGE          "\033[0;33m"
+#define RESET           "\033[0m"
 
 
 #endif
