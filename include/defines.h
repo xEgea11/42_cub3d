@@ -23,7 +23,7 @@
 # define Y_PLAYER 6
 
 /* PLAYER POV */                      //Not definitive
-# define VISION_LENGTH 500
+# define VISION_LENGTH 20
 # define FOV_ANGLE (60.0 * M_PI / 180.0)  // 60 degrees in radians
 # define NUM_RAYS 500  // Number of rays to cast
 
@@ -40,8 +40,9 @@
 # define HEIGHT_SCREEN 600
 
 /* MAP SIZE */
-# define WIDTH_MAP 15
-# define HEIGHT_MAP 15
+# define WIDTH_MAP 40
+# define HEIGHT_MAP 40
+# define OBSTACLE_PROB 60
 
 /* EXIT & ERROR MANAGE */
 # define EXIT_SUCCESS 0

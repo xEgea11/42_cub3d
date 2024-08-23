@@ -8,15 +8,19 @@ void fill_background(t_game *game);
 void draw_square(t_game *game, int player_x, int player_y) ;
 
 
-/* MAIN DRAWING sFUNCTIONS */
+/* MAIN DRAWINGS FUNCTIONS */
 void fill_background(t_game *game);
 void draw_player(t_game *game); // For testing purposes, position of the player
 //Vision
-void draw_pov(t_game *game, double angle);
+int draw_pov(t_game *game, double angle, int iteration);
 //void draw_cone(t_game *game, int length);
 void draw_cone(t_game *game);
 
 void ft_draw(t_game *game);
+
+/* 3D WORLD DRAWINGS */
+void fill_background_3d(t_game *game);
+void draw_obstacle(t_game *game, int i, double delta_x, double delta_y);
 
 
 #endif 
