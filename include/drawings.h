@@ -20,7 +20,7 @@ void ft_draw(t_game *game);
 
 /* 3D WORLD DRAWINGS */
 void fill_background_3d(t_game *game);
-void draw_obstacle(t_game *game, int i, double delta_x, double delta_y);
+void draw_obstacle(t_game *game, int iteration, double delta_x, double delta_y);
 
 
 #endif 

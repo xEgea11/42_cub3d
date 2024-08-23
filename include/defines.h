@@ -19,8 +19,8 @@
 # define ANGLE_MODIFIER 0.1
 
 /* INITIAL PLAYER POSITION*/
-# define X_PLAYER 6
-# define Y_PLAYER 6
+# define X_PLAYER 8
+# define Y_PLAYER 8
 
 /* PLAYER POV */                      //Not definitive
 # define VISION_LENGTH 20

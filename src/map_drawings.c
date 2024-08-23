@@ -92,7 +92,7 @@ void ft_draw(t_game *game)
     fill_background_3d(game);
     draw_player(game);
     draw_cone(game);
-    //draw_pov(game, game->player->angle);                   //<------ For testing purposes, it tests a straight line
+    //draw_pov(game, game->player->angle, 1);                   //<------ For testing purposes, it tests a straight line
     mlx_image_to_window(game->mlx, game->img, 0, 0); 
 }
 
