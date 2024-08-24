@@ -37,7 +37,7 @@ void put_color(t_game *game, int x, int y)           //<---- It needs to be refa
 }
 
 // Minimap purposes 
-void fill_background(t_game *game)
+void fill_background_minimap(t_game *game)
 {
     int y;
     int x;

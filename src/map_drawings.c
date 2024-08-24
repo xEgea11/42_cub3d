@@ -1,6 +1,32 @@
 #include "cub3d.h"
 
-void draw_player(t_game *game) 
+//Move this later
+static void find_orientation(t_game *game, double x, double y, int iteration)
+{
+    double delta_x;    
+    double delta_y;
+    double decimal_x;
+    double decimal_y;
+    double minimum;
+
+    delta_x = x - game->player->x_pos;
+    delta_y = y - game->player->y_pos;
+    decimal_x = x - round(x);
+    decimal_y = y - round(y);
+    minimum = min(fabs(decimal_x), fabs(decimal_y));
+
+    if (minimum == fabs(decimal_x) && decimal_x > 0)                    // Touching X axis and facing East
+        render_obstacle(game, iteration, delta_x, delta_y, WEST);
+    else if (minimum == fabs(decimal_x) && decimal_x < 0)               // Touching X axis and facing West (negative X)
+        render_obstacle(game, iteration, delta_x, delta_y, EAST);
+    else if (minimum == fabs(decimal_y) && decimal_y > 0)               // Touching Y axis and facing South
+        render_obstacle(game, iteration, delta_x, delta_y, NORTH);
+    else if (minimum == fabs(decimal_y) && decimal_y < 0)               // Touching Y axis
+        render_obstacle(game, iteration, delta_x, delta_y, SOUTH);
+}
+
+
+void draw_player_minimap(t_game *game) 
 {
     int player_x;
     int player_y;
@@ -13,7 +39,7 @@ void draw_player(t_game *game)
         draw_square(game, player_x, player_y);
 }
 
-static void scale_and_draw_ray(t_game *game, double x, double y)
+static void scale_and_draw_ray_minimap(t_game *game, double x, double y)
 {
     double x_window;
     double y_window;
@@ -34,7 +60,7 @@ int draw_pov(t_game *game, double angle, int iteration)
 
     i = 0;
     x1 = game->player->x_pos + VISION_LENGTH * cos(angle); //cos(game->player->angle);
-    y1 = game->player->y_pos + VISION_LENGTH * sin(angle);//sin(game->player->angle);
+    y1 = game->player->y_pos + VISION_LENGTH * sin(angle); //sin(game->player->angle);
 
     // Loop through the line length and put each pixel
     while (i < VISION_LENGTH)                           //<----Refactor this one
@@ -49,28 +75,13 @@ int draw_pov(t_game *game, double angle, int iteration)
         /** PUT THIS ON TO SEE THE MADNESS OF ALL CALCULATIONS */
         //printf(BLUE"RAY OG: x: %f, y: %f\n"RESET, x, y);
         
-        if (game->map[(int)y][(int)x] == 1) 
+        if (game->map[(int)y][(int)x] == 1)     //t_game game, double x, double y, int iteration)
         {
-            double delta_x = x - game->player->x_pos;     //<--- Testing purposes
-            double delta_y = y - game->player->y_pos;
-            double decimal_x = x - round(x);
-            double decimal_y = y - round(y);
-            printf(RED"DECIMAL X: %f, DECIMAL Y: %f\n"RESET, decimal_x, decimal_y);
-            double minimum = min(fabs(decimal_x), fabs(decimal_y));
-            printf(RED"MINIMUM: %f\n"RESET, minimum);
-            if (minimum == fabs(decimal_x) && decimal_x > 0)                   // Touching X axis and facing East
-                draw_obstacle(game, iteration, delta_x, delta_y, minimum, X_WALL);
-            else if (minimum == fabs(decimal_x) && decimal_x < 0)            // Touching X axis and facing West (negative X)
-                draw_obstacle(game, iteration, delta_x, delta_y, decimal_x, X_WALL);
-            else if (minimum == fabs(decimal_y) && decimal_y > 0)              // Touching Y axis and facing South
-                draw_obstacle(game, iteration, delta_x, delta_y, minimum, Y_WALL);
-            else if (minimum == fabs(decimal_y) && decimal_y < 0)              // Touching Y axis
-                draw_obstacle(game, iteration, delta_x, delta_y, decimal_y, Y_WALL);
+            find_orientation(game, x, y, iteration);
             return (TRUE);
         }
 
-        scale_and_draw_ray(game, x, y);     //<-- This is still for the map
-
+        scale_and_draw_ray_minimap(game, x, y);     //<-- This is still for the map
         /** RATE AT WHICH WE CHANGE THE CALCULATIONS **/
         i += 0.01;
     }
@@ -95,14 +106,13 @@ void draw_cone(t_game *game) {
         draw_pov(game, current_angle, i);
         i++;
     }
-
 }
 
 void ft_draw(t_game *game)
 {
-    fill_background(game);
+    fill_background_minimap(game);
     fill_background_3d(game);
-    draw_player(game);
+    draw_player_minimap(game);
     draw_cone(game);
     //draw_pov(game, game->player->angle, 1);                   //<------ For testing purposes, it tests a straight line
     mlx_image_to_window(game->mlx, game->img, 0, 0); 

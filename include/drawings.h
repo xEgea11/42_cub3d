@@ -10,8 +10,8 @@ double min(double a, double b);
 
 
 /* MAIN DRAWINGS FUNCTIONS */
-void fill_background(t_game *game);
-void draw_player(t_game *game); // For testing purposes, position of the player
+void fill_background_minimap(t_game *game);
+void draw_player_minimap(t_game *game); // For testing purposes, position of the player
 //Vision
 int draw_pov(t_game *game, double angle, int iteration);
 //void draw_cone(t_game *game, int length);
@@ -21,7 +21,7 @@ void ft_draw(t_game *game);
 
 /* 3D WORLD DRAWINGS */
 void fill_background_3d(t_game *game);
-void draw_obstacle(t_game *game, int iteration, double delta_x, double delta_y, double min_decimal, int wall);
+void render_obstacle(t_game *game, int iteration, double delta_x, double delta_y, int wall);
 
 
 #endif 

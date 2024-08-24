@@ -12,6 +12,9 @@
 		* Every time we move, we have to add or substract to or from that position
 			[x0,y0] +- [x1,y1]
 
+[WINDOW MANAGEMENT]
+	- Put an option son the window closes with an ESC press
+
 [MAKEFILE]
 
 - Put an option to recompile libft when compile the whole project

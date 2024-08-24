@@ -28,8 +28,10 @@
 # define NUM_RAYS 500  // Number of rays to cast
 
 /* ORIENTATION */
-# define X_WALL 0
-# define Y_WALL 1
+# define NORTH 0
+# define SOUTH 1
+# define EAST 2
+# define WEST 3
 
 /* OPCODES FOR MOVEMENT */
 # define LEFT 0
@@ -47,6 +49,9 @@
 # define WIDTH_MAP 40
 # define HEIGHT_MAP 40
 # define OBSTACLE_PROB 60
+
+/* 3D MACROS */
+# define MAX_WALL_HEIGHT 500
 
 /* EXIT & ERROR MANAGE */
 # define EXIT_SUCCESS 0
