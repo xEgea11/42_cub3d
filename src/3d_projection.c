@@ -1,44 +1,7 @@
 #include "cub3d.h"
 
-static void draw_ceiling_3d(t_game *game)
-{
-    int y;
-    int x;
 
-    y = 0;
-    x = WIDTH_SCREEN / 2;
-    while (y < HEIGHT_SCREEN / 2)
-    {
-        x = WIDTH_SCREEN / 2;
-        while (x < WIDTH_SCREEN)
-        {
-            mlx_put_pixel(game->img, x, y, MIDNIGHT_BLUE);
-            x++;
-        }
-        y++;
-    }
-}
-
-static void draw_floor_3d(t_game *game)
-{
-    int y;
-    int x;
-
-    y = HEIGHT_SCREEN / 2;
-    x = WIDTH_SCREEN / 2;
-    while (y < HEIGHT_SCREEN)
-    {
-        x = WIDTH_SCREEN / 2;
-        while (x < WIDTH_SCREEN)
-        {
-            mlx_put_pixel(game->img, x, y, DARK_GREEN);
-            x++;
-        }
-        y++;
-    }
-}
-
-static void draw_orientation_3d(t_game *game, int wall, double rays, double x_offset, double y_start)
+static void draw_orientation_3d(t_game *game, double rays, double x_offset, double y_start, int wall)
 {
     int x_offset_int;
 
@@ -53,6 +16,7 @@ static void draw_orientation_3d(t_game *game, int wall, double rays, double x_of
         mlx_put_pixel(game->img, x_offset_int + (int)rays, y_start, CHOCOLATE);
 }
 
+// <---- This needs to be refactored
 static void draw_columns_per_coordinate_3d(t_game *game, double wall_height, double columns_per_ray, double offset_x, int wall)
 {
     double y_start;
@@ -72,7 +36,7 @@ static void draw_columns_per_coordinate_3d(t_game *game, double wall_height, dou
                                                                     // Draw the vertical column for the wall
         while (y_start < y_end)
         {
-            draw_orientation_3d(game, wall, rays, offset_x, y_start);
+            draw_orientation_3d(game, rays, offset_x, y_start, wall);
             y_start++;
         }
         rays += 1.0;
@@ -85,8 +49,8 @@ void fill_background_3d(t_game *game)
     draw_floor_3d(game);
 }
 
-
-void render_obstacle_3d(t_game *game, int iteration, double delta_x, double delta_y, int wall)             //<----- Declaration of variables meh
+//Refactor still needed 
+void render_obstacle_3d(t_game *game, int iteration, double delta_x, double delta_y, int wall)
 {
     double distance;  //Distance from the player to the wall
     double columns_per_ray; // How many columns correspond to each ray, depending on the screen size

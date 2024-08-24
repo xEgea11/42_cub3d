@@ -48,8 +48,8 @@ int init_game(t_game *game)
         fprintf(stderr, "Image creation failed\n");
         return (EXIT_FAILURE);
     }
-    // Fill the screen with black color
-    ft_draw(game);
+    
+    render_screen(game);
     
     mlx_key_hook(game->mlx, move_player, game);
     // Hook the loop to keep the window open

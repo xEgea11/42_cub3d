@@ -1,45 +1,33 @@
 #include "cub3d.h"
 
 //Move this later
-static void find_orientation_3d(t_game *game, double x, double y, int iteration)
+static void single_raycast_3d(t_game *game, double x, double y, int iteration)    //<--- Refactor still needed
 {
     double delta_x;    
     double delta_y;
     double decimal_x;
     double decimal_y;
-    double minimum;
 
     delta_x = x - game->player->x_pos;
     delta_y = y - game->player->y_pos;
     decimal_x = x - round(x);
     decimal_y = y - round(y);
-    minimum = abs_min(decimal_x, decimal_y);
 
-    if (minimum == fabs(decimal_x) && decimal_x > 0)                    // Touching X axis and facing East
+    if (abs_min(decimal_x, decimal_y) == fabs(decimal_x)                        // Touching X axis and facing West
+        && decimal_x > 0)                    
         render_obstacle_3d(game, iteration, delta_x, delta_y, WEST);
-    else if (minimum == fabs(decimal_x) && decimal_x < 0)               // Touching X axis and facing West (negative X)
-        render_obstacle_3d(game, iteration, delta_x, delta_y, EAST);
-    else if (minimum == fabs(decimal_y) && decimal_y > 0)               // Touching Y axis and facing South
+    else if (abs_min(decimal_x, decimal_y) == fabs(decimal_x)                   // Touching X axis and facing East (negative X)
+        && decimal_x < 0)               
+        render_obstacle_3d(game, iteration, delta_x, delta_y, EAST);            
+    else if (abs_min(decimal_x, decimal_y) == fabs(decimal_y)                   // Touching Y axis and facing North
+        && decimal_y > 0)                                                       
         render_obstacle_3d(game, iteration, delta_x, delta_y, NORTH);
-    else if (minimum == fabs(decimal_y) && decimal_y < 0)               // Touching Y axis
+    else if (abs_min(decimal_x, decimal_y) == fabs(decimal_y)                   // Touching Y axis and facing South
+        && decimal_y < 0)                                                       
         render_obstacle_3d(game, iteration, delta_x, delta_y, SOUTH);
 }
 
-
-void draw_player_minimap(t_game *game) 
-{
-    int player_x;
-    int player_y;
-    
-    player_x = (int)(game->player->x_pos * game->x_scale);      // Scaling factors to fit the player within the minimap based on the window size
-    player_y = (int)(game->player->y_pos * game->y_scale);
-    printf(YELLOW"SCALED position: Player x: %d, Player y: %d\n"RESET, player_x, player_y);
-    //Draw 3x3 square player
-    if (player_x >= 0 && player_x < WIDTH && player_y >= 0 && player_y < HEIGHT)
-        draw_square(game, player_x, player_y);
-}
-
-static void scale_and_draw_ray_minimap(t_game *game, double x, double y)
+static void single_raycast_minimap(t_game *game, double x, double y)
 {
     double x_window;
     double y_window;
@@ -63,7 +51,7 @@ int raycast(t_game *game, double angle, int iteration)
     y1 = game->player->y_pos + VISION_LENGTH * sin(angle); //sin(game->player->angle);
 
     // Loop through the line length and put each pixel
-    while (i < VISION_LENGTH)                           //<----Refactor this one
+    while (i < VISION_LENGTH)
     {
         double x;
         double y;
@@ -77,11 +65,11 @@ int raycast(t_game *game, double angle, int iteration)
         
         if (game->map[(int)y][(int)x] == 1)     //t_game game, double x, double y, int iteration)
         {
-            find_orientation_3d(game, x, y, iteration);
+            single_raycast_3d(game, x, y, iteration);
             return (TRUE);
         }
 
-        scale_and_draw_ray_minimap(game, x, y);     //<-- This is still for the map
+        single_raycast_minimap(game, x, y);     //<-- This is still for the map
         /** RATE AT WHICH WE CHANGE THE CALCULATIONS **/
         i += 0.01;
     }
@@ -108,7 +96,20 @@ void point_of_view(t_game *game) {
     }
 }
 
-void ft_draw(t_game *game)
+void draw_player_minimap(t_game *game) 
+{
+    int player_x;
+    int player_y;
+    
+    player_x = (int)(game->player->x_pos * game->x_scale);      // Scaling factors to fit the player within the minimap based on the window size
+    player_y = (int)(game->player->y_pos * game->y_scale);
+    printf(YELLOW"SCALED position: Player x: %d, Player y: %d\n"RESET, player_x, player_y);
+    //Draw 3x3 square player
+    if (player_x >= 0 && player_x < WIDTH && player_y >= 0 && player_y < HEIGHT)
+        draw_square_player(game, player_x, player_y);
+}
+
+void render_screen(t_game *game)
 {
     fill_background_minimap(game);
     fill_background_3d(game);

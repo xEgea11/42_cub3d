@@ -14,7 +14,7 @@
 # define DEFINES_H
 
 /* PLAYER */
-/* Distance at each button pressed*/
+/* Distance at each button pressed */
 # define SPEED_PLAYER 0.5
 # define ANGLE_MODIFIER 0.1
 
@@ -23,9 +23,9 @@
 # define Y_PLAYER 8
 
 /* PLAYER POV */                      //Not definitive
-# define VISION_LENGTH 20
+# define VISION_LENGTH 30
 # define FOV_ANGLE (60.0 * M_PI / 180.0)  // 60 degrees in radians
-# define NUM_RAYS 500  // Number of rays to cast
+# define NUM_RAYS 100  // Number of rays to cast
 
 /* ORIENTATION */
 # define NORTH 0
@@ -48,7 +48,7 @@
 /* MAP SIZE */
 # define WIDTH_MAP 40
 # define HEIGHT_MAP 40
-# define OBSTACLE_PROB 60
+# define OBSTACLE_PROB 60           //<---- It determines the probability of an obstacle to appear in the map
 
 /* 3D MACROS */
 # define MAX_WALL_HEIGHT 500

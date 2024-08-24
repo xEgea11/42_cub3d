@@ -37,6 +37,7 @@ SRC_FILES = main.c \
 			map_drawings.c \
 			map_drawings_utils.c \
 			3d_projection.c \
+			3d_projection_utils.c \
 
 SRC = $(addprefix $(SRC_DIR)/, $(SRC_FILES))
 OBJ = $(SRC:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
