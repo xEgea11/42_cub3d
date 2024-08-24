@@ -33,7 +33,7 @@ void fill_background_3d(t_game *game)           // <---- Refactor later
 }
 
 
-void draw_obstacle(t_game *game, int iteration, double delta_x, double delta_y)             //<----- Declaration of variables meh
+void draw_obstacle(t_game *game, int iteration, double delta_x, double delta_y, double min_decimal, int wall)             //<----- Declaration of variables meh
 {
 
     double max_wall_height = 500.0;   // Maximum wall height
@@ -61,7 +61,20 @@ void draw_obstacle(t_game *game, int iteration, double delta_x, double delta_y) 
         // Draw the vertical column for the wall
         while (y_start < y_end)
         {
-            mlx_put_pixel(game->img, round(x) + (int)rays, y_start, DARK_RED);
+            if (wall == X_WALL)
+            {
+                if (min_decimal > 0)          // Facing East
+                    mlx_put_pixel(game->img, round(x) + (int)rays, y_start, DARK_RED);
+                else                            // Facing West
+                    mlx_put_pixel(game->img, round(x) + (int)rays, y_start, DARK_GREEN);
+            }
+            else if (wall == Y_WALL)
+            {
+                if (min_decimal > 0)          // Facing South
+                    mlx_put_pixel(game->img, round(x) + (int)rays, y_start, DARK_BLUE);
+                else                            // Facing North
+                    mlx_put_pixel(game->img, round(x) + (int)rays, y_start, DARK_MAGENTA);
+            }
             y_start++;
         }
         rays += 1.0;

@@ -22,4 +22,6 @@
 
 	- [DRAWINGS.C] Apply DDA algorithm, right now is a brute force calculation 
 	- [FISH-EYE] Not needed, but it makes the visualization of the blocks way more beautiful
-  
+
+	- [BUG] -> At some point, the angle is negative, and that pisses me off
+	- [BUG] -> When calculating orientation, at the edges the calculation is not accurate

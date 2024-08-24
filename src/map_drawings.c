@@ -53,7 +53,19 @@ int draw_pov(t_game *game, double angle, int iteration)
         {
             double delta_x = x - game->player->x_pos;     //<--- Testing purposes
             double delta_y = y - game->player->y_pos;
-            draw_obstacle(game, iteration, delta_x, delta_y);
+            double decimal_x = x - round(x);
+            double decimal_y = y - round(y);
+            printf(RED"DECIMAL X: %f, DECIMAL Y: %f\n"RESET, decimal_x, decimal_y);
+            double minimum = min(fabs(decimal_x), fabs(decimal_y));
+            printf(RED"MINIMUM: %f\n"RESET, minimum);
+            if (minimum == fabs(decimal_x) && decimal_x > 0)                   // Touching X axis and facing East
+                draw_obstacle(game, iteration, delta_x, delta_y, minimum, X_WALL);
+            else if (minimum == fabs(decimal_x) && decimal_x < 0)            // Touching X axis and facing West (negative X)
+                draw_obstacle(game, iteration, delta_x, delta_y, decimal_x, X_WALL);
+            else if (minimum == fabs(decimal_y) && decimal_y > 0)              // Touching Y axis and facing South
+                draw_obstacle(game, iteration, delta_x, delta_y, minimum, Y_WALL);
+            else if (minimum == fabs(decimal_y) && decimal_y < 0)              // Touching Y axis
+                draw_obstacle(game, iteration, delta_x, delta_y, decimal_y, Y_WALL);
             return (TRUE);
         }
 

@@ -27,6 +27,10 @@
 # define FOV_ANGLE (60.0 * M_PI / 180.0)  // 60 degrees in radians
 # define NUM_RAYS 500  // Number of rays to cast
 
+/* ORIENTATION */
+# define X_WALL 0
+# define Y_WALL 1
+
 /* OPCODES FOR MOVEMENT */
 # define LEFT 0
 # define RIGHT 1

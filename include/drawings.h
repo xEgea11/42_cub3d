@@ -6,6 +6,7 @@
 void put_color(t_game *game, int x, int y);
 void fill_background(t_game *game);
 void draw_square(t_game *game, int player_x, int player_y) ;
+double min(double a, double b);
 
 
 /* MAIN DRAWINGS FUNCTIONS */
@@ -20,7 +21,7 @@ void ft_draw(t_game *game);
 
 /* 3D WORLD DRAWINGS */
 void fill_background_3d(t_game *game);
-void draw_obstacle(t_game *game, int iteration, double delta_x, double delta_y);
+void draw_obstacle(t_game *game, int iteration, double delta_x, double delta_y, double min_decimal, int wall);
 
 
 #endif 

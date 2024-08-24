@@ -1,5 +1,12 @@
 #include "cub3d.h"
 
+double min(double a, double b)
+{
+    if (fabs(a) < fabs(b))
+        return (fabs(a));
+    return (fabs(b));
+}
+
 void put_color(t_game *game, int x, int y)           //<---- It needs to be refactored, i'm still working on it
 {
     int i;
