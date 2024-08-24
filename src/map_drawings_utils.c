@@ -1,6 +1,6 @@
 #include "cub3d.h"
 
-double min(double a, double b)
+double abs_min(double a, double b)
 {
     if (fabs(a) < fabs(b))
         return (fabs(a));

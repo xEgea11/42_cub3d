@@ -1,7 +1,7 @@
 #include "cub3d.h"
 
 //Move this later
-static void find_orientation(t_game *game, double x, double y, int iteration)
+static void find_orientation_3d(t_game *game, double x, double y, int iteration)
 {
     double delta_x;    
     double delta_y;
@@ -13,16 +13,16 @@ static void find_orientation(t_game *game, double x, double y, int iteration)
     delta_y = y - game->player->y_pos;
     decimal_x = x - round(x);
     decimal_y = y - round(y);
-    minimum = min(fabs(decimal_x), fabs(decimal_y));
+    minimum = abs_min(decimal_x, decimal_y);
 
     if (minimum == fabs(decimal_x) && decimal_x > 0)                    // Touching X axis and facing East
-        render_obstacle(game, iteration, delta_x, delta_y, WEST);
+        render_obstacle_3d(game, iteration, delta_x, delta_y, WEST);
     else if (minimum == fabs(decimal_x) && decimal_x < 0)               // Touching X axis and facing West (negative X)
-        render_obstacle(game, iteration, delta_x, delta_y, EAST);
+        render_obstacle_3d(game, iteration, delta_x, delta_y, EAST);
     else if (minimum == fabs(decimal_y) && decimal_y > 0)               // Touching Y axis and facing South
-        render_obstacle(game, iteration, delta_x, delta_y, NORTH);
+        render_obstacle_3d(game, iteration, delta_x, delta_y, NORTH);
     else if (minimum == fabs(decimal_y) && decimal_y < 0)               // Touching Y axis
-        render_obstacle(game, iteration, delta_x, delta_y, SOUTH);
+        render_obstacle_3d(game, iteration, delta_x, delta_y, SOUTH);
 }
 
 
@@ -52,7 +52,7 @@ static void scale_and_draw_ray_minimap(t_game *game, double x, double y)
 
 //Minimap purposes, just to draw the pov from the player in a straight line
 //It marks the direction the player is looking at based on the angle
-int draw_pov(t_game *game, double angle, int iteration)
+int raycast(t_game *game, double angle, int iteration)
 {
     double i;
     double x1;
@@ -77,7 +77,7 @@ int draw_pov(t_game *game, double angle, int iteration)
         
         if (game->map[(int)y][(int)x] == 1)     //t_game game, double x, double y, int iteration)
         {
-            find_orientation(game, x, y, iteration);
+            find_orientation_3d(game, x, y, iteration);
             return (TRUE);
         }
 
@@ -89,7 +89,7 @@ int draw_pov(t_game *game, double angle, int iteration)
 }
 
 //Draw cone function with draw_pov but in a cone of 60 
-void draw_cone(t_game *game) {
+void point_of_view(t_game *game) {
     
     double angle_step;
     double start_angle;
@@ -103,7 +103,7 @@ void draw_cone(t_game *game) {
     while (i < NUM_RAYS)
     {
         current_angle = start_angle + i * angle_step;
-        draw_pov(game, current_angle, i);
+        raycast(game, current_angle, i);
         i++;
     }
 }
@@ -113,8 +113,8 @@ void ft_draw(t_game *game)
     fill_background_minimap(game);
     fill_background_3d(game);
     draw_player_minimap(game);
-    draw_cone(game);
-    //draw_pov(game, game->player->angle, 1);                   //<------ For testing purposes, it tests a straight line
+    point_of_view(game);
+    //raycast(game, game->player->angle, 1);                   //<------ For testing purposes, it tests a straight line
     mlx_image_to_window(game->mlx, game->img, 0, 0); 
 }
 

@@ -1,6 +1,6 @@
 #include "cub3d.h"
 
-static void draw_ceiling(t_game *game)
+static void draw_ceiling_3d(t_game *game)
 {
     int y;
     int x;
@@ -19,7 +19,7 @@ static void draw_ceiling(t_game *game)
     }
 }
 
-static void draw_floor(t_game *game)
+static void draw_floor_3d(t_game *game)
 {
     int y;
     int x;
@@ -38,7 +38,7 @@ static void draw_floor(t_game *game)
     }
 }
 
-static void draw_orientation(t_game *game, int wall, double rays, double x_offset, double y_start)
+static void draw_orientation_3d(t_game *game, int wall, double rays, double x_offset, double y_start)
 {
     int x_offset_int;
 
@@ -53,7 +53,7 @@ static void draw_orientation(t_game *game, int wall, double rays, double x_offse
         mlx_put_pixel(game->img, x_offset_int + (int)rays, y_start, CHOCOLATE);
 }
 
-static void draw_columns_per_coordinate(t_game *game, double wall_height, double columns_per_ray, double offset_x, int wall)
+static void draw_columns_per_coordinate_3d(t_game *game, double wall_height, double columns_per_ray, double offset_x, int wall)
 {
     double y_start;
     double y_end;
@@ -72,7 +72,7 @@ static void draw_columns_per_coordinate(t_game *game, double wall_height, double
                                                                     // Draw the vertical column for the wall
         while (y_start < y_end)
         {
-            draw_orientation(game, wall, rays, offset_x, y_start);
+            draw_orientation_3d(game, wall, rays, offset_x, y_start);
             y_start++;
         }
         rays += 1.0;
@@ -81,12 +81,12 @@ static void draw_columns_per_coordinate(t_game *game, double wall_height, double
 
 void fill_background_3d(t_game *game)
 {
-    draw_ceiling(game);
-    draw_floor(game);
+    draw_ceiling_3d(game);
+    draw_floor_3d(game);
 }
 
 
-void render_obstacle(t_game *game, int iteration, double delta_x, double delta_y, int wall)             //<----- Declaration of variables meh
+void render_obstacle_3d(t_game *game, int iteration, double delta_x, double delta_y, int wall)             //<----- Declaration of variables meh
 {
     double distance;  //Distance from the player to the wall
     double columns_per_ray; // How many columns correspond to each ray, depending on the screen size
@@ -98,5 +98,5 @@ void render_obstacle(t_game *game, int iteration, double delta_x, double delta_y
     offset_x = WIDTH + (iteration * columns_per_ray);
     wall_height = MAX_WALL_HEIGHT / distance;
     // Starting at an offset x, it draws the necessary columns per x
-    draw_columns_per_coordinate(game, wall_height, columns_per_ray, offset_x, wall);
+    draw_columns_per_coordinate_3d(game, wall_height, columns_per_ray, offset_x, wall);
 }
