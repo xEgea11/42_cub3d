@@ -11,7 +11,7 @@ void create_map(t_game *game)           // For testing purposes, remove later
         j = 0;
         while (j < WIDTH_MAP)
         {
-            if (rand() * 100 % 6 == 0 || i == 0 || i == HEIGHT_MAP - 1 || j == 0 || j == WIDTH_MAP - 1)
+            if (rand() * 100 % OBSTACLE_PROB == 0 || i == 0 || i == HEIGHT_MAP - 1 || j == 0 || j == WIDTH_MAP - 1)
                 game->map[i][j] = 1;
             else
                 game->map[i][j] = 0;
@@ -35,7 +35,7 @@ int init_game(t_game *game)
     if (!game->player) {
         return (EXIT_FAILURE);
     }
-    game->y_scale = (double)HEIGHT / HEIGHT_MAP;
+    game->y_scale = (double)HEIGHT / HEIGHT_MAP;            //Dont forget, this is based on the screen size
     game->x_scale = (double)WIDTH / WIDTH_MAP;
     game->mlx = mlx_init(WIDTH_SCREEN, HEIGHT_SCREEN, "Cub3d", true);
     if (!game->mlx) {
@@ -48,8 +48,8 @@ int init_game(t_game *game)
         fprintf(stderr, "Image creation failed\n");
         return (EXIT_FAILURE);
     }
-    // Fill the screen with black color
-    ft_draw(game);
+    
+    render_screen(game);
     
     mlx_key_hook(game->mlx, move_player, game);
     // Hook the loop to keep the window open

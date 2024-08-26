@@ -1,27 +1,27 @@
 #include "cub3d.h"
 
-void put_color(t_game *game, int x, int y)           //<---- It needs to be refactored, i'm still working on it
+void put_pixel_minimap(t_game *game, int x, int y)           //<---- It needs to be refactored, i'm still working on it
 {
     int i;
     int j;
-    uint32_t color;
+    int draw_x;
+    int draw_y;
 
     i = 0;
     j = 0;
-
-    if (game->map[y][x] == 0)
-        color = DARK_BLUE;
-    else if (game->map[y][x] == 1)
-        color = DARK_GREEN;
     while (i < (int)game->y_scale)
     {
         j = 0;
         while (j < (int)game->x_scale)
         {
-            int draw_x = (int)(x * game->x_scale) + j;              //<----- We need to change that
-            int draw_y = (int)(y * game->y_scale) + i;
-            if (draw_x >= 0 && draw_x < WIDTH && draw_y >= 0 && draw_y < HEIGHT) {
-                mlx_put_pixel(game->img, draw_x, draw_y, color);
+            draw_x = (int)(x * game->x_scale) + j;
+            draw_y = (int)(y * game->y_scale) + i;
+            if (draw_x >= 0 && draw_x < WIDTH && draw_y >= 0 && draw_y < HEIGHT) 
+            {
+                if (game->map[y][x] == 0)
+                    mlx_put_pixel(game->img, draw_x, draw_y, DARK_BLUE);
+                else if (game->map[y][x] == 1)
+                    mlx_put_pixel(game->img, draw_x, draw_y, DARK_GREEN);
             }
             j++;
         }
@@ -30,7 +30,7 @@ void put_color(t_game *game, int x, int y)           //<---- It needs to be refa
 }
 
 // Minimap purposes 
-void fill_background(t_game *game)
+void fill_background_minimap(t_game *game)
 {
     int y;
     int x;
@@ -41,11 +41,11 @@ void fill_background(t_game *game)
     {
         x = 0;
         while (x < WIDTH_MAP)
-            put_color(game, x++, y);
+            put_pixel_minimap(game, x++, y);
         y++;
     }
 }
-void draw_square(t_game *game, int player_x, int player_y)   //Instead of drawing a point as a player, it draws a square
+void draw_square_player(t_game *game, int player_x, int player_y)   //Instead of drawing a point as a player, it draws a square
 {
         int i;
         int j;

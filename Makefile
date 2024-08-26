@@ -53,6 +53,8 @@ PARSING_FILES = parsing.c \
 				print_data.c
 
 SRC_FILES += $(addprefix $(PARSE_DIR)/, $(PARSING_FILES))
+			3d_projection.c \
+			3d_projection_utils.c \
 
 SRC = $(addprefix $(SRC_DIR)/, $(SRC_FILES))
 OBJ = $(SRC:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)

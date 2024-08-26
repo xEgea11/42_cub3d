@@ -60,8 +60,7 @@ void move_player(mlx_key_data_t keydata, void *param)
             else
                 printf ("Invalid key\n");           //<--- Handle error
         }
-        printf(GREEN"OG position: (%f, %f)\n"RESET, game->player->x_pos, game->player->y_pos);    //Testing purposes
-        printf("Player angle: %f\n", game->player->angle);
-        ft_draw(game);
+        printf("Player angle: %f\n", game->player->angle);  //<--- To check the error of the negative angle
+        render_screen(game);
     }
 }

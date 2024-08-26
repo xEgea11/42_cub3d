@@ -11,6 +11,7 @@
 # include <stdio.h>
 # include <string.h>
 # include <math.h>
+# include <time.h>  //Just for random start generation
 # include <parsing.h>
 
 
@@ -28,7 +29,7 @@ typedef struct s_game
     mlx_t       *mlx;
     t_player    *player;
     int         map[HEIGHT_MAP][WIDTH_MAP];         // For testing purposes, remove later
-    double      y_scale;
+    double      y_scale;                        //Scalation factor, from map to screen
     double      x_scale;
 
 }   t_game;
