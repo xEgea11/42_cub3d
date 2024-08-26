@@ -11,11 +11,19 @@
 # include <stdio.h>
 # include <string.h>
 # include <math.h>
+# include <parsing.h>
+
+
+
+//Still not in use
+# define MINIMAP_WIDTH WIDTH / 10
+# define MINIMAP_HEIGHT HEIGHT / 10
 
 typedef struct s_data t_player;
 
 typedef struct s_game
 {
+    t_initData  *data;
     mlx_image_t *img;
     mlx_t       *mlx;
     t_player    *player;

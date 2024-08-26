@@ -49,6 +49,8 @@
 # define WRONG_ARG 2
 # define MALLOC_ERROR 3
 # define COMMAND_NULL 4
+# define WRONG_FILE 5
+# define EMPTY_FILE 6
 # define EXEC_ERROR "Unable to execute"
 
 /* FILE DESCRIPTORS */
