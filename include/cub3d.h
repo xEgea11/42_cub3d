@@ -11,6 +11,7 @@
 # include <stdio.h>
 # include <string.h>
 # include <math.h>
+# include <parsing.h>
 
 
 
@@ -22,6 +23,7 @@ typedef struct s_data t_player;
 
 typedef struct s_game
 {
+    t_initData  *data;
     mlx_image_t *img;
     mlx_t       *mlx;
     t_player    *player;

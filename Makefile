@@ -12,6 +12,9 @@ LIBFT = libft/libft.a
 MLX_DIR = MLX42/build/
 LIBMLX = $(MLX_DIR)libmlx42.a
 
+#file´s directories
+PARSE_DIR = parsing
+
 #colors
 GREEN = \033[0;32m
 RED = \033[0;31m
@@ -20,7 +23,7 @@ RESET = \033[0m
 
 #For MacOS
 FLAGSMLX_MAC = -framework Cocoa -framework OpenGL -framework IOKit -Iinclude -lglfw -L"/opt/homebrew/Cellar/glfw/3.4/lib/"
-FLAGSMLX_LINUX =  
+FLAGSMLX_LINUX = -ldl -lglfw -lGL -lX11 -lpthread -lm
 
 UNAME_S := $(shell uname -s)
 ifeq ($(UNAME_S),Linux)					# Check the name of your OS
@@ -32,11 +35,24 @@ endif
 SRC_FILES = main.c \
 			player.c \
 			init_game.c \
-			drawings.c
+			drawings.c \
+
+PARSING_FILES = parsing.c \
+				parsing_map.c \
+				parsing_textures.c \
+				parsing_textures2.c \
+				parsing_player.c \
+				free_data.c \
+				map_data.c \
+				aprove_map.c \
+				aprove_map2.c \
+				aprove_map_is_close.c \
+				print_data.c
+
+SRC_FILES += $(addprefix $(PARSE_DIR)/, $(PARSING_FILES))
 
 SRC = $(addprefix $(SRC_DIR)/, $(SRC_FILES))
 OBJ = $(SRC:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
-
 
 $(NAME): $(OBJ)
 	@echo "$(GREEN)OS is... $(UNAME_S)$(RESET)"
@@ -47,6 +63,7 @@ $(NAME): $(OBJ)
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	@echo "$(YELLOW)Compiling $<...$(RESET)"
+	
 	$(CC) $(CFLAGS) -I $(INCLUDE_DIR) -I $(INCLUDE_MLX) -c $< -o $@
 
 .PHONY: all clean fclean re run
@@ -55,10 +72,11 @@ all: $(NAME)
 
 run:
 	./$(NAME) 
+
 clean:
-	rm -f $(OBJ)
+	@rm -f $(OBJ)
 
 fclean: clean
-	rm -f $(NAME)
+	@rm -f $(NAME)
 
 re: fclean all
