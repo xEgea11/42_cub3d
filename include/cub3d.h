@@ -17,8 +17,8 @@
 
 
 //Still not in use
-# define MINIMAP_WIDTH WIDTH / 10
-# define MINIMAP_HEIGHT HEIGHT / 10
+//# define MINIMAP_WIDTH WIDTH / 10
+//# define MINIMAP_HEIGHT HEIGHT / 10
 
 typedef struct s_data t_player;
 
