@@ -1,20 +1,11 @@
 [THEORY]
-
-	- Player position
-		* x_pos  -- unit?
-		* y_pos  -- unit?
-		* angle (alfa) of PoV -- unit? (radians?)
-		* vector (angle) of player PoV  -- unit? 
-	
-	- Coordinates:
-		* Top left corner --> 0,0
-	
 	- Map:
 		2 dimensional array [][]
 	
 	- Angle (PoV) of player:
 	 * Must stay at 2(pi) to avoid overflow --> Add 2(pi) if negative; substract 2(pi) if overflows that amount
-	 * Radians?
+	 * Weird, angle can go to infinity but sin() and cos() functions just handle the angle overflow properly. 
+	 	Anyways it would be a good practice to actually calculate whether angles goes beyond 2(pi) or to negative numbers
 	
 	- Unit vector:
 		* Vector from 0,0 to where the player is
@@ -23,6 +14,6 @@
 
 [MAKEFILE]
 
-	Check whether Linux option compiles just fine
+- Put an option to recompile libft when compile the whole project
 
 
