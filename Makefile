@@ -81,9 +81,11 @@ run:
 	./$(NAME) 
 
 clean:
+	@make -s -C $(LIBFT_DIR) clean
 	@rm -f $(OBJ)
 
 fclean: clean
+	@make -s -C $(LIBFT_DIR) fclean
 	@rm -f $(NAME)
 
 re: fclean all
