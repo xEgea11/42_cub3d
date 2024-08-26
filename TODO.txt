@@ -16,4 +16,9 @@
 
 - Put an option to recompile libft when compile the whole project
 
+[RAYCASTING]
 
+	- [DRAWINGS.C] Apply DDA algorithm, right now is a brute force calculation 
+	- [DRAWINGS.C] We need to implement and insert the drawing from the POV (maybe make a 3D_drawings.c)
+	- 
+  
