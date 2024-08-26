@@ -1,9 +1,12 @@
 #include "cub3d.h"
 
-// Main function to initialize window and display the image
-int main(void) {
-    t_game *game;
+int main(int argc, char **argv) {
+    t_initData *data = malloc(sizeof(t_initData));
 
-    game = NULL;
-    return (init_game(game));
+    if(!data)
+        return (0);
+    if(!parsing(argc, argv, data))
+        return (0);
+    print_initData(data);
+    return (0);
 }
