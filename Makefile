@@ -38,7 +38,7 @@ SRC_FILES = main.c \
 			movement_utils.c \
 			init_game.c \
 			map_drawings.c \
-			map_drawings_utils.c \ \
+			map_drawings_utils.c 
 
 PARSING_FILES = parsing.c \
 				parsing_map.c \
