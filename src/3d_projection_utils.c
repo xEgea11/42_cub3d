@@ -26,6 +26,14 @@ void draw_ceiling_3d(t_game *game)
     }
 }
 
+void draw_stars_3d(t_game *game) {
+    for (int i = 0; i < 200; i++) {
+        int x = rand() % WIDTH_SCREEN / 2 + (WIDTH_SCREEN / 2);  // Random x position
+        int y = rand() % (HEIGHT_SCREEN / 2);  // Random y position within the sky area
+        mlx_put_pixel(game->img, x, y, WHITE);  // Draw the star
+    }
+}
+
 void draw_floor_3d(t_game *game)
 {
     int y;

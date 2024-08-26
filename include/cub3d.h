@@ -11,6 +11,7 @@
 # include <stdio.h>
 # include <string.h>
 # include <math.h>
+# include <time.h>  //Just for random start generation
 
 typedef struct s_data t_player;
 

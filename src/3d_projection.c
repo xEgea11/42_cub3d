@@ -46,6 +46,7 @@ static void draw_columns_per_coordinate_3d(t_game *game, double wall_height, dou
 void fill_background_3d(t_game *game)
 {
     draw_ceiling_3d(game);
+    draw_stars_3d(game);
     draw_floor_3d(game);
 }
 

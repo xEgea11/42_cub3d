@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   defines.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juguerre <juguerre@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: regea-go <regea-go@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 17:41:39 by juguerre          #+#    #+#             */
-/*   Updated: 2024/03/12 17:41:39 by juguerre         ###   ########.fr       */
+/*   Updated: 2024/08/26 11:30:40 by regea-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,9 @@
 # define Y_PLAYER 8
 
 /* PLAYER POV */                      //Not definitive
-# define VISION_LENGTH 30
+# define VISION_LENGTH 15
 # define FOV_ANGLE (60.0 * M_PI / 180.0)  // 60 degrees in radians
-# define NUM_RAYS 100  // Number of rays to cast
+# define NUM_RAYS 500  // Number of rays to cast
 
 /* ORIENTATION */
 # define NORTH 0
