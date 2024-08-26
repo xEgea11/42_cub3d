@@ -63,7 +63,6 @@ int	h_map(char **map)
 		j = 0;
 		while (map[i][j] )
 		{
-			printf("map[%d][%d] = %c\n", i, j, map[i][j]);
 			if (map[i][j] != ' ' && (map[i][j] == 'N' || map[i][j] == 'S'
 				|| map[i][j] == 'W' || map[i][j] == 'E' || map[i][j] == '0'))
 			{

@@ -45,13 +45,11 @@ int parsing(int argc, char **argv, t_initData *data)
         return (0);
     if  (!map_validation(data))
         return (0);
-    printf("Mapasd\n");
     if (!list_texture(data))
         return (free_map(data), free_list(data->t), 0);
     if (!colors_texture(data))
         return (free_map(data), free_list(data->t), 0);
     get_player_position(data);
     get_rows_cols(data);
-    print_initData(data);
     return(1);
 }

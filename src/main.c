@@ -7,7 +7,6 @@ int main(int argc, char **argv) {
         return (0);
     if(!parsing(argc, argv, data))
         return (0);
-    printf("Map\n");
     print_initData(data);
     return (0);
 }

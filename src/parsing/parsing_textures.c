@@ -48,10 +48,12 @@ int list_texture(t_initData *data)
     i = 0;
     while(data->texture[i])
     {
+		printf("texture[%d] = %s\n", i, data->texture[i]);
         tmp =  new_texture(data->texture[i]);
         if(!tmp)
             return(0);
         list_back_texture(data->t, tmp);
+		i++;
     } 
 	return(1);
 }
