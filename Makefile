@@ -7,6 +7,7 @@ SRC_DIR = src
 OBJ_DIR = obj
 INCLUDE_DIR = include
 INCLUDE_MLX = MLX42/include/MLX42/
+PARSE_DIR = parsing/
 LIBFT_DIR = libft/
 LIBFT = libft/libft.a
 MLX_DIR = MLX42/build/
@@ -34,8 +35,13 @@ endif
 
 SRC_FILES = main.c \
 			player.c \
+			player_movement.c \
+			movement_utils.c \
 			init_game.c \
-			drawings.c \
+			map_drawings.c \
+			map_drawings_utils.c \
+			3d_projection.c \
+			3d_projection_utils.c \
 
 PARSING_FILES = parsing.c \
 				parsing_map.c \
@@ -50,6 +56,7 @@ PARSING_FILES = parsing.c \
 				print_data.c
 
 SRC_FILES += $(addprefix $(PARSE_DIR)/, $(PARSING_FILES))
+			
 
 SRC = $(addprefix $(SRC_DIR)/, $(SRC_FILES))
 OBJ = $(SRC:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
@@ -61,9 +68,9 @@ $(NAME): $(OBJ)
 	$(CC)  -o $(NAME) $(OBJ) $(LIBFT)  $(LIBMLX) $(FLAGSMLX) 
 	@echo "$(GREEN)Build successful!$(RESET)"
 
-$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c $(INCLUDE_DIR)/*.h			# Remove later, wildcards not allowed
 	@echo "$(YELLOW)Compiling $<...$(RESET)"
-	
+	@mkdir -p $(dir $@)
 	$(CC) $(CFLAGS) -I $(INCLUDE_DIR) -I $(INCLUDE_MLX) -c $< -o $@
 
 .PHONY: all clean fclean re run
@@ -74,9 +81,11 @@ run:
 	./$(NAME) 
 
 clean:
+	@make -s -C $(LIBFT_DIR) clean
 	@rm -f $(OBJ)
 
 fclean: clean
+	@make -s -C $(LIBFT_DIR) fclean
 	@rm -f $(NAME)
 
 re: fclean all

@@ -3,22 +3,55 @@
 /*                                                        :::      ::::::::   */
 /*   defines.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juguerre <juguerre@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: regea-go <regea-go@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 17:41:39 by juguerre          #+#    #+#             */
-/*   Updated: 2024/03/12 17:41:39 by juguerre         ###   ########.fr       */
+/*   Updated: 2024/08/26 11:30:40 by regea-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef DEFINES_H
 # define DEFINES_H
 
+/* PLAYER */
+/* Distance at each button pressed */
+# define SPEED_PLAYER 0.5
+# define ANGLE_MODIFIER 0.1
+
+/* INITIAL PLAYER POSITION*/
+# define X_PLAYER 8
+# define Y_PLAYER 8
+
 /* PLAYER POV */                      //Not definitive
-# define VISION_LENGTH 100
+# define VISION_LENGTH 15
+# define FOV_ANGLE (60.0 * M_PI / 180.0)  // 60 degrees in radians
+# define NUM_RAYS 500  // Number of rays to cast
+
+/* ORIENTATION */
+# define NORTH 0
+# define SOUTH 1
+# define EAST 2
+# define WEST 3
+
+/* OPCODES FOR MOVEMENT */
+# define LEFT 0
+# define RIGHT 1
 
 /* MAP SIZE */
-# define WIDTH 800
+# define WIDTH 600
 # define HEIGHT 600
+
+/* MAP LEFT, POV RIGHT*/
+# define WIDTH_SCREEN 1200
+# define HEIGHT_SCREEN 600
+
+/* MAP SIZE */
+# define WIDTH_MAP 40
+# define HEIGHT_MAP 40
+# define OBSTACLE_PROB 60           //<---- It determines the probability of an obstacle to appear in the map
+
+/* 3D MACROS */
+# define MAX_WALL_HEIGHT 500
 
 /* EXIT & ERROR MANAGE */
 # define EXIT_SUCCESS 0
@@ -62,7 +95,6 @@
 
 // Yellows/Oranges
 #define GOLD            0xFFD700FF  // Gold
-#define ORANGE          0xFFA500FF  // Orange
 #define DARK_ORANGE     0xFF8C00FF  // Dark Orange
 #define LIGHT_YELLOW    0xFFFFE0FF  // Light Yellow
 
@@ -83,6 +115,13 @@
 #define LIGHT_GRAY      0xD3D3D3FF  // Light Gray
 #define GRAY            0x808080FF  // Gray
 #define BLACK           0x000000FF  // Black
+
+#define GREEN           "\033[0;32m"
+#define RED             "\033[0;31m"
+#define YELLOW          "\033[0;33m"
+#define BLUE            "\033[0;34m"
+#define ORANGE          "\033[0;33m"
+#define RESET           "\033[0m"
 
 
 #endif

@@ -12,8 +12,25 @@
 		* Every time we move, we have to add or substract to or from that position
 			[x0,y0] +- [x1,y1]
 
+[WINDOW MANAGEMENT]
+	- Put an option so the window closes with an ESC press
+
 [MAKEFILE]
 
 - Put an option to recompile libft when compile the whole project
 
+[RAYCASTING]
 
+	- [3D implementation] - Refactor everything and try to improve the understanding of functions 
+
+	- [DRAWINGS.C] Apply DDA algorithm (if we want), right now is a brute force calculation 
+	- [FISH-EYE] Not needed, but it makes the visualization of the blocks way more beautiful
+
+	- [BUG] -> At some point, the angle is negative, and that pisses me off
+	- [BUG] -> When calculating orientation, at the edges the calculation is not accurate
+	- [BUG] -> Around angle 0, we have a little moment where we have a negative number; check the function
+				that handles the overflow
+
+
+[REFACTOR]
+	- We need to make some refactor in some functions, too many variables

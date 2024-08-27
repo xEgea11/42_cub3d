@@ -33,7 +33,6 @@ int aprove_map(t_initData *data)
 		|| !parse_rgb(data->texture) || !check_duplicate(data)
 		|| !check_first_last_line(data->map2d) || !surrounded_by_one(data->map2d))
 	{
-        printf("Maasdp\n");
 		free_array2D(data->map2d);
 		return (0);
 	}
@@ -64,10 +63,7 @@ int map_validation(t_initData *data)
     data->m_rows = map_size(data->map2d_square);
     data->m_cols = maxlen;
     if(!h_map(data->map2d_square) || !w_map(data->map2d_square))
-    {
-        printf("Error\n");
         return(free_array2D(data->map2d_square), free_array2D(data->map2d), free_array2D(data->texture), 0);
-    }
     return(1);
 }
 
