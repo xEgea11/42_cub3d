@@ -9,7 +9,7 @@ int main(int argc, char **argv) {
     if(!parsing(argc, argv, data))
         return (0);
     print_initData(data);
-    init_game(game);
+    init_game(game, data);
 
     return (0);
 }

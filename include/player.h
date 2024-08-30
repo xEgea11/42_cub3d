@@ -2,7 +2,8 @@
 # define PLAYER_H
 # include "cub3d.h"
 
-typedef struct s_game t_game; 
+typedef struct s_game t_game;
+typedef struct s_initData t_initData;
 
 typedef struct s_data
 {
@@ -14,7 +15,7 @@ typedef struct s_data
 }   t_player;
 
 /* PLAYER INIT */
-t_player *init_player();
+t_player *init_player(t_initData *data);
 
 /* MAIN MOVEMENTS */
 void move_player(mlx_key_data_t keydata, void* param);
@@ -28,7 +29,7 @@ void rotate_player(t_game *game, double rotation, int op_code);
 /* MOVEMENT UTILS */ 
 void check_position(t_game *game, double delta_x, double delta_y);
 int ft_no_obstacle(t_game *game, double x, double y);
-int ft_inrange(double x, double y);
+int ft_inrange(t_game *game, double x, double y);
 void ft_check_initial_position(t_game *game, int x, int y);
 
 #endif 

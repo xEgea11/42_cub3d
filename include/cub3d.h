@@ -28,15 +28,14 @@ typedef struct s_game
     mlx_image_t *img;
     mlx_t       *mlx;
     t_player    *player;
-    int         map[HEIGHT_MAP][WIDTH_MAP];         // For testing purposes, remove later
     double      y_scale;                        //Scalation factor, from map to screen
     double      x_scale;
 
 }   t_game;
 
-int init_game(t_game *game);
+int init_game(t_game *game, t_initData *data);
 int end_game(t_game *game);
 
-void create_map(t_game *game);      // For testing purposes, remove later
+void print_map(t_game *game);      // For testing purposes, remove later
 
 #endif  

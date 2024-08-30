@@ -78,7 +78,7 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c $(INCLUDE_DIR)/*.h			# Remove later, wildcards no
 all: $(NAME)
 
 run:
-	./$(NAME) 
+	./$(NAME) maps/map01.cub
 
 clean:
 	@make -s -C $(LIBFT_DIR) clean

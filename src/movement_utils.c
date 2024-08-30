@@ -1,20 +1,5 @@
 #include "cub3d.h"
 
-//void ft_check_initial_position(t_game *game, int x, int y)         //<----Gives segfault, dont use it
-//{
-//    if (game->map[y][x] == 0)
-//    {
-//        game->player->x_pos = x;
-//        game->player->y_pos = y;
-//    }
-//    else
-//    {
-//        printf("Invalid initial position, relocating...\n");        //Look for a good position to spaw
-//        game->player->x_pos = 6;
-//        game->player->y_pos = 6;
-//    }
-//}
-
 void rotate_player(t_game *game, double rotation, int op_code)
 {
     double new_angle;
@@ -32,16 +17,17 @@ void rotate_player(t_game *game, double rotation, int op_code)
         game->player->angle = new_angle;
 }
 
-int ft_inrange(double x, double y)
+int ft_inrange(t_game *game, double x, double y)
 {
-    if (x >= 0 && x < WIDTH_MAP && y >= 0 && y < HEIGHT_MAP)
+    if (x >= 0 && x < game->data->m_cols && y >= 0 && y < game->data->m_rows)
         return (TRUE);
     return (FALSE);
 }
 
 int ft_no_obstacle(t_game *game, double x, double y)
 {
-    if (game->map[(int)y][(int)x] == 0)
+    if (game->data->map2d_square[(int)y][(int)x] != '1' &&
+        game->data->map2d_square[(int)y][(int)x] != ' ')
         return (TRUE);
     return (FALSE);
 }
@@ -53,7 +39,7 @@ void check_position(t_game *game, double delta_x, double delta_y)
 
     new_x = delta_x + game->player->x_pos;
     new_y = delta_y + game->player->y_pos;
-    if (ft_inrange(new_x, new_y) == TRUE && ft_no_obstacle(game, new_x, new_y) == TRUE)
+    if (ft_inrange(game, new_x, new_y) == TRUE && ft_no_obstacle(game, new_x, new_y) == TRUE)
     {
         game->player->x_pos += delta_x;
         game->player->y_pos += delta_y;

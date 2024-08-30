@@ -63,7 +63,7 @@ int raycast(t_game *game, double angle, int iteration)
         /** PUT THIS ON TO SEE THE MADNESS OF ALL CALCULATIONS */
         //printf(BLUE"RAY OG: x: %f, y: %f\n"RESET, x, y);
         
-        if (game->map[(int)y][(int)x] == 1)     //t_game game, double x, double y, int iteration)
+        if (game->data->map2d_square[(int)y][(int)x] == '1')     //t_game game, double x, double y, int iteration)
         {
             single_raycast_3d(game, x, y, iteration);
             return (TRUE);

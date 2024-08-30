@@ -1,21 +1,17 @@
 #include "cub3d.h"
 
-void create_map(t_game *game)           // For testing purposes, remove later
+void print_map(t_game *game)           // For testing purposes, remove later
 {
     int i;
     int j;
 
     i = 0;
-    while (i < HEIGHT_MAP)
+    while (i < game->data->m_rows)
     {
         j = 0;
-        while (j < WIDTH_MAP)
+        while (j < game->data->m_cols)
         {
-            if (rand() * 100 % OBSTACLE_PROB == 0 || i == 0 || i == HEIGHT_MAP - 1 || j == 0 || j == WIDTH_MAP - 1)
-                game->map[i][j] = 1;
-            else
-                game->map[i][j] = 0;
-            printf("%d  ", game->map[i][j]);
+            printf("%d  ", game->data->map2d_square[i][j]);
             j++;
         }
         i++;
@@ -23,20 +19,21 @@ void create_map(t_game *game)           // For testing purposes, remove later
     }
 }
 
-int init_game(t_game *game)
+int init_game(t_game *game, t_initData *data)
 {
     game = malloc(sizeof(t_game));
     if (!game) {
         fprintf(stderr, "Memory allocation failed\n");
         return (EXIT_FAILURE);
     }
-    create_map(game);
-    game->player = init_player();
+    game->data = data;
+    print_map(game);
+    game->player = init_player(game->data);
     if (!game->player) {
         return (EXIT_FAILURE);
     }
-    game->y_scale = (double)HEIGHT / HEIGHT_MAP;            //Dont forget, this is based on the screen size
-    game->x_scale = (double)WIDTH / WIDTH_MAP;
+    game->y_scale = (double)HEIGHT / game->data->m_rows;            //Dont forget, this is based on the screen size
+    game->x_scale = (double)WIDTH / game->data->m_cols;
     game->mlx = mlx_init(WIDTH_SCREEN, HEIGHT_SCREEN, "Cub3d", true);
     if (!game->mlx) {
         fprintf(stderr, "MLX42 initialization failed\n");

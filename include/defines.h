@@ -6,7 +6,7 @@
 /*   By: regea-go <regea-go@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 17:41:39 by juguerre          #+#    #+#             */
-/*   Updated: 2024/08/26 11:30:40 by regea-go         ###   ########.fr       */
+/*   Updated: 2024/08/30 20:00:07 by regea-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,9 @@
 /* PLAYER */
 /* Distance at each button pressed */
 # define SPEED_PLAYER 0.5
-# define ANGLE_MODIFIER 0.1
+# define ANGLE_MODIFIER 0.2
 
 /* INITIAL PLAYER POSITION*/
-# define X_PLAYER 8
-# define Y_PLAYER 8
 
 /* PLAYER POV */                      //Not definitive
 # define VISION_LENGTH 15
@@ -44,11 +42,6 @@
 /* MAP LEFT, POV RIGHT*/
 # define WIDTH_SCREEN 1200
 # define HEIGHT_SCREEN 600
-
-/* MAP SIZE */
-# define WIDTH_MAP 40
-# define HEIGHT_MAP 40
-# define OBSTACLE_PROB 60           //<---- It determines the probability of an obstacle to appear in the map
 
 /* 3D MACROS */
 # define MAX_WALL_HEIGHT 500

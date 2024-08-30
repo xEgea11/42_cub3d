@@ -13,13 +13,13 @@ typedef struct s_txtr
 typedef struct s_initData
 {
     char    **map2d;
-    char    **map2d_square;
-    int     m_rows;
-    int     m_cols;
+    char    **map2d_square;     // int map[][];   0->48;    1->49; 
+    int     m_rows;             // HEIGHT_MAP
+    int     m_cols;             // WIDTH_MAP
     int     width;
     int     height;
-    int     player_x;
-    int     player_y;
+    int     player_x;           // X_PLAYER
+    int     player_y;           // Y_PLAYER
     int     fd;
     int     counter;
     char    *line;

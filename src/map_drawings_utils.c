@@ -18,9 +18,9 @@ void put_pixel_minimap(t_game *game, int x, int y)           //<---- It needs to
             draw_y = (int)(y * game->y_scale) + i;
             if (draw_x >= 0 && draw_x < WIDTH && draw_y >= 0 && draw_y < HEIGHT) 
             {
-                if (game->map[y][x] == 0)
+                if (game->data->map2d_square[y][x] == '0' || game->data->map2d_square[y][x] == 'N')
                     mlx_put_pixel(game->img, draw_x, draw_y, DARK_BLUE);
-                else if (game->map[y][x] == 1)
+                else if (game->data->map2d_square[y][x] == '1' || game->data->map2d_square[y][x] == ' ')
                     mlx_put_pixel(game->img, draw_x, draw_y, DARK_GREEN);
             }
             j++;
@@ -37,10 +37,10 @@ void fill_background_minimap(t_game *game)
 
     y = 0;
     x = 0;
-    while (y < HEIGHT_MAP)
+    while (y < game->data->m_rows)
     {
         x = 0;
-        while (x < WIDTH_MAP)
+        while (x < game->data->m_cols)
             put_pixel_minimap(game, x++, y);
         y++;
     }

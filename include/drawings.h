@@ -21,7 +21,6 @@ void render_screen(t_game *game);
 
 /* 3D WORLD DRAWINGS */
 void draw_ceiling_3d(t_game *game);
-void draw_stars_3d(t_game *game);
 void draw_floor_3d(t_game *game);
 void fill_background_3d(t_game *game);
 void render_obstacle_3d(t_game *game, int iteration, double delta_x, double delta_y, int wall);

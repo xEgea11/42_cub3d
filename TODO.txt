@@ -28,9 +28,18 @@
 
 	- [BUG] -> At some point, the angle is negative, and that pisses me off
 	- [BUG] -> When calculating orientation, at the edges the calculation is not accurate
-	- [BUG] -> Around angle 0, we have a little moment where we have a negative number; check the function
-				that handles the overflow
 
+	-[PLAYER MOVEMENT]	--	Following Davyd, mbe we could make the movement smoother
+							with other functions, but it doesnt, ask him
+							Move_player func is changed right now
 
 [REFACTOR]
 	- We need to make some refactor in some functions, too many variables
+
+
+[COLORS - F - C]
+	- Make a function to get the colors in RGB format 
+	- Transform RGB format into hexadecimal format and apply it to the map
+
+[TEXTURES]	--	I dont have any fcking idea how to do it
+	- Apply textures to the 3d printing
