@@ -2,6 +2,9 @@
 # define DRAWINGS_H
 # include "cub3d.h"
 
+/* COLOR CONVERSION */
+uint32_t rgb_to_hex(char *str);
+
 /* DRAWING UTILS */
 void put_pixel_minimap(t_game *game, int x, int y);
 void fill_background(t_game *game);

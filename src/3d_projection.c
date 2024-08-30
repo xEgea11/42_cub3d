@@ -7,13 +7,13 @@ static void draw_orientation_3d(t_game *game, double rays, double x_offset, doub
 
     x_offset_int = round(x_offset);
     if (wall == WEST)
-        mlx_put_pixel(game->img, x_offset_int + (int)rays, y_start, PERU);
+        mlx_put_pixel(game->img, x_offset_int + (int)rays, y_start, DARK_BLUE);
     else if (wall == EAST)
-        mlx_put_pixel(game->img, x_offset_int + (int)rays, y_start, SADDLE_BROWN);
+        mlx_put_pixel(game->img, x_offset_int + (int)rays, y_start, VIOLET);
     else if (wall == NORTH)
-        mlx_put_pixel(game->img, x_offset_int + (int)rays, y_start, SIENNA);
+        mlx_put_pixel(game->img, x_offset_int + (int)rays, y_start, DARK_MAGENTA);
     else if (wall == SOUTH)         
-        mlx_put_pixel(game->img, x_offset_int + (int)rays, y_start, CHOCOLATE);
+        mlx_put_pixel(game->img, x_offset_int + (int)rays, y_start, SKY_BLUE);
 }
 
 // <---- This needs to be refactored
