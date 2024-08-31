@@ -25,4 +25,4 @@
 	- Apply textures to the 3d printing
 
 [NORMINETTE]
-	- Make code Norminette-friendly
+	- Make code Norminette-friendly ❌ 
