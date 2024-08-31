@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   player_movement.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: regea-go <regea-go@student.42malaga.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/08/31 21:50:57 by regea-go          #+#    #+#             */
+/*   Updated: 2024/08/31 21:50:57 by regea-go         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
 // Function to move the player forward
@@ -63,10 +75,9 @@ void move_player(mlx_key_data_t keydata, void *param)
             else if (mlx_is_key_down(game->mlx, MLX_KEY_RIGHT))                          
             //else if (keydata.key == MLX_KEY_RIGHT) // Rotate Right
                 rotate_player(game, ANGLE_MODIFIER, RIGHT); //+=
-            else
-                printf ("Invalid key\n");           //<--- Handle error
+            else if (mlx_is_key_down(game->mlx, MLX_KEY_ESCAPE))
+                mlx_close_window(game->mlx);                        //Mbe return without rendering screen
         }
-        printf("Player angle: %f\n", game->player->angle);  //<--- To check the error of the negative angle
         render_screen(game);
     }
 }

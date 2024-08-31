@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   movement_utils.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: regea-go <regea-go@student.42malaga.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/08/31 21:51:01 by regea-go          #+#    #+#             */
+/*   Updated: 2024/08/31 21:51:02 by regea-go         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
 void rotate_player(t_game *game, double rotation, int op_code)
@@ -10,9 +22,9 @@ void rotate_player(t_game *game, double rotation, int op_code)
     else if(op_code == RIGHT)
         new_angle = game->player->angle + rotation;
     if (new_angle < 0)                                  //<----- Overflow
-        game->player->angle += 2 * M_PI;
+        game->player->angle = new_angle + (2 * M_PI);
     else if (new_angle > 2 * M_PI)
-        game->player->angle -= 2 * M_PI;
+        game->player->angle = new_angle - (2 * M_PI);
     else
         game->player->angle = new_angle;
 }

@@ -1,45 +1,28 @@
-[THEORY]
-	- Map:
-		2 dimensional array [][]
-	
-	- Angle (PoV) of player:
-	 * Must stay at 2(pi) to avoid overflow --> Add 2(pi) if negative; substract 2(pi) if overflows that amount
-	 * Weird, angle can go to infinity but sin() and cos() functions just handle the angle overflow properly. 
-	 	Anyways it would be a good practice to actually calculate whether angles goes beyond 2(pi) or to negative numbers
-	
-	- Unit vector:
-		* Vector from 0,0 to where the player is
-		* Every time we move, we have to add or substract to or from that position
-			[x0,y0] +- [x1,y1]
-
 [WINDOW MANAGEMENT]
-	- Put an option so the window closes with an ESC press
+	- Put an option so the window closes with an ESC press  ✅
 
 [MAKEFILE]
 
-- Put an option to recompile libft when compile the whole project
+- Put an option to recompile libft when compile the whole project  ✅
+- Put all .c in a separate folder ❌
 
 [RAYCASTING]
+	- [DRAWINGS.C] Apply DDA algorithm (if we want), right now is a brute force calculation ❌
+	- [FISH-EYE] Not needed, but it makes the visualization of the blocks way more beautiful ❌
 
-	- [3D implementation] - Refactor everything and try to improve the understanding of functions 
-
-	- [DRAWINGS.C] Apply DDA algorithm (if we want), right now is a brute force calculation 
-	- [FISH-EYE] Not needed, but it makes the visualization of the blocks way more beautiful
-
-	- [BUG] -> At some point, the angle is negative, and that pisses me off
 	- [BUG] -> When calculating orientation, at the edges the calculation is not accurate
-
-	-[PLAYER MOVEMENT]	--	Following Davyd, mbe we could make the movement smoother
-							with other functions, but it doesnt, ask him
-							Move_player func is changed right now
+		* Change the rate at which we calculate the ray	--> Better but not perfect ❌✅
 
 [REFACTOR]
-	- We need to make some refactor in some functions, too many variables
+	- We need to make some refactor in some functions, too many variables ✅
 
 
 [COLORS - F - C]
-	- Make a function to get the colors in RGB format 
-	- Transform RGB format into hexadecimal format and apply it to the map
+	- Make a function to get the colors in RGB format 							✅
+	- Transform RGB format into hexadecimal format and apply it to the map		✅
 
 [TEXTURES]	--	I dont have any fcking idea how to do it
 	- Apply textures to the 3d printing
+
+[NORMINETTE]
+	- Make code Norminette-friendly

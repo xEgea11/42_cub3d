@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   3d_projection_utils.c                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: regea-go <regea-go@student.42malaga.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/08/31 21:50:18 by regea-go          #+#    #+#             */
+/*   Updated: 2024/08/31 21:50:19 by regea-go         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
-uint32_t rgb_to_hex(char *str)              //<----- We need to better implement this
+uint32_t rgb_to_hex(char *str)      //Error checking needed
 {
     int rgb[3];
     int i;
@@ -14,10 +26,10 @@ uint32_t rgb_to_hex(char *str)              //<----- We need to better implement
     {
         if (ft_isdigit(str[i]))
         {
-            rgb[j] = ft_atoi(&str[i]);  // Convert the number and store it in the array
+            rgb[j] = ft_atoi(&str[i]);
             j++;
             while (ft_isdigit(str[i])) 
-                i++;  // Skip the digits to the next character
+                i++;
         } 
         else 
             i++;
@@ -39,16 +51,13 @@ void draw_ceiling_3d(t_game *game)
     uint32_t color;
 
     y = 0;
-    x = WIDTH_SCREEN / 2;
+    x = 0;
     color = rgb_to_hex(game->data->texture[5]);
-    while (y < HEIGHT_SCREEN / 2)
+    while (y < HEIGHT / 2)
     {
-        x = WIDTH_SCREEN / 2;
-        while (x < WIDTH_SCREEN)
-        {
-            mlx_put_pixel(game->img, x, y, color);      //Testing 
-            x++;
-        }
+        x = 0;
+        while (x < WIDTH)
+            mlx_put_pixel(game->img, x++, y, color);
         y++;
     }
 }
@@ -59,17 +68,14 @@ void draw_floor_3d(t_game *game)
     int x;
     uint32_t color;
 
-    y = HEIGHT_SCREEN / 2;
-    x = WIDTH_SCREEN / 2;
+    y = HEIGHT / 2;
+    x = 0;
     color = rgb_to_hex(game->data->texture[4]);
-    while (y < HEIGHT_SCREEN)
+    while (y < HEIGHT)
     {
-        x = WIDTH_SCREEN / 2;
-        while (x < WIDTH_SCREEN)
-        {
-            mlx_put_pixel(game->img, x, y, color);         //Testing 
-            x++;
-        }
+        x = 0;
+        while (x < WIDTH)
+            mlx_put_pixel(game->img, x++, y, color);
         y++;
     }
 }

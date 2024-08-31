@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   init_game.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: regea-go <regea-go@student.42malaga.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/08/31 21:50:06 by regea-go          #+#    #+#             */
+/*   Updated: 2024/08/31 21:50:07 by regea-go         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
 void print_map(t_game *game)           // For testing purposes, remove later
@@ -32,15 +44,17 @@ int init_game(t_game *game, t_initData *data)
     if (!game->player) {
         return (EXIT_FAILURE);
     }
-    game->y_scale = (double)HEIGHT / game->data->m_rows;            //Dont forget, this is based on the screen size
+    game->y_scale = (double)HEIGHT / game->data->m_rows;                            //For 3d view
     game->x_scale = (double)WIDTH / game->data->m_cols;
-    game->mlx = mlx_init(WIDTH_SCREEN, HEIGHT_SCREEN, "Cub3d", true);
+    game->y_scale_minimap = (double)MINIMAP_HEIGHT / game->data->m_rows;            //For minimap
+    game->x_scale_minimap = (double)MINIMAP_WIDTH / game->data->m_cols;
+    game->mlx = mlx_init(WIDTH, HEIGHT, "Cub3d", true);
     if (!game->mlx) {
         fprintf(stderr, "MLX42 initialization failed\n");
         return (EXIT_FAILURE);
     }
     // Create an image
-    game->img = mlx_new_image(game->mlx, WIDTH_SCREEN, HEIGHT_SCREEN);
+    game->img = mlx_new_image(game->mlx, WIDTH, HEIGHT);              //Change this later
     if (!game->img) {
         fprintf(stderr, "Image creation failed\n");
         return (EXIT_FAILURE);

@@ -60,5 +60,6 @@
   "files.associations": {
     "algorithm": "c"
   },
-  "makefile.configureOnOpen": false
+  "makefile.configureOnOpen": false,
+  "codam-norminette-3.displayErrorName": true
 }
