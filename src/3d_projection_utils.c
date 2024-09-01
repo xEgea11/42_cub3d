@@ -1,4 +1,41 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   3d_projection_utils.c                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: regea-go <regea-go@student.42malaga.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/08/31 21:50:18 by regea-go          #+#    #+#             */
+/*   Updated: 2024/08/31 21:50:19 by regea-go         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
+
+uint32_t rgb_to_hex(char *str)      //Error checking needed
+{
+    int rgb[3];
+    int i;
+    int j;
+
+    i = 0;
+    j = 0;
+    while (!ft_isdigit(str[i]))
+        i++;
+    while (str[i] != '\0') 
+    {
+        if (ft_isdigit(str[i]))
+        {
+            rgb[j] = ft_atoi(&str[i]);
+            j++;
+            while (ft_isdigit(str[i])) 
+                i++;
+        } 
+        else 
+            i++;
+    }
+    return (rgb[0] << 24 | rgb[1] << 16 | rgb[2] << 8 | 0x000000FF);
+}
 
 double abs_min(double a, double b)
 {
@@ -11,26 +48,17 @@ void draw_ceiling_3d(t_game *game)
 {
     int y;
     int x;
+    uint32_t color;
 
     y = 0;
-    x = WIDTH_SCREEN / 2;
-    while (y < HEIGHT_SCREEN / 2)
+    x = 0;
+    color = rgb_to_hex(game->data->texture[5]);
+    while (y < HEIGHT / 2)
     {
-        x = WIDTH_SCREEN / 2;
-        while (x < WIDTH_SCREEN)
-        {
-            mlx_put_pixel(game->img, x, y, MIDNIGHT_BLUE);
-            x++;
-        }
+        x = 0;
+        while (x < WIDTH)
+            mlx_put_pixel(game->img, x++, y, color);
         y++;
-    }
-}
-
-void draw_stars_3d(t_game *game) {
-    for (int i = 0; i < 200; i++) {
-        int x = rand() % WIDTH_SCREEN / 2 + (WIDTH_SCREEN / 2);  // Random x position
-        int y = rand() % (HEIGHT_SCREEN / 2);  // Random y position within the sky area
-        mlx_put_pixel(game->img, x, y, WHITE);  // Draw the star
     }
 }
 
@@ -38,17 +66,16 @@ void draw_floor_3d(t_game *game)
 {
     int y;
     int x;
+    uint32_t color;
 
-    y = HEIGHT_SCREEN / 2;
-    x = WIDTH_SCREEN / 2;
-    while (y < HEIGHT_SCREEN)
+    y = HEIGHT / 2;
+    x = 0;
+    color = rgb_to_hex(game->data->texture[4]);
+    while (y < HEIGHT)
     {
-        x = WIDTH_SCREEN / 2;
-        while (x < WIDTH_SCREEN)
-        {
-            mlx_put_pixel(game->img, x, y, DARK_GREEN);
-            x++;
-        }
+        x = 0;
+        while (x < WIDTH)
+            mlx_put_pixel(game->img, x++, y, color);
         y++;
     }
 }

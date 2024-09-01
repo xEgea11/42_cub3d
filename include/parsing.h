@@ -14,8 +14,8 @@ typedef struct s_initData
 {
     char    **map2d;
     char    **map2d_square;
-    int     m_rows;
-    int     m_cols;
+    int     m_rows;             
+    int     m_cols;             
     int     width;
     int     height;
     int     player_x;

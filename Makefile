@@ -38,8 +38,9 @@ SRC_FILES = main.c \
 			player_movement.c \
 			movement_utils.c \
 			init_game.c \
+			raycast.c \
 			map_drawings.c \
-			map_drawings_utils.c \
+			minimap_draw_utils.c \
 			3d_projection.c \
 			3d_projection_utils.c \
 
@@ -78,7 +79,7 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c $(INCLUDE_DIR)/*.h			# Remove later, wildcards no
 all: $(NAME)
 
 run:
-	./$(NAME) 
+	./$(NAME) maps/map01.cub
 
 clean:
 	@make -s -C $(LIBFT_DIR) clean

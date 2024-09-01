@@ -6,26 +6,32 @@
 /*   By: regea-go <regea-go@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 17:41:39 by juguerre          #+#    #+#             */
-/*   Updated: 2024/08/26 11:30:40 by regea-go         ###   ########.fr       */
+/*   Updated: 2024/08/31 21:57:36 by regea-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef DEFINES_H
 # define DEFINES_H
 
+/* MINIMAP SIZE*/
+# define MINIMAP_WIDTH 400
+# define MINIMAP_HEIGHT 200
+
+/* MAP SIZE */
+# define WIDTH 1200
+# define HEIGHT 600
+
 /* PLAYER */
 /* Distance at each button pressed */
-# define SPEED_PLAYER 0.5
-# define ANGLE_MODIFIER 0.1
-
-/* INITIAL PLAYER POSITION*/
-# define X_PLAYER 8
-# define Y_PLAYER 8
+# define SPEED_PLAYER 0.2
+# define ANGLE_MODIFIER 0.2
 
 /* PLAYER POV */                      //Not definitive
 # define VISION_LENGTH 15
 # define FOV_ANGLE (60.0 * M_PI / 180.0)  // 60 degrees in radians
-# define NUM_RAYS 500  // Number of rays to cast
+# define NUM_RAYS 300  // Number of rays to cast
+# define RAY_CALCULATION_RATE 0.001
+# define COLUMNS_PER_RAY (double)WIDTH / NUM_RAYS
 
 /* ORIENTATION */
 # define NORTH 0
@@ -33,22 +39,14 @@
 # define EAST 2
 # define WEST 3
 
+/* ELEMENTS */
+# define EMPTY '0'
+# define WALL '1'
+# define OUT_OF_BOUNDS ' '
+
 /* OPCODES FOR MOVEMENT */
 # define LEFT 0
 # define RIGHT 1
-
-/* MAP SIZE */
-# define WIDTH 600
-# define HEIGHT 600
-
-/* MAP LEFT, POV RIGHT*/
-# define WIDTH_SCREEN 1200
-# define HEIGHT_SCREEN 600
-
-/* MAP SIZE */
-# define WIDTH_MAP 40
-# define HEIGHT_MAP 40
-# define OBSTACLE_PROB 60           //<---- It determines the probability of an obstacle to appear in the map
 
 /* 3D MACROS */
 # define MAX_WALL_HEIGHT 500
@@ -115,6 +113,16 @@
 #define LIGHT_GRAY      0xD3D3D3FF  // Light Gray
 #define GRAY            0x808080FF  // Gray
 #define BLACK           0x000000FF  // Black
+
+
+//Transparent colors
+#define TRANSPARENT     0x00000000  // Transparent
+#define TRANSLUCENT     0x00000022  // Translucent
+#define TRANSPARENT_GOLD 0xFFD70011 // Transparent Gold
+
+/* MAP COLORS */
+# define FLOOR_COLOR TRANSPARENT_GOLD
+# define WALL_COLOR TRANSLUCENT
 
 #define GREEN           "\033[0;32m"
 #define RED             "\033[0;31m"
