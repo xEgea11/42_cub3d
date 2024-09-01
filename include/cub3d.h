@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cub3d.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: regea-go <regea-go@student.42malaga.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/08/31 21:50:35 by regea-go          #+#    #+#             */
+/*   Updated: 2024/08/31 21:50:36 by regea-go         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef CUB3D_H
 # define CUB3D_H
 # include "MLX42.h"
@@ -14,12 +26,6 @@
 # include <time.h>  //Just for random start generation
 # include <parsing.h>
 
-
-
-//Still not in use
-//# define MINIMAP_WIDTH WIDTH / 10
-//# define MINIMAP_HEIGHT HEIGHT / 10
-
 typedef struct s_data t_player;
 
 typedef struct s_game
@@ -28,15 +34,16 @@ typedef struct s_game
     mlx_image_t *img;
     mlx_t       *mlx;
     t_player    *player;
-    int         map[HEIGHT_MAP][WIDTH_MAP];         // For testing purposes, remove later
     double      y_scale;                        //Scalation factor, from map to screen
     double      x_scale;
+    double      y_scale_minimap;                //Scalation factor, from map to minimap
+    double      x_scale_minimap;
 
 }   t_game;
 
-int init_game(t_game *game);
+int init_game(t_game *game, t_initData *data);
 int end_game(t_game *game);
 
-void create_map(t_game *game);      // For testing purposes, remove later
+void print_map(t_game *game);      // For testing purposes, remove later
 
 #endif  
