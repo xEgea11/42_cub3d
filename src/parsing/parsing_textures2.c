@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing_texture2.c                                 :+:      :+:    :+:   */
+/*   parsing_textures2.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: juguerre <juguerre@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 14:59:40 by juguerre          #+#    #+#             */
-/*   Updated: 2024/08/20 14:59:40 by juguerre         ###   ########.fr       */
+/*   Updated: 2024/09/03 00:45:05 by juguerre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	ft_process_rgb_color(t_txtr *tmp, t_initData *data)
 	}
 }
 
-int check_color_value(char **rgb)
+int	check_color_value(char **rgb)
 {
 	int	i;
 
@@ -41,28 +41,28 @@ int check_color_value(char **rgb)
 	while (rgb[i])
 	{
 		if (ft_atoi(rgb[i]) > 255 || ft_atoi(rgb[i]) < 0)
-			return (free_array2D(rgb), 0);
+			return (free_array2d(rgb), 0);
 		i++;
 	}
-	return (free_array2D(rgb), 1);
+	return (free_array2d(rgb), 1);
 }
 
-int colors_texture(t_initData *data)
+int	colors_texture(t_initData *data)
 {
-    t_txtr *tmp;
+	t_txtr	*tmp;
 
-    data->floor = NULL;
-    data->ceiling = NULL;
-    tmp = data->t;
-    while(tmp)
-    {
-        if(!ft_strncmp(tmp->key, "F", 1) || !ft_strncmp(tmp->key, "C", 1))
-        {
-            if(!check_color_value(ft_split(tmp->value, ',')))
-                return(0);
-            ft_process_rgb_color(tmp, data);
-        }
-        tmp = tmp->next;
-    }
-    return(1);
+	data->floor = NULL;
+	data->ceiling = NULL;
+	tmp = data->t;
+	while (tmp)
+	{
+		if (!ft_strncmp(tmp->key, "F", 1) || !ft_strncmp(tmp->key, "C", 1))
+		{
+			if (!check_color_value(ft_split(tmp->value, ',')))
+				return (0);
+			ft_process_rgb_color(tmp, data);
+		}
+		tmp = tmp->next;
+	}
+	return (1);
 }
