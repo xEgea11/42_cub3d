@@ -87,11 +87,12 @@ int	w_map(char **map)
 	while (map[i])
 	{
 		j = 0;
-		while (map[i][j] && map[i][j] != '\n')
+		while (map[i][j])
 		{
-			if (map[i][j] != '1' && map[i][j] != ' ')
+			if (map[i][j] != ' ' && (map[i][j] == 'N' || map[i][j] == 'S'
+				|| map[i][j] == 'W' || map[i][j] == 'E' || map[i][j] == '0'))
 			{
-				if (map[i - 1][j] == ' ' || map[i + 1][j] == ' ')
+				if ((map[i - 1][j] == ' ' || map[i + 1][j] == ' ') && (map[i][j] != '1'))
 				{
 					return (0);
 				}
