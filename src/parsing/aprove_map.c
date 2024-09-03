@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   aprove_map.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: juguerre <juguerre@student.42malaga.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/09/02 23:50:39 by juguerre          #+#    #+#             */
+/*   Updated: 2024/09/03 02:53:38 by juguerre         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "cub3d.h"
 
@@ -8,13 +19,7 @@ int	check_pos_ofv(char *line)
 
 	flag = 0;
 	i = 0;
-	while (*line == ' ' || (*line >= 9 && *line <= 13)
-		|| *line == 'C' || *line == 'F')
-	{
-		if (*line == 'C' || *line == 'F')
-			flag++;
-		line++;
-	}
+	jorgito(&line, &flag);
 	if (flag != 1)
 		return (0);
 	if (!ft_isdigit(line[i]) && !ft_isdigit(line[(ft_strlen(line) - 1)]))
@@ -24,9 +29,10 @@ int	check_pos_ofv(char *line)
 		if (line[i] >= 9 && line[i] <= 13)
 		{
 			i++;
-			continue;
+			continue ;
 		}
-		if ((!ft_isdigit(line[i]) && line[i] != ',') || ((line[i] == ',') && line[i + 1] && line[i + 1] == ','))
+		if ((!ft_isdigit(line[i]) && line[i] != ',') || ((line[i] == ',')
+				&& line[i + 1] && line[i + 1] == ','))
 		{
 			return (0);
 		}
@@ -64,9 +70,10 @@ int	parse_rgb(char **texture)
 		if (tmp[0] == 'F' || tmp[0] == 'C')
 		{
 			if (count_vergules(tmp) != 2 || !check_pos_ofv(tmp))
-			{
+			{	
+				printf("a\n");
 				return (0);
-			}
+			}	
 		}
 		i++;
 	}
@@ -88,7 +95,7 @@ int	check_texture_if_valid(char *line)
 	return (0);
 }
 
-int check_texture_space(t_initData *data)
+int	check_texture_space(t_initData *data)
 {
 	int	i;
 
