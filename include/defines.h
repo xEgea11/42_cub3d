@@ -19,7 +19,7 @@
 
 /* MAP SIZE */
 # define WIDTH 1200
-# define HEIGHT 600
+# define HEIGHT 1000
 
 /* PLAYER */
 /* Distance at each button pressed */
@@ -32,6 +32,10 @@
 # define NUM_RAYS 300  // Number of rays to cast
 # define RAY_CALCULATION_RATE 0.001
 # define COLUMNS_PER_RAY (double)WIDTH / NUM_RAYS
+
+/* TEXTURE */
+# define TEXTURE_WIDTH 640
+# define TEXTURE_HEIGHT 640
 
 /* ORIENTATION */
 # define NORTH 0

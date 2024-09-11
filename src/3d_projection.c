@@ -19,16 +19,57 @@ void fill_background_3d(t_game *game)
     draw_floor_3d(game);
 }
 
-static void draw_orientation_3d(t_game *game, int x_comp, double y_comp, int wall)
+
+static uint32_t get_pixel_color(t_game *game, char *key, uint32_t x, uint32_t y)
 {
+    t_txtr *tmp;
+    uint32_t i;
+    mlx_texture_t *texture;
+
+    i = 0;
+    tmp = game->data->t;
+    while (i < 4)
+    {
+        if (ft_strncmp(tmp->key, key, 2) == 0)
+        {
+            texture = tmp->img;
+            if (x >= texture->width || y >= texture->height)
+                return (0);  // Fuera de los límites
+
+            uint8_t *pixel = &texture->pixels[(y * texture->width + x) * 4];
+            uint32_t color = (pixel[0] << 24) | (pixel[1] << 16) | (pixel[2] << 8) | pixel[3];
+            return (color);
+        }
+        tmp = tmp->next;
+        i++;
+    }
+    return (0);
+}
+
+static void draw_orientation_3d(t_game *game, int x_comp, double y_comp, int wall, double wall_height)
+{
+    double tex_x, tex_y;
+    int color;
+    // Calcula la posición relativa del píxel en el muro
+    double relative_y = y_comp / wall_height;
+
+    // Calcula las coordenadas de la textura
+    tex_x = (int)(x_comp % TEXTURE_WIDTH);
+    tex_y = (int)(relative_y * TEXTURE_HEIGHT) % TEXTURE_HEIGHT;
+
+    // Obtiene el color de la textura
     if (wall == WEST)
-        mlx_put_pixel(game->img, x_comp, y_comp, DARK_BLUE);
+        color = get_pixel_color(game, "WE", tex_x, tex_y);
     else if (wall == EAST)
-        mlx_put_pixel(game->img, x_comp, y_comp, VIOLET);
+        color = get_pixel_color(game, "EA", tex_x, tex_y);
     else if (wall == NORTH)
-        mlx_put_pixel(game->img, x_comp, y_comp, DARK_MAGENTA);
-    else if (wall == SOUTH)         
-        mlx_put_pixel(game->img, x_comp, y_comp, SKY_BLUE);
+        color = get_pixel_color(game, "NO", tex_x, tex_y);
+    else if (wall == SOUTH)
+        color = get_pixel_color(game, "SO", tex_x, tex_y);
+
+    // Dibuja el pixel
+    //printf("x_comp: %d, y_comp: %f, color: %d\n", x_comp, y_comp, color);   
+    mlx_put_pixel(game->img, x_comp, y_comp, color);
 }
 
 static void draw_columns_per_coordinate_3d(t_game *game, double wall_height, double offset_x, int wall)
@@ -48,7 +89,7 @@ static void draw_columns_per_coordinate_3d(t_game *game, double wall_height, dou
         if(y_end > HEIGHT)
             y_end = HEIGHT;                                                            
         while (y_start < y_end)
-            draw_orientation_3d(game, round(rays + offset_x), y_start++, wall);
+            draw_orientation_3d(game, round(rays + offset_x), y_start++, wall, wall_height);
         rays += 1.0;
     }
 }

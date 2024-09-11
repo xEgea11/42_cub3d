@@ -12,21 +12,6 @@
 
 #include "cub3d.h"
 
-void	list_back_texture(t_txtr *texture, t_txtr *new)
-{
-	t_txtr	*tmp;
-
-	tmp = texture;
-	if (texture == NULL)
-	{
-		texture = new;
-		return ;
-	}
-	while (tmp->next)
-		tmp = tmp->next;
-	tmp->next = new;
-}
-
 t_txtr	*new_texture(char *line)
 {
 	t_txtr	*list;
@@ -51,6 +36,22 @@ t_txtr	*new_texture(char *line)
 	return (list);
 }
 
+void	list_back_texture(t_txtr **texture, t_txtr *new)
+{
+    t_txtr	*tmp;
+
+    if (!*texture)
+    {
+        *texture = new;
+        return ;
+    }
+    tmp = *texture;
+    while (tmp->next)
+        tmp = tmp->next;
+    tmp->next = new;
+}
+
+
 int	list_texture(t_initData *data)
 {
 	int		i;
@@ -59,11 +60,10 @@ int	list_texture(t_initData *data)
 	i = 0;
 	while (data->texture[i])
 	{
-		printf("texture[%d] = %s\n", i, data->texture[i]);
 		tmp = new_texture(data->texture[i]);
 		if (!tmp)
 			return (0);
-		list_back_texture(data->t, tmp);
+		list_back_texture(&data->t, tmp);
 		i++;
 	}
 	return (1);

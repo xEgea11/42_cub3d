@@ -54,7 +54,6 @@ int	parsing(int argc, char **argv, t_initData *data)
 	}
 	if (!read_map(argv[1], data))
 		return (0);
-	printf("holan\n");
 	if (!map_validation(data))
 		return (0);
 	if (!list_texture(data))
@@ -63,5 +62,6 @@ int	parsing(int argc, char **argv, t_initData *data)
 		return (free_map(data), free_list(data->t), 0);
 	get_player_position(data);
 	get_rows_cols(data);
+	init_texture(data);
 	return (1);
 }

@@ -61,5 +61,8 @@
     "algorithm": "c"
   },
   "makefile.configureOnOpen": false,
-  "codam-norminette-3.displayErrorName": true
+  "codam-norminette-3.displayErrorName": true,
+  "cSpell.words": [
+    "regea"
+  ]
 }

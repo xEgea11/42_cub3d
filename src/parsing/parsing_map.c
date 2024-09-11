@@ -102,6 +102,5 @@ int	read_map(char *file, t_initData *data)
 		return (free_data(NULL, data->tx2re, data->fd), 0);
 	if (!aprove_map(data))
 		return (read_map_return_n_free(data));
-	printf("jijiji\n");
 	return (free_data(data->line, data->tx2re, data->fd), 1);
 }

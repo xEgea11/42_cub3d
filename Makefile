@@ -44,6 +44,7 @@ SRC_FILES = main.c \
 			3d_projection.c \
 			3d_projection_utils.c \
 
+
 PARSING_FILES = parsing.c \
 				parsing_map.c \
 				parsing_map_ext.c \
@@ -55,7 +56,8 @@ PARSING_FILES = parsing.c \
 				aprove_map.c \
 				aprove_map_ext.c \
 				aprove_map2.c \
-				aprove_map_is_close.c 
+				aprove_map_is_close.c \
+				init_textures.c \
 
 SRC_FILES += $(addprefix $(PARSE_DIR)/, $(PARSING_FILES))
 			

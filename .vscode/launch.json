@@ -8,8 +8,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": true,
-      "cwd": "c:/Users/Usuario/Desktop/42_cub3d/src/initmap",
-      "program": "c:/Users/Usuario/Desktop/42_cub3d/src/initmap/build/Debug/outDebug",
+      "cwd": "c:/Users/Usuario/Desktop/42_cub3d/src",
+      "program": "c:/Users/Usuario/Desktop/42_cub3d/src/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [

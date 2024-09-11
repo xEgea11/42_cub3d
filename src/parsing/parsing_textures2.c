@@ -14,7 +14,8 @@
 
 int	get_index(char *line, int i)
 {
-	while (line[i] == ' ' || (line[i] >= 9 && line[i] <= 13))
+	while (line[i] == ' ' || (line[i] >= 9 && line[i] <= 13)
+		|| line[i] == '.' || line[i] == '/')
 		i++;
 	return (i);
 }
