@@ -18,8 +18,8 @@
 # define MINIMAP_HEIGHT 200
 
 /* MAP SIZE */
-# define WIDTH 1200
-# define HEIGHT 1000
+# define WIDTH 1950
+# define HEIGHT 1080
 
 /* PLAYER */
 /* Distance at each button pressed */
@@ -29,13 +29,13 @@
 /* PLAYER POV */                      //Not definitive
 # define VISION_LENGTH 15
 # define FOV_ANGLE (60.0 * M_PI / 180.0)  // 60 degrees in radians
-# define NUM_RAYS 300  // Number of rays to cast
-# define RAY_CALCULATION_RATE 0.001
+# define NUM_RAYS 150  // Number of rays to cast
+# define RAY_CALCULATION_RATE 0.0001
 # define COLUMNS_PER_RAY (double)WIDTH / NUM_RAYS
 
 /* TEXTURE */
-# define TEXTURE_WIDTH 640
-# define TEXTURE_HEIGHT 640
+# define TEXTURE_WIDTH 512
+# define TEXTURE_HEIGHT 512
 
 /* ORIENTATION */
 # define NORTH 0

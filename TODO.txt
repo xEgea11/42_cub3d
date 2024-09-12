@@ -1,28 +1,9 @@
-[WINDOW MANAGEMENT]
-	- Put an option so the window closes with an ESC press  ✅
-
-[MAKEFILE]
-
-- Put an option to recompile libft when compile the whole project  ✅
-- Put all .c in a separate folder ❌
-
 [RAYCASTING]
-	- [DRAWINGS.C] Apply DDA algorithm (if we want), right now is a brute force calculation ❌
-	- [FISH-EYE] Not needed, but it makes the visualization of the blocks way more beautiful ❌
-
 	- [BUG] -> When calculating orientation, at the edges the calculation is not accurate
 		* Change the rate at which we calculate the ray	--> Better but not perfect ❌✅
 
-[REFACTOR]
-	- We need to make some refactor in some functions, too many variables ✅
-
-
-[COLORS - F - C]
-	- Make a function to get the colors in RGB format 							✅
-	- Transform RGB format into hexadecimal format and apply it to the map		✅
-
-[TEXTURES]	--	I dont have any fcking idea how to do it
-	- Apply textures to the 3d printing
 
 [NORMINETTE]
 	- Make code Norminette-friendly ❌ 
+
+[PLAYER ORIENTATION] -- Orientate the player depending on the key given by the map - N S W E  ❌ 
