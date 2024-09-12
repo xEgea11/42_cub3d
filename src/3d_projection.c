@@ -19,16 +19,57 @@ void fill_background_3d(t_game *game)
     draw_floor_3d(game);
 }
 
-static void draw_orientation_3d(t_game *game, int x_comp, double y_comp, int wall)
+
+static uint32_t get_pixel_color(t_game *game, char *key, uint32_t x, uint32_t y)
 {
+    t_txtr *tmp;
+    uint32_t i;
+    mlx_texture_t *texture;
+
+    i = 0;
+    tmp = game->data->t;
+    while (i < 4)
+    {
+        if (ft_strncmp(tmp->key, key, 2) == 0)
+        {
+            texture = tmp->img;
+            if (x >= texture->width || y >= texture->height)
+                return (0);  // Fuera de los límites
+
+            uint8_t *pixel = &texture->pixels[(y * texture->width + x) * 4];
+            uint32_t color = (pixel[0] << 24) | (pixel[1] << 16) | (pixel[2] << 8) | pixel[3];
+            return (color);
+        }
+        tmp = tmp->next;
+        i++;
+    }
+    return (0);
+}
+
+static void draw_orientation_3d(t_game *game, int x_comp, double y_comp, int wall, double wall_height, double y_const)
+{
+    double tex_x, tex_y;
+    int color;
+    // Calcula la posición relativa del píxel en el muro
+    double relative_y = round((y_comp - y_const)) / wall_height;
+
+    // Calcula las coordenadas de la textura
+    tex_x = x_comp % TEXTURE_WIDTH;
+    tex_y = (int)(relative_y * TEXTURE_HEIGHT); // - y_comp; //% TEXTURE_HEIGHT;
+
+    // Obtiene el color de la textura
     if (wall == WEST)
-        mlx_put_pixel(game->img, x_comp, y_comp, DARK_BLUE);
+        color = get_pixel_color(game, "WE", tex_x, tex_y);
     else if (wall == EAST)
-        mlx_put_pixel(game->img, x_comp, y_comp, VIOLET);
+        color = get_pixel_color(game, "EA", tex_x, tex_y);
     else if (wall == NORTH)
-        mlx_put_pixel(game->img, x_comp, y_comp, DARK_MAGENTA);
-    else if (wall == SOUTH)         
-        mlx_put_pixel(game->img, x_comp, y_comp, SKY_BLUE);
+        color = get_pixel_color(game, "NO", tex_x, tex_y);
+    else if (wall == SOUTH)
+        color = get_pixel_color(game, "SO", tex_x, tex_y);
+
+    // Dibuja el pixel
+    //printf("x_comp: %d, y_comp: %f, color: %d\n", x_comp, y_comp, color);   
+    mlx_put_pixel(game->img, x_comp, y_comp, color);
 }
 
 static void draw_columns_per_coordinate_3d(t_game *game, double wall_height, double offset_x, int wall)
@@ -36,11 +77,12 @@ static void draw_columns_per_coordinate_3d(t_game *game, double wall_height, dou
     double y_start;
     double y_end;
     double rays;
+    double y_const;
 
     rays = 0.0;
     while (rays < COLUMNS_PER_RAY)
     {
-        y_start = (int)(HEIGHT / 2.0 - wall_height / 2.0);
+        y_const = y_start = (int)(HEIGHT / 2.0 - wall_height / 2.0);
         y_end = (int)(HEIGHT / 2.0 + wall_height / 2.0);
 
         if(y_start < 0)                                           
@@ -48,7 +90,7 @@ static void draw_columns_per_coordinate_3d(t_game *game, double wall_height, dou
         if(y_end > HEIGHT)
             y_end = HEIGHT;                                                            
         while (y_start < y_end)
-            draw_orientation_3d(game, round(rays + offset_x), y_start++, wall);
+            draw_orientation_3d(game, round(rays + offset_x), y_start++, wall, wall_height, y_const);
         rays += 1.0;
     }
 }
@@ -59,7 +101,7 @@ void render_obstacle_3d(t_game *game, int iteration, double distance, int wall)
     double wall_height;
 
     offset_x = (iteration * COLUMNS_PER_RAY);
-    wall_height = MAX_WALL_HEIGHT / (distance * 2);
+    wall_height = MAX_WALL_HEIGHT / (distance / 2);
     draw_columns_per_coordinate_3d(game, wall_height, offset_x, wall);
 }
 
@@ -86,3 +128,36 @@ void single_raycast_to_3d(t_game *game, double x, double y, int iteration)
         && decimal_y < 0)                                                       
         render_obstacle_3d(game, iteration, distance, SOUTH);
 }
+
+/*void single_raycast_to_3d(t_game *game, double x, double y, int iteration)
+{
+    double distance;
+    double decimal_x;
+    double decimal_y;
+
+    // Calcular la distancia entre el jugador y el punto (x, y)
+    distance = sqrt(pow(x - game->player->x_pos, 2) + pow(y - game->player->y_pos, 2));
+    
+    // Calcular las partes decimales de x e y
+    decimal_x = x - floor(x);
+    decimal_y = y - floor(y);
+
+    // Asegurarse de que las partes decimales estén en el rango [0, 1)
+    if (decimal_x < 0) decimal_x += 1;
+    if (decimal_y < 0) decimal_y += 1;
+
+    // Determinar la dirección de la pared
+    if (fabs(decimal_x) < fabs(decimal_y)) {
+        if (decimal_x > 0.5) {
+            render_obstacle_3d(game, iteration, distance, WEST); // Tocando el eje X y mirando al Oeste
+        } else {
+            render_obstacle_3d(game, iteration, distance, EAST); // Tocando el eje X y mirando al Este
+        }
+    } else {
+        if (decimal_y > 0.5) {
+            render_obstacle_3d(game, iteration, distance, NORTH); // Tocando el eje Y y mirando al Norte
+        } else {
+            render_obstacle_3d(game, iteration, distance, SOUTH); // Tocando el eje Y y mirando al Sur
+        }
+    }
+}*/

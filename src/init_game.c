@@ -23,11 +23,9 @@ void print_map(t_game *game)           // For testing purposes, remove later
         j = 0;
         while (j < game->data->m_cols)
         {
-            printf("%d  ", game->data->map2d_square[i][j]);
             j++;
         }
         i++;
-        printf("\n");
     }
 }
 

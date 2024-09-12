@@ -18,6 +18,9 @@ typedef struct s_txtr
 {
 	char			*key;
 	char			*value;
+	void			*img;
+	int				width;
+	int				height;
 	struct s_txtr	*next;
 }	t_txtr;
 
@@ -76,10 +79,11 @@ int		check_texture_mount(t_initData *data);
 int		list_texture(t_initData *data);
 t_txtr	*new_texture(char *line);
 int		get_index(char *line, int i);
-void	list_back_texture(t_txtr *texture, t_txtr *new);
+void	list_back_texture(t_txtr **texture, t_txtr *new);
 int		colors_texture(t_initData *data);
 void	ft_process_rgb_color(t_txtr *tmp, t_initData *data);
 int		check_color_value(char **rgb);
+int 	init_texture(t_initData *data);
 /* PLAYER */
 void	get_player_position(t_initData *data);
 /* FREE DATA */
