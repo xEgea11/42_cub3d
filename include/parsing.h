@@ -60,8 +60,8 @@ int		h_map(char **map);
 int		w_map(char **map);
 void	get_rows_cols(t_initData *data);
 char	*get_map(t_initData *data);
-void 	jorgito(char **line, int *flag);
-int is_invalid_char_or_comma(const char *line, int i);
+void	jorgito(char **line, int *flag);
+int		is_invalid_char_or_comma(const char *line, int i);
 /* APROVE MAP */
 int		aprove_map(t_initData *data);
 int		check_texture_space(t_initData *data);
@@ -83,7 +83,7 @@ void	list_back_texture(t_txtr **texture, t_txtr *new);
 int		colors_texture(t_initData *data);
 void	ft_process_rgb_color(t_txtr *tmp, t_initData *data);
 int		check_color_value(char **rgb);
-int 	init_texture(t_initData *data);
+int		init_texture(t_initData *data);
 /* PLAYER */
 void	get_player_position(t_initData *data);
 /* FREE DATA */

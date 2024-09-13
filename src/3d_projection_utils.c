@@ -79,3 +79,9 @@ void	draw_floor_3d(t_game *game)
 		y++;
 	}
 }
+
+void	fill_background_3d(t_game *game)
+{
+	draw_ceiling_3d(game);
+	draw_floor_3d(game);
+}

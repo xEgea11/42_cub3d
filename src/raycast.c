@@ -12,7 +12,7 @@
 
 #include "cub3d.h"
 
-static int	raycast_iteration(t_game *game, double x1, double y1, int iteration)
+static int	raycast_iter(t_game *game, double x1, double y1, int iter)
 {
 	double	i;
 	double	x;
@@ -28,7 +28,7 @@ static int	raycast_iteration(t_game *game, double x1, double y1, int iteration)
 		put_pixel_raycast(game, x, y);
 		if (game->data->map2d_square[(int)y][(int)x] == WALL)
 		{
-			single_raycast_to_3d(game, x, y, iteration);
+			one_ray_3d(game, x, y, iter);
 			return (TRUE);
 		}
 		i += RAY_CALCULATION_RATE;
@@ -36,14 +36,14 @@ static int	raycast_iteration(t_game *game, double x1, double y1, int iteration)
 	return (FALSE);
 }
 
-int	raycast_algorithm(t_game *game, double angle, int iteration)
+int	raycast_algorithm(t_game *game, double angle, int iter)
 {
 	double	x1;
 	double	y1;
 
 	x1 = game->player->x_pos + VISION_LENGTH * cos(angle);
 	y1 = game->player->y_pos + VISION_LENGTH * sin(angle);
-	return (raycast_iteration(game, x1, y1, iteration));
+	return (raycast_iter(game, x1, y1, iter));
 }
 
 void	point_of_view(t_game *game)

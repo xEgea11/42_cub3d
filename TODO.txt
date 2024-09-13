@@ -5,5 +5,9 @@
 
 [NORMINETTE]
 	- Make code Norminette-friendly ❌ 
+	- We cannot define functions as macros; put variables within the structure to initialize them manually
+	- Orient_3d, still not able to refactor
+	- init_game, refactor it
+	- put_pixel_minimap, refactor it
 
-[PLAYER ORIENTATION] -- Orientate the player depending on the key given by the map - N S W E  ❌ 
+[PLAYER ORIENTATION] -- Orientate the player depending on the key given by the map - N S W E  ✅

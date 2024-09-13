@@ -26,24 +26,23 @@
 # include <time.h>  //Just for random start generation
 # include <parsing.h>
 
-typedef struct s_data t_player;
+typedef struct s_data	t_player;
 
 typedef struct s_game
 {
-    t_initData  *data;
-    mlx_image_t *img;
-    mlx_t       *mlx;
-    t_player    *player;
-    double      y_scale;                        //Scalation factor, from map to screen
-    double      x_scale;
-    double      y_scale_minimap;                //Scalation factor, from map to minimap
-    double      x_scale_minimap;
+	t_initData	*data;
+	mlx_image_t	*img;
+	mlx_t		*mlx;
+	t_player	*player;
+	double		y_scale;
+	double		x_scale;
+	double		y_scale_minimap;
+	double		x_scale_minimap;
 
-}   t_game;
+}	t_game;
 
-int init_game(t_game *game, t_initData *data);
-int end_game(t_game *game);
-
-void print_map(t_game *game);      // For testing purposes, remove later
+int		init_game(t_game *game, t_initData *data);
+int		end_game(t_game *game);
+void	print_map(t_game *game);
 
 #endif  

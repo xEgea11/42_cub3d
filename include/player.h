@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   player.h                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: regea-go <regea-go@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/09/13 16:31:04 by regea-go          #+#    #+#             */
+/*   Updated: 2024/09/13 16:31:04 by regea-go         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef PLAYER_H
 # define PLAYER_H
 # include "cub3d.h"
@@ -26,7 +38,7 @@ void		move_left(t_game *game);
 void		move_right(t_game *game);
 void		rotate_player(t_game *game, double rotation, int op_code);
 
-/* MOVEMENT UTILS */ 
+/* MOVEMENT UTILS */
 void		check_position(t_game *game, double delta_x, double delta_y);
 int			ft_no_obstacle(t_game *game, double x, double y);
 int			ft_inrange(t_game *game, double x, double y);

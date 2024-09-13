@@ -23,7 +23,6 @@ static int	ft_is_empty(t_game *game, int x, int y)
 	return (FALSE);
 }
 
-
 void	put_pixel_minimap(t_game *game, int x, int y)
 {
 	int	i;
