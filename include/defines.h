@@ -29,8 +29,8 @@
 /* PLAYER POV */                      //Not definitive
 # define VISION_LENGTH 15
 # define FOV_ANGLE (60.0 * M_PI / 180.0)  // 60 degrees in radians
-# define NUM_RAYS 150  // Number of rays to cast
-# define RAY_CALCULATION_RATE 0.0001
+# define NUM_RAYS 200  // Number of rays to cast
+# define RAY_CALCULATION_RATE 0.01
 # define COLUMNS_PER_RAY (double)WIDTH / NUM_RAYS
 
 /* TEXTURE */
