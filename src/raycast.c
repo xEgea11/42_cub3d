@@ -12,8 +12,34 @@
 
 #include "cub3d.h"
 
-static int	raycast_iter(t_game *game, double x1, double y1, int iter)
+t_ray	*init_ray(void)
 {
+	t_ray	*ray;
+
+	ray = malloc(sizeof(t_ray));
+	if (!ray)
+		return (NULL);
+	ray->x_wall = 0;
+	ray->y_wall = 0;
+	ray->current_angle = 0;
+	ray->x_end = 0;
+	ray->y_end = 0;
+	ray->offset = 0;
+	ray->wall_height = 0;
+	ray->decimal_x = 0;
+	ray->decimal_y = 0;
+	ray->col_start = 0;
+	ray->col_end = 0;
+	ray->texture_pos = 0;
+	ray->relative_y = 0;
+	ray->tex_x = 0;
+	ray->tex_y = 0;
+	return (ray);
+}
+
+static void	ray_2d(t_game *game, t_ray *ray)
+{
+	//Version of the brute force algorithm
 	double	i;
 	double	x;
 	double	y;
@@ -22,28 +48,34 @@ static int	raycast_iter(t_game *game, double x1, double y1, int iter)
 	while (i < VISION_LENGTH)
 	{
 		x = (double)(game->player->x_pos
-				+ i * (x1 - game->player->x_pos) / VISION_LENGTH);
+				+ i * (ray->x_end - game->player->x_pos) / VISION_LENGTH);
 		y = (double)(game->player->y_pos
-				+ i * (y1 - game->player->y_pos) / VISION_LENGTH);
-		put_pixel_raycast(game, x, y);
+				+ i * (ray->y_end - game->player->y_pos) / VISION_LENGTH);
+		put_pixel_ray_minimap(game, x, y);
 		if (game->data->map2d_square[(int)y][(int)x] == WALL)
 		{
-			one_ray_3d(game, x, y, iter);
-			return (TRUE);
+			ray->x_wall = x;
+			ray->y_wall = y;
+			ray_3d(game, ray);
+			return ;
 		}
 		i += RAY_CALCULATION_RATE;
 	}
-	return (FALSE);
+	return ;
 }
 
-int	raycast_algorithm(t_game *game, double angle, int iter)
+void	raycast(t_game *game, double angle, int offset)
 {
-	double	x1;
-	double	y1;
+	t_ray	*ray;
 
-	x1 = game->player->x_pos + VISION_LENGTH * cos(angle);
-	y1 = game->player->y_pos + VISION_LENGTH * sin(angle);
-	return (raycast_iter(game, x1, y1, iter));
+	//if no ray...
+	ray = init_ray();
+	ray->x_end = game->player->x_pos + VISION_LENGTH * cos(angle);
+	ray->y_end = game->player->y_pos + VISION_LENGTH * sin(angle);
+	ray->offset = offset;
+	ray->current_angle = angle;
+	ray_2d(game, ray);
+	free(ray);
 }
 
 void	point_of_view(t_game *game)
@@ -51,15 +83,15 @@ void	point_of_view(t_game *game)
 	double	angle_step;
 	double	start_angle;
 	double	current_angle;
-	int		i;
+	int		offset;
 
 	angle_step = game->fov_angle / NUM_RAYS;
 	start_angle = game->player->angle - game->fov_angle / 2.0;
-	i = 0;
-	while (i < NUM_RAYS)
+	offset = 0;
+	while (offset < NUM_RAYS)
 	{
-		current_angle = start_angle + i * angle_step;
-		raycast_algorithm(game, current_angle, i);
-		i++;
+		current_angle = start_angle + offset * angle_step;
+		raycast(game, current_angle, offset * game->columns_per_ray);
+		offset++;
 	}
 }

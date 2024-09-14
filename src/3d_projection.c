@@ -40,79 +40,67 @@ static uint32_t	get_pixel_color(t_game *game, char *key, uint32_t x, uint32_t y)
 	return (0);
 }
 
-void	orient_3d(t_game *game, int x, double y, int wall, double wall_h, double y_const, double texture_pos)
+void	draw_cols_3d(t_game *game, t_ray *ray, int x_offset, double y_iter, int wall, double texture_pos)
 {
-	double	tex_x;
-	double	tex_y;
 	int		color;
-	double	relative_y;
 
-	relative_y = ((y - y_const)) / wall_h;
-	tex_x = texture_pos * TEXTURE_WIDTH;
-	tex_y = (int)(relative_y * TEXTURE_HEIGHT);
+	ray->relative_y = ((y_iter - ray->col_start)) / ray->wall_height;
+	ray->tex_x = texture_pos * TEXTURE_WIDTH;
+	ray->tex_y = (int)(ray->relative_y * TEXTURE_HEIGHT);
 	if (wall == WEST)
-		color = get_pixel_color(game, "WE", tex_x, tex_y);
+		color = get_pixel_color(game, "WE", ray->tex_x, ray->tex_y);
 	else if (wall == EAST)
-		color = get_pixel_color(game, "EA", tex_x, tex_y);
+		color = get_pixel_color(game, "EA", ray->tex_x, ray->tex_y);
 	else if (wall == NORTH)
-		color = get_pixel_color(game, "NO", tex_x, tex_y);
+		color = get_pixel_color(game, "NO", ray->tex_x, ray->tex_y);
 	else if (wall == SOUTH)
-		color = get_pixel_color(game, "SO", tex_x, tex_y);
-	mlx_put_pixel(game->img, x, y, color);
+		color = get_pixel_color(game, "SO", ray->tex_x, ray->tex_y);
+	mlx_put_pixel(game->img, x_offset, y_iter, color);
 }
 
-void	columns(t_game *game, double wall_h, double offset_x, int wall, double texture_pos)
+void	columns(t_game *game, t_ray *ray, int wall, double texture_pos)
 {
-	double	y_start;
-	double	y_end;
 	double	rays;
-	double	y_const;
+	double	y_iter;
 
 	rays = 0.0;
 	while (rays < game->columns_per_ray)
 	{
-		y_start = (int)(HEIGHT / 2.0 - wall_h / 2.0);
-		y_const = y_start;
-		y_end = (int)(HEIGHT / 2.0 + wall_h / 2.0);
-		if (y_start < 0)
-			y_start = 0;
-		if (y_end > HEIGHT)
-			y_end = HEIGHT;
-		while (y_start < y_end)
-			orient_3d(game, round(rays + offset_x), y_start++, wall, wall_h, y_const, texture_pos);
+		ray->col_start = (int)(HEIGHT / 2.0 - ray->wall_height / 2.0);
+		ray->col_end = (int)(HEIGHT / 2.0 + ray->wall_height / 2.0);
+		if (ray->col_start < 0)
+			ray->col_start = 0;
+		y_iter = ray->col_start;
+		if (ray->col_end > HEIGHT)
+			ray->col_end = HEIGHT;
+		while (y_iter < ray->col_end)
+		{
+			draw_cols_3d(game, ray, round(rays + ray->offset), y_iter, wall, texture_pos);
+			y_iter++;
+		}
 		rays += 1.0;
 	}
 }
 
-void	render_obstacle_3d(t_game *game, int iter, double dist, int wall, double texture_pos)
+void	ray_3d(t_game *game, t_ray *ray)
 {
-	int		offset_x;
-	double	wall_height;
 
-	offset_x = (iter * game->columns_per_ray);
-	wall_height = MAX_WALL_HEIGHT / (dist / 2);
-	columns(game, wall_height, offset_x, wall, texture_pos);
+	ray->dist = ft_distance(game, ray->x_wall, ray->y_wall);
+	ray->wall_height = MAX_WALL_HEIGHT / (ray->dist);
+	ray->decimal_x = ray->x_wall - round(ray->x_wall);
+	ray->decimal_y = ray->y_wall - round(ray->y_wall);
+
+	if (abs_min(ray->decimal_x, ray->decimal_y) == fabs(ray->decimal_x)
+		&& ray->decimal_x > 0)
+		columns(game, ray, WEST, ray->y_wall - floor(ray->y_wall));
+	else if (abs_min(ray->decimal_x, ray->decimal_y) == fabs(ray->decimal_x)
+		&& ray->decimal_x < 0)
+		columns(game, ray, EAST, ray->y_wall - floor(ray->y_wall));
+	else if (abs_min(ray->decimal_x, ray->decimal_y) == fabs(ray->decimal_y)
+		&& ray->decimal_y > 0)
+		columns(game, ray, NORTH, ray->x_wall - floor(ray->x_wall));
+	else if (abs_min(ray->decimal_x, ray->decimal_y) == fabs(ray->decimal_y)
+		&& ray->decimal_y < 0)
+		columns(game, ray, SOUTH, ray->x_wall - floor(ray->x_wall));
 }
 
-void	one_ray_3d(t_game *game, double x, double y, int iter)
-{
-	double	dist;
-	double	decimal_x;
-	double	decimal_y;
-
-	dist = ft_distance(game, x, y);
-	decimal_x = x - round(x);
-	decimal_y = y - round(y);
-	if (abs_min(decimal_x, decimal_y) == fabs(decimal_x)
-		&& decimal_x > 0)
-		render_obstacle_3d(game, iter, dist, WEST, y - floor(y));
-	else if (abs_min(decimal_x, decimal_y) == fabs(decimal_x)
-		&& decimal_x < 0)
-		render_obstacle_3d(game, iter, dist, EAST, y - floor(y));
-	else if (abs_min(decimal_x, decimal_y) == fabs(decimal_y)
-		&& decimal_y > 0)
-		render_obstacle_3d(game, iter, dist, NORTH, x - floor(x));
-	else if (abs_min(decimal_x, decimal_y) == fabs(decimal_y)
-		&& decimal_y < 0)
-		render_obstacle_3d(game, iter, dist, SOUTH, x - floor(x));
-}

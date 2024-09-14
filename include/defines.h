@@ -18,18 +18,18 @@
 # define MINIMAP_HEIGHT 200
 
 /* MAP SIZE */
-# define WIDTH 1950
-# define HEIGHT 1080
+# define WIDTH 2048
+# define HEIGHT 1024
 
 /* PLAYER */
 /* Distance at each button pressed */
-# define SPEED_PLAYER 0.1
-# define ANGLE_MODIFIER 0.1
+# define SPEED_PLAYER 0.05
+# define ANGLE_MODIFIER 0.03
 
 # define VISION_LENGTH 10
-# define VISION_ANGLE 60
-# define NUM_RAYS 1000
-# define RAY_CALCULATION_RATE 0.01
+# define VISION_ANGLE 90
+# define NUM_RAYS 300
+# define RAY_CALCULATION_RATE 0.009
 
 /* TEXTURE */
 # define TEXTURE_WIDTH 512
