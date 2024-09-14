@@ -12,7 +12,7 @@
 
 #include "cub3d.h"
 
-int init_texture(t_initData *data)
+int init_texture(t_init_data *data)
 {
     t_txtr *tmp;
 

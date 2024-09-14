@@ -12,7 +12,7 @@
 
 #include "cub3d.h"
 
-void	read_map_ext(t_initData *data)
+void	read_map_ext(t_init_data *data)
 {
 	if (data->fd == -1)
 	{
@@ -28,7 +28,7 @@ void	read_map_ext(t_initData *data)
 	data->tx2re = strdup("");
 }
 
-int	read_map_return_n_free(t_initData *data)
+int	read_map_return_n_free(t_init_data *data)
 {
 	free_data(NULL, data->tx2re, data->fd);
 	free_array2d(data->texture);

@@ -23,35 +23,37 @@ static int	ft_is_empty(t_game *game, int x, int y)
 	return (FALSE);
 }
 
+static void	draw_rows_minimap(t_game *game, int x, int y, int i)
+{
+	int	draw_x;
+	int	draw_y;
+	int	j;
+
+	j = 0;
+	while (j < (int)game->x_scale_minimap)
+	{
+		draw_x = (int)(x * game->x_scale_minimap) + j;
+		draw_y = (int)(y * game->y_scale_minimap) + i;
+		if (draw_x >= 0 && draw_x < MINIMAP_WIDTH
+			&& draw_y >= 0 && draw_y < MINIMAP_HEIGHT)
+		{
+			if (ft_is_empty(game, x, y))
+				mlx_put_pixel(game->img, draw_x, draw_y, FLOOR_COLOR);
+			else if (game->data->map2d_square[y][x] == WALL
+				|| game->data->map2d_square[y][x] == OUT_OF_BOUNDS)
+				mlx_put_pixel(game->img, draw_x, draw_y, WALL_COLOR);
+		}
+		j++;
+	}
+}
+
 void	put_pixel_minimap(t_game *game, int x, int y)
 {
 	int	i;
-	int	j;
-	int	draw_x;
-	int	draw_y;
 
 	i = 0;
-	j = 0;
 	while (i < (int)game->y_scale_minimap)
-	{
-		j = 0;
-		while (j < (int)game->x_scale_minimap)
-		{
-			draw_x = (int)(x * game->x_scale_minimap) + j;
-			draw_y = (int)(y * game->y_scale_minimap) + i;
-			if (draw_x >= 0 && draw_x < MINIMAP_WIDTH
-				&& draw_y >= 0 && draw_y < MINIMAP_HEIGHT)
-			{
-				if (ft_is_empty(game, x, y))
-					mlx_put_pixel(game->img, draw_x, draw_y, FLOOR_COLOR);
-				else if (game->data->map2d_square[y][x] == WALL
-					|| game->data->map2d_square[y][x] == OUT_OF_BOUNDS)
-					mlx_put_pixel(game->img, draw_x, draw_y, WALL_COLOR);
-			}
-			j++;
-		}
-		i++;
-	}
+		draw_rows_minimap(game, x, y, i++);
 }
 
 void	fill_background_minimap(t_game *game)

@@ -69,7 +69,7 @@ void	columns(t_game *game, double wall_h, double offset_x, int wall)
 	double	y_const;
 
 	rays = 0.0;
-	while (rays < COLUMNS_PER_RAY)
+	while (rays < game->columns_per_ray)
 	{
 		y_start = (int)(HEIGHT / 2.0 - wall_h / 2.0);
 		y_const = y_start;
@@ -89,7 +89,7 @@ void	render_obstacle_3d(t_game *game, int iter, double dist, int wall)
 	int		offset_x;
 	double	wall_height;
 
-	offset_x = (iter * COLUMNS_PER_RAY);
+	offset_x = (iter * game->columns_per_ray);
 	wall_height = MAX_WALL_HEIGHT / (dist / 2);
 	columns(game, wall_height, offset_x, wall);
 }
@@ -103,7 +103,6 @@ void	one_ray_3d(t_game *game, double x, double y, int iter)
 	dist = ft_distance(game, x, y);
 	decimal_x = x - round(x);
 	decimal_y = y - round(y);
-
 	if (abs_min(decimal_x, decimal_y) == fabs(decimal_x)
 		&& decimal_x > 0)
 		render_obstacle_3d(game, iter, dist, WEST);

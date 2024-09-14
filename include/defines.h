@@ -23,14 +23,13 @@
 
 /* PLAYER */
 /* Distance at each button pressed */
-# define SPEED_PLAYER 0.2
-# define ANGLE_MODIFIER 0.2
+# define SPEED_PLAYER 0.1
+# define ANGLE_MODIFIER 0.1
 
 # define VISION_LENGTH 10
-# define FOV_ANGLE (60.0 * M_PI / 180.0)
-# define NUM_RAYS 200
-# define RAY_CALCULATION_RATE 0.0001
-# define COLUMNS_PER_RAY (double)WIDTH / NUM_RAYS
+# define VISION_ANGLE 60
+# define NUM_RAYS 150
+# define RAY_CALCULATION_RATE 0.01
 
 /* TEXTURE */
 # define TEXTURE_WIDTH 512
@@ -69,7 +68,6 @@
 # define STDOUT 1
 # define STDERR 2
 # define NO_FD -2
-
 
 /* BOOLEAN */
 # define TRUE 1
@@ -117,7 +115,6 @@
 # define GRAY            0x808080FF  // Gray
 # define BLACK           0x000000FF  // Black
 
-
 //Transparent colors
 # define TRANSPARENT     0x00000000  // Transparent
 # define TRANSLUCENT     0x00000022  // Translucent
@@ -133,6 +130,5 @@
 # define BLUE            "\033[0;34m"
 # define ORANGE          "\033[0;33m"
 # define RESET           "\033[0m"
-
 
 #endif

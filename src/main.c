@@ -14,11 +14,11 @@
 
 int	main(int argc, char **argv)
 {
-	t_initData	*data;
+	t_init_data	*data;
 	t_game		*game;
 
 	game = NULL;
-	data = malloc(sizeof(t_initData));
+	data = malloc(sizeof(t_init_data));
 	if (!data)
 		return (0);
 	game = NULL;

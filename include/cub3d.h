@@ -30,7 +30,7 @@ typedef struct s_data	t_player;
 
 typedef struct s_game
 {
-	t_initData	*data;
+	t_init_data	*data;
 	mlx_image_t	*img;
 	mlx_t		*mlx;
 	t_player	*player;
@@ -38,10 +38,12 @@ typedef struct s_game
 	double		x_scale;
 	double		y_scale_minimap;
 	double		x_scale_minimap;
+	double		fov_angle;
+	double		columns_per_ray;
 
 }	t_game;
 
-int		init_game(t_game *game, t_initData *data);
+int		init_game(t_game *game, t_init_data *data);
 int		end_game(t_game *game);
 void	print_map(t_game *game);
 

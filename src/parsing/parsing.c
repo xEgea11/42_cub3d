@@ -12,7 +12,7 @@
 
 #include "cub3d.h"
 
-void	get_rows_cols(t_initData *data)
+void	get_rows_cols(t_init_data *data)
 {
 	int	i;
 	int	j;
@@ -40,7 +40,7 @@ int	extension_checker(char *file)
 	return (0);
 }
 
-int	parsing(int argc, char **argv, t_initData *data)
+int	parsing(int argc, char **argv, t_init_data *data)
 {
 	if (argc != 2)
 	{

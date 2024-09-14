@@ -24,7 +24,6 @@ void		draw_square_minimap(t_game *game, int player_x, int player_y);
 double		abs_min(double a, double b);
 double		ft_distance(t_game *game, double x, double y);
 
-
 /* MAIN DRAWINGS FUNCTIONS */
 void		fill_background_minimap(t_game *game);
 void		draw_player_minimap(t_game *game);

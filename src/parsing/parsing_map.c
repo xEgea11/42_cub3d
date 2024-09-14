@@ -12,7 +12,7 @@
 
 #include "cub3d.h"
 
-char	*get_map(t_initData *data)
+char	*get_map(t_init_data *data)
 {
 	data->map = ft_strdup("");
 	while (data->line)
@@ -28,7 +28,7 @@ char	*get_map(t_initData *data)
 	return (data->map);
 }
 
-int	aprove_map(t_initData *data)
+int	aprove_map(t_init_data *data)
 {
 	data->map = get_map(data);
 	if (!data->map)
@@ -51,7 +51,7 @@ int	aprove_map(t_initData *data)
 	return (1);
 }
 
-int	map_validation(t_initData *data)
+int	map_validation(t_init_data *data)
 {
 	int	i;
 	int	maxlen;
@@ -80,7 +80,7 @@ int	map_validation(t_initData *data)
 	return (1);
 }
 
-int	read_map(char *file, t_initData *data)
+int	read_map(char *file, t_init_data *data)
 {
 	data->fd = open(file, O_RDONLY);
 	read_map_ext(data);

@@ -15,7 +15,7 @@
 # include "cub3d.h"
 
 typedef struct s_game		t_game;
-typedef struct s_initData	t_initData;
+typedef struct s_init_data	t_init_data;
 
 typedef struct s_data
 {
@@ -27,7 +27,7 @@ typedef struct s_data
 }	t_player;
 
 /* PLAYER INIT */
-t_player	*init_player(t_initData *data);
+t_player	*init_player(t_init_data *data);
 
 /* MAIN MOVEMENTS */
 void		move_player(mlx_key_data_t keydata, void *param);

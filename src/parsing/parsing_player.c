@@ -12,7 +12,7 @@
 
 #include "cub3d.h"
 
-void	get_player_position(t_initData *data)
+void	get_player_position(t_init_data *data)
 {
 	int	i;
 	int	j;

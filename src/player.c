@@ -37,7 +37,7 @@ static double	ft_set_angle(char c)
 	return (0);
 }
 
-t_player	*init_player(t_initData *data)
+t_player	*init_player(t_init_data *data)
 {
 	t_player	*player;
 	int			x;

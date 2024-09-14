@@ -53,8 +53,8 @@ void	point_of_view(t_game *game)
 	double	current_angle;
 	int		i;
 
-	angle_step = FOV_ANGLE / NUM_RAYS;
-	start_angle = game->player->angle - FOV_ANGLE / 2.0;
+	angle_step = game->fov_angle / NUM_RAYS;
+	start_angle = game->player->angle - game->fov_angle / 2.0;
 	i = 0;
 	while (i < NUM_RAYS)
 	{

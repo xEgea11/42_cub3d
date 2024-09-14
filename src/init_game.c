@@ -12,40 +12,8 @@
 
 #include "cub3d.h"
 
-void	print_map(t_game *game)// For testing purposes, remove later
+static int	init_mlx(t_game *game)
 {
-	int	i;
-	int	j;
-
-	i = 0;
-	while (i < game->data->m_rows)
-	{
-		j = 0;
-		while (j < game->data->m_cols)
-		{
-			j++;
-		}
-		i++;
-	}
-}
-
-int	init_game(t_game *game, t_initData *data)
-{
-	game = malloc(sizeof(t_game));
-	if (!game)
-	{
-		fprintf(stderr, "Memory allocation failed\n");
-		return (EXIT_FAILURE);
-	}
-	game->data = data;
-	print_map(game);
-	game->player = init_player(game->data);
-	if (!game->player)
-		return (EXIT_FAILURE);
-	game->y_scale = (double)HEIGHT / game->data->m_rows;
-	game->x_scale = (double)WIDTH / game->data->m_cols;
-	game->y_scale_minimap = (double)MINIMAP_HEIGHT / game->data->m_rows;
-	game->x_scale_minimap = (double)MINIMAP_WIDTH / game->data->m_cols;
 	game->mlx = mlx_init(WIDTH, HEIGHT, "Cub3d", true);
 	if (!game->mlx)
 	{
@@ -58,10 +26,17 @@ int	init_game(t_game *game, t_initData *data)
 		fprintf(stderr, "Image creation failed\n");
 		return (EXIT_FAILURE);
 	}
-	render_screen(game);
-	mlx_key_hook(game->mlx, move_player, game);
-	mlx_loop(game->mlx);
-	return (end_game(game));
+	return (EXIT_SUCCESS);
+}
+
+static void	init_game_params(t_game *game)
+{
+	game->y_scale = (double)HEIGHT / game->data->m_rows;
+	game->x_scale = (double)WIDTH / game->data->m_cols;
+	game->y_scale_minimap = (double)MINIMAP_HEIGHT / game->data->m_rows;
+	game->x_scale_minimap = (double)MINIMAP_WIDTH / game->data->m_cols;
+	game->fov_angle = VISION_ANGLE * M_PI / 180;
+	game->columns_per_ray = (double)WIDTH / NUM_RAYS;
 }
 
 int	end_game(t_game *game)
@@ -75,4 +50,25 @@ int	end_game(t_game *game)
 	if (game)
 		free(game);
 	return (EXIT_SUCCESS);
+}
+
+int	init_game(t_game *game, t_init_data *data)
+{
+	game = malloc(sizeof(t_game));
+	if (!game)
+	{
+		fprintf(stderr, "Memory allocation failed\n");
+		return (EXIT_FAILURE);
+	}
+	game->data = data;
+	game->player = init_player(game->data);
+	if (!game->player)
+		return (EXIT_FAILURE);
+	init_game_params(game);
+	if (init_mlx(game) == EXIT_FAILURE)
+		return (EXIT_FAILURE);
+	render_screen(game);
+	mlx_key_hook(game->mlx, move_player, game);
+	mlx_loop(game->mlx);
+	return (end_game(game));
 }
