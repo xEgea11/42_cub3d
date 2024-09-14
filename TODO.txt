@@ -1,7 +1,14 @@
 [RAYCASTING]
 	- [BUG] -> When calculating orientation, at the edges the calculation is not accurate
 		* Change the rate at which we calculate the ray	--> Better but not perfect ❌✅
+	
+
+[TEXTURES]
+	- Calculate de relative size of the texture for the x axis.
+	- We need:
+		* obstacle size --> always equal to 1 --> boxes are 1 x 1 width
+		* angle from which we see the obstacle
 
 
 [NORMINETTE]
-	- Orient_3d, still not able to refactor	-->		drawings.h, 3d_projection.c, 
+	- Orient_3d, still not able to refactor	-->		drawings.h, 3d_projection.c,

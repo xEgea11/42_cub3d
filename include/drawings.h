@@ -37,10 +37,10 @@ void		render_screen(t_game *game);
 void		draw_ceiling_3d(t_game *game);
 void		draw_floor_3d(t_game *game);
 void		fill_background_3d(t_game *game);
-void		render_obstacle_3d(t_game *game, int iter, double dist, int wall);
-void		orient_3d(t_game *game, int x, double y, int wall, double wall_h, double y_const);
+void		render_obstacle_3d(t_game *game, int iter, double dist, int wall, double texture_pos);
+void		orient_3d(t_game *game, int x, double y, int wall, double wall_h, double y_const, double texture_pos);
 void		put_pixel_raycast(t_game *game, double x, double y);
 void		one_ray_3d(t_game *game, double x, double y, int iter);
-void		columns(t_game *game, double wall_h, double offset_x, int wall);
+void		columns(t_game *game, double wall_h, double offset_x, int wall, double texture_pos);
 
 #endif 
