@@ -11,9 +11,11 @@
 /* ************************************************************************** */
 
 #include "cub3d.h"
+#include <string.h>
 
 static int	mlx_load(t_txtr *tmp, char *path)
 {
+	printf("path: %s\n", path);
 	tmp->img = mlx_load_png(path);
 	if (!tmp->img)
 		return (0);
@@ -23,18 +25,20 @@ static int	mlx_load(t_txtr *tmp, char *path)
 int	init_texture(t_init_data *data)
 {
 	t_txtr	*tmp;
+	char	*path;
 
 	tmp = data->t;
 	while (tmp)
 	{
+		path = ft_strjoin("textures/", ft_strtrim(tmp->value, "\r"));
 		if (!ft_strncmp(tmp->key, "NO", 2))
-			mlx_load(tmp, "textures/NO.png");
+			mlx_load(tmp, path);
 		else if (!ft_strncmp(tmp->key, "SO", 2))
-			mlx_load(tmp, "textures/SO.png");
+			mlx_load(tmp, path);
 		else if (!ft_strncmp(tmp->key, "WE", 2))
-			mlx_load(tmp, "textures/WE.png");
+			mlx_load(tmp, path);
 		else if (!ft_strncmp(tmp->key, "EA", 2))
-			mlx_load(tmp, "textures/EA.png");
+			mlx_load(tmp, path);
 		tmp = tmp->next;
 	}
 	return (1);

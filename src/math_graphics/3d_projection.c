@@ -86,7 +86,6 @@ void	columns(t_game *game, t_ray *ray)
 	{
 		ray->total_offset = ray->rays + ray->offset;
 		y_iter = ray->col_start;
-		
 		while (y_iter < ray->col_end)
 		{
 			draw_cols_3d(game, ray, y_iter);
