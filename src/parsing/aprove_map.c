@@ -70,10 +70,10 @@ int	parse_rgb(char **texture)
 		if (tmp[0] == 'F' || tmp[0] == 'C')
 		{
 			if (count_vergules(tmp) != 2 || !check_pos_ofv(tmp))
-			{	
+			{
 				printf("a\n");
 				return (0);
-			}	
+			}
 		}
 		i++;
 	}

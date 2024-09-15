@@ -22,4 +22,3 @@ void	jorgito(char **line, int *flag)
 		(*line)++;
 	}
 }
-

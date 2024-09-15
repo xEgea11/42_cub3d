@@ -21,11 +21,13 @@ typedef struct s_ray
 	double		x_wall;
 	double		y_wall;
 	double		current_angle;
-	double		x_end;
-	double		y_end;
 	double		dist;
-	double		decimal_x;
-	double		decimal_y;
+	double		delta_dist_x;
+	double		delta_dist_y;
+	double		side_dist_x;
+	double		side_dist_y;
+	int			step_x;
+	int			step_y;
 	// 3D
 	int			offset;
 	double		rays;
@@ -64,8 +66,13 @@ void		put_pixel_ray_minimap(t_game *game, double x, double y);
 void		draw_ceiling_3d(t_game *game);
 void		draw_floor_3d(t_game *game);
 void		fill_background_3d(t_game *game);
-void		draw_cols_3d(t_game *game, t_ray *ray, double y_iter);
 void		columns(t_game *game, t_ray *ray);
 void		ray_3d(t_game *game, t_ray *ray);
+
+/* DDA */
+void		dda_ray_game(t_game *game, t_ray *ray);
+int			dda_side_dist_x(t_ray *ray, int map_x);
+int			dda_side_dist_y(t_ray *ray, int map_y);
+void		init_dda(t_ray *ray);
 
 #endif 

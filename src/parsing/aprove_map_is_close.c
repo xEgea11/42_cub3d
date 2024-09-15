@@ -39,7 +39,7 @@ int	if_surrounded(char *line)
 	int	i;
 
 	i = 0;
-	while (line[i]== 32 || (line[i]>= 9 && line[i]<= 13))
+	while (line[i] == 32 || (line[i] >= 9 && line[i] <= 13))
 		i++;
 	if (line[i] != '1' && (line[ft_strlen(line) - 1] != '1'
 			&& line[ft_strlen(line) - 1] != '\n'))
