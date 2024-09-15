@@ -24,7 +24,7 @@
 /* PLAYER */
 /* Distance at each button pressed */
 # define SPEED_PLAYER 0.05
-# define ANGLE_MODIFIER 0.025
+# define ANGLE_MODIFIER 0.03
 
 # define VISION_LENGTH 10
 # define VISION_ANGLE 90

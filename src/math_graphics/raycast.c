@@ -51,6 +51,7 @@ static void	ray_2d(t_game *game, t_ray *ray)
 				+ i * (ray->x_end - game->player->x_pos) / VISION_LENGTH);
 		y = (double)(game->player->y_pos
 				+ i * (ray->y_end - game->player->y_pos) / VISION_LENGTH);
+		put_pixel_ray_minimap(game, x, y);
 		if (game->data->map2d_square[(int)y][(int)x] == WALL)
 		{
 			ray->x_wall = x;

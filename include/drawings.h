@@ -56,6 +56,7 @@ void		render_screen(t_game *game);
 /* RAY UTILS */
 void		ft_set_ray_values(t_game *game, t_ray *ray);
 void		ft_set_orientation(t_ray *ray);
+void		put_pixel_ray_minimap(t_game *game, double x, double y);
 
 /* 3D WORLD DRAWINGS */
 void		draw_ceiling_3d(t_game *game);

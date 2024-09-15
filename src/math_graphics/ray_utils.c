@@ -6,7 +6,7 @@
 /*   By: regea-go <regea-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/15 03:06:25 by regea-go          #+#    #+#             */
-/*   Updated: 2024/09/15 03:14:09 by regea-go         ###   ########.fr       */
+/*   Updated: 2024/09/15 11:05:30 by regea-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	ft_set_ray_values(t_game *game, t_ray *ray)
 {
 	ray->dist = ft_distance(game, ray->x_wall, ray->y_wall);
-	ray->wall_height = MAX_WALL_HEIGHT / (ray->dist * 2);
+	ray->wall_height = MAX_WALL_HEIGHT / (ray->dist * 1.5);
 	ray->decimal_x = ray->x_wall - round(ray->x_wall);
 	ray->decimal_y = ray->y_wall - round(ray->y_wall);
 	ray->texture_pos_y = ray->y_wall - floor(ray->y_wall);
