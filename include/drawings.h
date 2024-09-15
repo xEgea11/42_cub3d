@@ -16,6 +16,8 @@
 
 typedef struct s_ray
 {
+	double		x_dir;
+	double		y_dir;
 	double		x_wall;
 	double		y_wall;
 	double		current_angle;

@@ -27,8 +27,8 @@ void	put_pixel_ray_minimap(t_game *game, double x, double y)
 void	render_screen(t_game *game)
 {
 	fill_background_3d(game);
-	draw_minimap(game);
 	point_of_view(game);
+	draw_minimap(game);
 	draw_player_minimap(game);
 	mlx_image_to_window(game->mlx, game->img, 0, 0);
 }

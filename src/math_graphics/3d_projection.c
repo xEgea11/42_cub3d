@@ -98,8 +98,8 @@ void	columns(t_game *game, t_ray *ray)
 void	ray_3d(t_game *game, t_ray *ray)
 {
 	ft_set_ray_values(game, ray);
-	ft_set_orientation(ray);
-	ray->decimal_x = fmod(ray->decimal_x, RAY_CALCULATION_RATE);
-	ray->decimal_y = fmod(ray->decimal_y, RAY_CALCULATION_RATE);
+	//ft_set_orientation(ray);
+	ray->decimal_x = fmod(ray->decimal_x, RAY_CALCULATION_RATE) - RAY_CALCULATION_RATE / 2;
+	ray->decimal_y = fmod(ray->decimal_y, RAY_CALCULATION_RATE) - RAY_CALCULATION_RATE / 2;
 	columns(game, ray);
 }

@@ -38,7 +38,7 @@ static t_ray	*init_ray(void)
 	return (ray);
 }
 
-static void	ray_2d(t_game *game, t_ray *ray)
+/* static void	ray_2d(t_game *game, t_ray *ray)
 {
 	double	i;
 	double	x;
@@ -62,6 +62,65 @@ static void	ray_2d(t_game *game, t_ray *ray)
 		i += RAY_CALCULATION_RATE;
 	}
 	return ;
+} */
+
+static void ray_2d_DDA(t_game *game, t_ray *ray)
+{
+    ray->x_dir = cos(ray->current_angle);
+    ray->y_dir = sin(ray->current_angle);
+    double deltaDistX = fabs(1 / ray->x_dir);
+    double deltaDistY = fabs(1 / ray->y_dir);
+    double sideDistX, sideDistY;
+    int stepX, stepY;
+    int hit = 0;
+    int mapX = (int)game->player->x_pos;
+    int mapY = (int)game->player->y_pos;
+
+    if (ray->x_dir < 0) {
+        stepX = -1;
+        sideDistX = (game->player->x_pos - mapX) * deltaDistX;
+    } else {
+        stepX = 1;
+        sideDistX = (mapX + 1.0 - game->player->x_pos) * deltaDistX;
+    }
+
+    if (ray->y_dir < 0) {
+        stepY = -1;
+        sideDistY = (game->player->y_pos - mapY) * deltaDistY;
+    } else {
+        stepY = 1;
+        sideDistY = (mapY + 1.0 - game->player->y_pos) * deltaDistY;
+    }
+
+    while (hit == 0) {
+        if (sideDistX < sideDistY) {
+            sideDistX += deltaDistX;
+            mapX += stepX;
+            ray->orientation = (stepX == -1) ? EAST : WEST;
+        } else {
+            sideDistY += deltaDistY;
+            mapY += stepY;
+            ray->orientation = (stepY == -1) ? SOUTH : NORTH;
+        }
+        if (game->data->map2d_square[mapY][mapX] == WALL)
+        {
+            if (ray->orientation == EAST || ray->orientation == WEST) 
+			{
+    			ray->x_wall = game->player->x_pos + (sideDistX - deltaDistX) * ray->x_dir;
+    			ray->y_wall = game->player->y_pos + (sideDistX - deltaDistX) * ray->y_dir;
+			} else {
+    			ray->x_wall = game->player->x_pos + (sideDistY - deltaDistY) * ray->x_dir;
+	    		ray->y_wall = game->player->y_pos + (sideDistY - deltaDistY) * ray->y_dir;
+			}
+
+            // Aplicar fabs a los resultados finales para obtener las distancias absolutas
+            ray->x_wall = fabs(ray->x_wall);
+            ray->y_wall = fabs(ray->y_wall);
+
+            ray_3d(game, ray);
+            return;
+        }
+    }
 }
 
 void	raycast(t_game *game, double angle, int offset)
@@ -73,7 +132,7 @@ void	raycast(t_game *game, double angle, int offset)
 	ray->y_end = game->player->y_pos + VISION_LENGTH * sin(angle);
 	ray->offset = offset;
 	ray->current_angle = angle;
-	ray_2d(game, ray);
+	ray_2d_DDA(game, ray);
 	free(ray);
 }
 
