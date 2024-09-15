@@ -40,9 +40,6 @@ typedef struct s_ray
 	uint32_t	tex_y;
 }				t_ray;
 
-/* COLOR CONVERSION */
-uint32_t	rgb_to_hex(char *str);
-
 /* DRAWING UTILS */
 void		fill_background(t_game *game);
 void		draw_square_minimap(t_game *game, int player_x, int player_y);
@@ -65,8 +62,7 @@ void		draw_ceiling_3d(t_game *game);
 void		draw_floor_3d(t_game *game);
 void		fill_background_3d(t_game *game);
 void		draw_cols_3d(t_game *game, t_ray *ray, double y_iter);
-void		put_pixel_ray_minimap(t_game *game, double x, double y);
-void		ray_3d(t_game *game, t_ray *ray);
 void		columns(t_game *game, t_ray *ray);
+void		ray_3d(t_game *game, t_ray *ray);
 
 #endif 

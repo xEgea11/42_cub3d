@@ -23,13 +23,13 @@
 
 /* PLAYER */
 /* Distance at each button pressed */
-# define SPEED_PLAYER 0.04
+# define SPEED_PLAYER 0.05
 # define ANGLE_MODIFIER 0.025
 
 # define VISION_LENGTH 10
 # define VISION_ANGLE 90
-# define NUM_RAYS 300
-# define RAY_CALCULATION_RATE 0.02
+# define NUM_RAYS 350
+# define RAY_CALCULATION_RATE 0.01
 
 /* TEXTURE */
 # define TEXTURE_WIDTH 512
@@ -51,7 +51,7 @@
 # define RIGHT 1
 
 /* 3D MACROS */
-# define MAX_WALL_HEIGHT 1000
+# define MAX_WALL_HEIGHT 700
 
 /* EXIT & ERROR MANAGE */
 # define EXIT_SUCCESS 0

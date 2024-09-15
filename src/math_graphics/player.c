@@ -12,18 +12,6 @@
 
 #include "cub3d.h"
 
-double	ft_distance(t_game *game, double x, double y)
-{
-	double	x_pos;
-	double	y_pos;
-	double	dist;
-
-	x_pos = game->player->x_pos;
-	y_pos = game->player->y_pos;
-	dist = sqrt(pow(x - x_pos, 2) + pow(y - y_pos, 2));
-	return (dist);
-}
-
 static double	ft_set_angle(char c)
 {
 	if (c == 'S')

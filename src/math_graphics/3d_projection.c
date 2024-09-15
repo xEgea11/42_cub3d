@@ -41,6 +41,12 @@ static uint32_t	get_pixel_color(t_game *game, char *key, t_ray *ray)
 	return (0);
 }
 
+void	fill_background_3d(t_game *game)
+{
+	draw_ceiling_3d(game);
+	draw_floor_3d(game);
+}
+
 void	draw_cols_3d(t_game *game, t_ray *ray, double y_iter)
 {
 	int		color;

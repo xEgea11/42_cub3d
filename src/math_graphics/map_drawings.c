@@ -12,29 +12,17 @@
 
 #include "cub3d.h"
 
-void	put_pixel_ray_minimap(t_game *game, double x, double y)
-{
-	double	x_window;
-	double	y_window;
-
-	x_window = x * game->x_scale_minimap;
-	y_window = y * game->y_scale_minimap;
-	if (x_window < MINIMAP_WIDTH && x_window > 0
-		&& y_window < MINIMAP_HEIGHT && y_window > 0)
-		mlx_put_pixel(game->img, x_window, y_window, VISION_MINIMAP);
-}
-
-void	draw_player_minimap(t_game *game)
-{
-	int	player_x;
-	int	player_y;
-
-	player_x = (int)(game->player->x_pos * game->x_scale_minimap);
-	player_y = (int)(game->player->y_pos * game->y_scale_minimap);
-	if (player_x >= 0 && player_x < MINIMAP_WIDTH
-		&& player_y >= 0 && player_y < MINIMAP_HEIGHT)
-		draw_square_minimap(game, player_x, player_y);
-}
+//void	put_pixel_ray_minimap(t_game *game, double x, double y)
+//{
+//	double	x_window;
+//	double	y_window;
+//
+//	x_window = x * game->x_scale_minimap;
+//	y_window = y * game->y_scale_minimap;
+//	if (x_window < MINIMAP_WIDTH && x_window > 0
+//		&& y_window < MINIMAP_HEIGHT && y_window > 0)
+//		mlx_put_pixel(game->img, x_window, y_window, VISION_MINIMAP);
+//}
 
 void	render_screen(t_game *game)
 {

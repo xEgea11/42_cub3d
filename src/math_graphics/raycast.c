@@ -12,7 +12,7 @@
 
 #include "cub3d.h"
 
-t_ray	*init_ray(void)
+static t_ray	*init_ray(void)
 {
 	t_ray	*ray;
 

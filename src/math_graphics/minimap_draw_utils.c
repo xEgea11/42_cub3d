@@ -59,6 +59,18 @@ void	draw_minimap(t_game *game)
 	}
 }
 
+void	draw_player_minimap(t_game *game)
+{
+	int	player_x;
+	int	player_y;
+
+	player_x = (int)(game->player->x_pos * game->x_scale_minimap);
+	player_y = (int)(game->player->y_pos * game->y_scale_minimap);
+	if (player_x >= 0 && player_x < MINIMAP_WIDTH
+		&& player_y >= 0 && player_y < MINIMAP_HEIGHT)
+		draw_square_minimap(game, player_x, player_y);
+}
+
 void	draw_square_minimap(t_game *game, int player_x, int player_y)
 {
 	int	i;

@@ -12,7 +12,7 @@
 
 #include "cub3d.h"
 
-uint32_t	rgb_to_hex(char *str)
+static uint32_t	rgb_to_hex(char *str)
 {
 	int	rgb[3];
 	int	i;
@@ -42,6 +42,18 @@ double	abs_min(double a, double b)
 	if (fabs(a) < fabs(b))
 		return (fabs(a));
 	return (fabs(b));
+}
+
+double	ft_distance(t_game *game, double x, double y)
+{
+	double	x_pos;
+	double	y_pos;
+	double	dist;
+
+	x_pos = game->player->x_pos;
+	y_pos = game->player->y_pos;
+	dist = sqrt(pow(x - x_pos, 2) + pow(y - y_pos, 2));
+	return (dist);
 }
 
 void	draw_ceiling_3d(t_game *game)
@@ -78,10 +90,4 @@ void	draw_floor_3d(t_game *game)
 			mlx_put_pixel(game->img, x++, y, color);
 		y++;
 	}
-}
-
-void	fill_background_3d(t_game *game)
-{
-	draw_ceiling_3d(game);
-	draw_floor_3d(game);
 }

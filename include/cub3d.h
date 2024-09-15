@@ -23,7 +23,6 @@
 # include <stdio.h>
 # include <string.h>
 # include <math.h>
-# include <time.h>  //Just for random start generation
 # include <parsing.h>
 
 typedef struct s_data	t_player;
