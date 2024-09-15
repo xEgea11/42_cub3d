@@ -60,7 +60,6 @@ void		render_screen(t_game *game);
 void		ft_set_ray_values(t_game *game, t_ray *ray);
 void		ft_set_orientation(t_ray *ray);
 
-
 /* 3D WORLD DRAWINGS */
 void		draw_ceiling_3d(t_game *game);
 void		draw_floor_3d(t_game *game);

@@ -49,9 +49,9 @@ void	draw_minimap(t_game *game)
 			if (ft_in_range(game, map_x, map_y) == TRUE)
 			{
 				if (ft_is_empty(game, map_x, map_y))
-					mlx_put_pixel(game->img, draw_x, draw_y, FLOOR_COLOR);
+					mlx_put_pixel(game->img, draw_x, draw_y, FLOOR_MINIMAP);
 				else
-					mlx_put_pixel(game->img, draw_x, draw_y, WALL_COLOR);
+					mlx_put_pixel(game->img, draw_x, draw_y, WALL_MINIMAP);
 			}
 			draw_x++;
 		}

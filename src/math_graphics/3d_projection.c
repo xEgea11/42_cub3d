@@ -46,6 +46,8 @@ void	draw_cols_3d(t_game *game, t_ray *ray, double y_iter)
 	int		color;
 	double	texture_pos;
 
+	if (y_iter < 0 || y_iter >= HEIGHT)
+		return ;
 	ray->relative_y = ((y_iter - ray->col_start)) / ray->wall_height;
 	if (ray->orientation == WEST || ray->orientation == EAST)
 		texture_pos = ray->texture_pos_y;
@@ -71,8 +73,6 @@ void	columns(t_game *game, t_ray *ray)
 	ray->rays = 0.0;
 	ray->col_start = (int)(HEIGHT / 2.0 - ray->wall_height / 2.0);
 	ray->col_end = (int)(HEIGHT / 2.0 + ray->wall_height / 2.0);
-	if (ray->col_start < 0)
-		ray->col_start = 0;
 	y_iter = ray->col_start;
 	if (ray->col_end > HEIGHT)
 		ray->col_end = HEIGHT;

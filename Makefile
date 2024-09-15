@@ -15,6 +15,7 @@ LIBMLX = $(MLX_DIR)libmlx42.a
 
 #file´s directories
 PARSE_DIR = parsing
+MATH_GRAPHICS_DIR = math_graphics
 
 #colors
 GREEN = \033[0;32m
@@ -33,7 +34,7 @@ else
 	FLAGSMLX = $(FLAGSMLX_MAC)
 endif
 
-SRC_FILES = main.c \
+GAME_FILES = main.c \
 			player.c \
 			player_movement.c \
 			movement_utils.c \
@@ -60,6 +61,7 @@ PARSING_FILES = parsing.c \
 				aprove_map_is_close.c \
 				init_textures.c \
 
+SRC_FILES = $(addprefix $(MATH_GRAPHICS_DIR)/, $(GAME_FILES))
 SRC_FILES += $(addprefix $(PARSE_DIR)/, $(PARSING_FILES))
 			
 

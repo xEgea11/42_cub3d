@@ -1,9 +1,7 @@
 [RAYCASTING]
 	- [BUG] -> When calculating orientation, at the edges the calculation is not accurate
 		* Change the rate at which we calculate the ray	--> Better but not perfect ❌✅
-	- [BUG]	->	There is a problem, when we go too close to the image,
-				it looks like the image "melts"
 
-- 	Still not fluent as we would like,
-	it is the problem of the calculations, too high,
-	see if we can	diminish them
+	- 	Still not fluent as we would like,
+		it is the problem of the calculations, too high,
+		see if we can diminish them
