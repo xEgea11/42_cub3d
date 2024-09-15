@@ -12,19 +12,36 @@
 
 #include "cub3d.h"
 
-t_player *init_player(t_initData *data)
+static double	ft_set_angle(char c)
 {
-    t_player *player = malloc(sizeof(t_player));
-    if (!player) {
-        fprintf(stderr, "Player allocation failed\n");          //<---- Change this later
-        return (NULL);
-    }
+	if (c == 'S')
+		return (M_PI_2);
+	else if (c == 'N')
+		return (3 * M_PI_2);
+	else if (c == 'W')
+		return (M_PI);
+	else if (c == 'E')
+		return (0);
+	return (0);
+}
 
-    //ft_check_initial_position(game, X_PLAYER, Y_PLAYER);
-    player->x_pos = data->player_x;
-    player->y_pos = data->player_y;
-    player->angle = ((double)random() / RAND_MAX);
-    player->speed = SPEED_PLAYER;
+t_player	*init_player(t_init_data *data)
+{
+	t_player	*player;
+	int			x;
+	int			y;
 
-    return (player);
+	player = malloc(sizeof(t_player));
+	if (!player)
+	{
+		printf("Player allocation failed\n");
+		return (NULL);
+	}
+	x = data->player_x;
+	y = data->player_y;
+	player->x_pos = x;
+	player->y_pos = y;
+	player->angle = ft_set_angle(data->map2d_square[y][x]);
+	player->speed = SPEED_PLAYER;
+	return (player);
 }

@@ -52,7 +52,7 @@ void	list_back_texture(t_txtr **texture, t_txtr *new)
 }
 
 
-int	list_texture(t_initData *data)
+int	list_texture(t_init_data *data)
 {
 	int		i;
 	t_txtr	*tmp;
@@ -69,7 +69,7 @@ int	list_texture(t_initData *data)
 	return (1);
 }
 
-int	check_texture_mount(t_initData *data)
+int	check_texture_mount(t_init_data *data)
 {
 	if (data->counter != 6)
 	{

@@ -95,7 +95,7 @@ int	check_texture_if_valid(char *line)
 	return (0);
 }
 
-int	check_texture_space(t_initData *data)
+int	check_texture_space(t_init_data *data)
 {
 	int	i;
 

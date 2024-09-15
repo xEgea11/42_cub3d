@@ -12,15 +12,17 @@
 
 #include "cub3d.h"
 
-int main(int argc, char **argv) {
-    t_initData *data;
-    t_game *game = NULL;
+int	main(int argc, char **argv)
+{
+	t_init_data	*data;
+	t_game		*game;
 
-    data = malloc(sizeof(t_initData));
-    if(!data)
-        return (0);
-    game = NULL;
-    if(!parsing(argc, argv, data))
-        return (0);
-    return (init_game(game, data));
+	game = NULL;
+	data = malloc(sizeof(t_init_data));
+	if (!data)
+		return (0);
+	game = NULL;
+	if (!parsing(argc, argv, data))
+		return (0);
+	return (init_game(game, data));
 }

@@ -53,7 +53,7 @@ int	check_first_last_line(char **map)
 	return (1);
 }
 
-int	check_duplicate(t_initData *data)
+int	check_duplicate(t_init_data *data)
 {
 	int	i;
 	int	j;

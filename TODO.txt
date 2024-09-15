@@ -2,8 +2,6 @@
 	- [BUG] -> When calculating orientation, at the edges the calculation is not accurate
 		* Change the rate at which we calculate the ray	--> Better but not perfect ❌✅
 
-
-[NORMINETTE]
-	- Make code Norminette-friendly ❌ 
-
-[PLAYER ORIENTATION] -- Orientate the player depending on the key given by the map - N S W E  ❌ 
+	- 	Still not fluent as we would like,
+		it is the problem of the calculations, too high,
+		see if we can diminish them

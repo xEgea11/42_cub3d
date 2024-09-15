@@ -28,7 +28,7 @@ void	free_list(t_txtr *texture)
 	free(texture);
 }
 
-void	free_map(t_initData *data)
+void	free_map(t_init_data *data)
 {
 	free_array2d(data->map2d_square);
 	data->map2d_square = NULL;

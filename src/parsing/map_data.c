@@ -12,7 +12,7 @@
 
 #include "cub3d.h"
 
-int	largest_line(t_initData *data)
+int	largest_line(t_init_data *data)
 {
 	int	i;
 	int	maxlen;

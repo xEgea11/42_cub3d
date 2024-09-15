@@ -20,7 +20,7 @@ int	get_index(char *line, int i)
 	return (i);
 }
 
-void	ft_process_rgb_color(t_txtr *tmp, t_initData *data)
+void	ft_process_rgb_color(t_txtr *tmp, t_init_data *data)
 {
 	if (!ft_strncmp(tmp->key, "F", 2))
 	{
@@ -48,7 +48,7 @@ int	check_color_value(char **rgb)
 	return (free_array2d(rgb), 1);
 }
 
-int	colors_texture(t_initData *data)
+int	colors_texture(t_init_data *data)
 {
 	t_txtr	*tmp;
 
