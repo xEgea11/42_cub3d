@@ -104,7 +104,8 @@ int	w_map(char **map)
 			if (map[i][j] != ' ' && (map[i][j] == 'N' || map[i][j] == 'S'
 				|| map[i][j] == 'W' || map[i][j] == 'E' || map[i][j] == '0'))
 			{
-				if ((map[i - 1][j] == ' ' || map[i + 1][j] == ' ') && (map[i][j] != '1'))
+				if ((map[i - 1][j] == ' ' || map[i + 1][j] == ' ')
+					&& (map[i][j] != '1'))
 				{
 					return (0);
 				}

@@ -45,6 +45,7 @@ GAME_FILES = main.c \
 			3d_projection.c \
 			3d_projection_utils.c \
 			ray_utils.c \
+			dda.c \
 
 
 PARSING_FILES = parsing.c \

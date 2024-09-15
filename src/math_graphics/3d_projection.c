@@ -47,7 +47,7 @@ void	fill_background_3d(t_game *game)
 	draw_floor_3d(game);
 }
 
-void	draw_cols_3d(t_game *game, t_ray *ray, double y_iter)
+static void	draw_cols_3d(t_game *game, t_ray *ray, double y_iter)
 {
 	int		color;
 	double	texture_pos;
@@ -98,8 +98,5 @@ void	columns(t_game *game, t_ray *ray)
 void	ray_3d(t_game *game, t_ray *ray)
 {
 	ft_set_ray_values(game, ray);
-	ft_set_orientation(ray);
-	ray->decimal_x = fmod(ray->decimal_x, RAY_CALCULATION_RATE);
-	ray->decimal_y = fmod(ray->decimal_y, RAY_CALCULATION_RATE);
 	columns(game, ray);
 }

@@ -40,9 +40,11 @@ int	aprove_map(t_init_data *data)
 		return (0);
 	}
 	free(data->map);
-		if (!check_texture_space(data)
-		|| !parse_rgb(data->texture) || !check_duplicate(data)
-		|| !check_first_last_line(data->map2d) || !surrounded_by_one(data->map2d))
+	if (!check_texture_space(data)
+		|| !parse_rgb(data->texture)
+		|| !check_duplicate(data)
+		|| !check_first_last_line(data->map2d)
+		|| !surrounded_by_one(data->map2d))
 	{
 		free_array2d(data->map2d);
 		printf("jajajaj\n");

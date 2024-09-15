@@ -38,19 +38,18 @@ t_txtr	*new_texture(char *line)
 
 void	list_back_texture(t_txtr **texture, t_txtr *new)
 {
-    t_txtr	*tmp;
+	t_txtr	*tmp;
 
-    if (!*texture)
-    {
-        *texture = new;
-        return ;
-    }
-    tmp = *texture;
-    while (tmp->next)
-        tmp = tmp->next;
-    tmp->next = new;
+	if (!*texture)
+	{
+		*texture = new;
+		return ;
+	}
+	tmp = *texture;
+	while (tmp->next)
+		tmp = tmp->next;
+	tmp->next = new;
 }
-
 
 int	list_texture(t_init_data *data)
 {
@@ -87,7 +86,7 @@ int	check_color_texture(char *line)
 		line++;
 	if (!ft_strncmp(line, "NO", 2)
 		|| !ft_strncmp(line, "SO", 2)
-		|| !ft_strncmp(line, "WE", 2) 
+		|| !ft_strncmp(line, "WE", 2)
 		|| !ft_strncmp(line, "EA", 2)
 		|| !ft_strncmp(line, "F", 1)
 		|| !ft_strncmp(line, "C", 1))
