@@ -45,6 +45,5 @@ typedef struct s_game
 
 int		init_game(t_game *game, t_init_data *data);
 int		end_game(t_game *game);
-void	print_map(t_game *game);
 
 #endif  

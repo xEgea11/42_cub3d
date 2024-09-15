@@ -57,16 +57,16 @@ int	init_game(t_game *game, t_init_data *data)
 	game = malloc(sizeof(t_game));
 	if (!game)
 	{
-		fprintf(stderr, "Memory allocation failed\n");
-		return (EXIT_FAILURE);
+		printf(MALLOC_ERR);
+		return (MALLOC_ERROR);
 	}
 	game->data = data;
 	game->player = init_player(game->data);
 	if (!game->player)
-		return (EXIT_FAILURE);
+		return (MALLOC_ERROR);
 	init_game_params(game);
 	if (init_mlx(game) == EXIT_FAILURE)
-		return (EXIT_FAILURE);
+		return (MALLOC_ERROR);
 	render_screen(game);
 	mlx_key_hook(game->mlx, move_player, game);
 	mlx_loop(game->mlx);

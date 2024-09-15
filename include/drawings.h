@@ -44,19 +44,16 @@ typedef struct s_ray
 uint32_t	rgb_to_hex(char *str);
 
 /* DRAWING UTILS */
-void		put_pixel_minimap(t_game *game, int x, int y);
 void		fill_background(t_game *game);
 void		draw_square_minimap(t_game *game, int player_x, int player_y);
 double		abs_min(double a, double b);
 double		ft_distance(t_game *game, double x, double y);
 
 /* MAIN DRAWINGS FUNCTIONS */
-void		fill_background_minimap(t_game *game);
+void		draw_minimap(t_game *game);
 void		draw_player_minimap(t_game *game);
-
 void		raycast(t_game *game, double angle, int iter);
 void		point_of_view(t_game *game);
-
 void		render_screen(t_game *game);
 
 /* RAY UTILS */
