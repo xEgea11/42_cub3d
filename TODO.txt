@@ -1,14 +1,9 @@
 [RAYCASTING]
 	- [BUG] -> When calculating orientation, at the edges the calculation is not accurate
 		* Change the rate at which we calculate the ray	--> Better but not perfect ❌✅
-	
+	- [BUG]	->	There is a problem, when we go too close to the image,
+				it looks like the image "melts"
 
-[TEXTURES]
-	- Calculate de relative size of the texture for the x axis.
-	- We need:
-		* obstacle size --> always equal to 1 --> boxes are 1 x 1 width
-		* angle from which we see the obstacle
-
-
-[NORMINETTE]
-	- Orient_3d, still not able to refactor	-->		drawings.h, 3d_projection.c,
+- 	Still not fluent as we would like,
+	it is the problem of the calculations, too high,
+	see if we can	diminish them

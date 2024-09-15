@@ -28,7 +28,7 @@
 
 # define VISION_LENGTH 10
 # define VISION_ANGLE 90
-# define NUM_RAYS 500
+# define NUM_RAYS 350
 # define RAY_CALCULATION_RATE 0.01
 
 /* TEXTURE */
