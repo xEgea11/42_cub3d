@@ -28,8 +28,8 @@
 
 # define VISION_LENGTH 10
 # define VISION_ANGLE 90
-# define NUM_RAYS 300
-# define RAY_CALCULATION_RATE 0.009
+# define NUM_RAYS 500
+# define RAY_CALCULATION_RATE 0.01
 
 /* TEXTURE */
 # define TEXTURE_WIDTH 512
@@ -51,7 +51,7 @@
 # define RIGHT 1
 
 /* 3D MACROS */
-# define MAX_WALL_HEIGHT 500
+# define MAX_WALL_HEIGHT 1000
 
 /* EXIT & ERROR MANAGE */
 # define EXIT_SUCCESS 0

@@ -12,7 +12,7 @@
 
 #include "cub3d.h"
 
-static uint32_t	get_pixel_color(t_game *game, char *key, uint32_t x, uint32_t y)
+static uint32_t	get_pixel_color(t_game *game, char *key, t_ray *ray)
 {
 	t_txtr			*tmp;
 	uint32_t		i;
@@ -27,9 +27,10 @@ static uint32_t	get_pixel_color(t_game *game, char *key, uint32_t x, uint32_t y)
 		if (ft_strncmp(tmp->key, key, 2) == 0)
 		{
 			texture = tmp->img;
-			if (x >= texture->width || y >= texture->height)
+			if (ray->tex_x >= texture->width || ray->tex_y >= texture->height)
 				return (0);
-			pixel = &texture->pixels[(y * texture->width + x) * 4];
+			pixel = &texture->pixels[(ray->tex_y
+					* texture->width + ray->tex_x) * 4];
 			color = (pixel[0] << 24) | (pixel[1] << 16)
 				| (pixel[2] << 8) | pixel[3];
 			return (color);
@@ -40,67 +41,57 @@ static uint32_t	get_pixel_color(t_game *game, char *key, uint32_t x, uint32_t y)
 	return (0);
 }
 
-void	draw_cols_3d(t_game *game, t_ray *ray, int x_offset, double y_iter, int wall, double texture_pos)
+void	draw_cols_3d(t_game *game, t_ray *ray, double y_iter)
 {
 	int		color;
+	double	texture_pos;
 
 	ray->relative_y = ((y_iter - ray->col_start)) / ray->wall_height;
+	if (ray->orientation == WEST || ray->orientation == EAST)
+		texture_pos = ray->texture_pos_y;
+	else if (ray->orientation == NORTH || ray->orientation == SOUTH)
+		texture_pos = ray->texture_pos_x;
 	ray->tex_x = texture_pos * TEXTURE_WIDTH;
 	ray->tex_y = (int)(ray->relative_y * TEXTURE_HEIGHT);
-	if (wall == WEST)
-		color = get_pixel_color(game, "WE", ray->tex_x, ray->tex_y);
-	else if (wall == EAST)
-		color = get_pixel_color(game, "EA", ray->tex_x, ray->tex_y);
-	else if (wall == NORTH)
-		color = get_pixel_color(game, "NO", ray->tex_x, ray->tex_y);
-	else if (wall == SOUTH)
-		color = get_pixel_color(game, "SO", ray->tex_x, ray->tex_y);
-	mlx_put_pixel(game->img, x_offset, y_iter, color);
+	if (ray->orientation == WEST)
+		color = get_pixel_color(game, "WE", ray);
+	else if (ray->orientation == EAST)
+		color = get_pixel_color(game, "EA", ray);
+	else if (ray->orientation == NORTH)
+		color = get_pixel_color(game, "NO", ray);
+	else if (ray->orientation == SOUTH)
+		color = get_pixel_color(game, "SO", ray);
+	mlx_put_pixel(game->img, ray->total_offset, y_iter, color);
 }
 
-void	columns(t_game *game, t_ray *ray, int wall, double texture_pos)
+void	columns(t_game *game, t_ray *ray)
 {
-	double	rays;
 	double	y_iter;
 
-	rays = 0.0;
-	while (rays < game->columns_per_ray)
+	ray->rays = 0.0;
+	ray->col_start = (int)(HEIGHT / 2.0 - ray->wall_height / 2.0);
+	ray->col_end = (int)(HEIGHT / 2.0 + ray->wall_height / 2.0);
+	if (ray->col_start < 0)
+		ray->col_start = 0;
+	y_iter = ray->col_start;
+	if (ray->col_end > HEIGHT)
+		ray->col_end = HEIGHT;
+	while (ray->rays < game->columns_per_ray)
 	{
-		ray->col_start = (int)(HEIGHT / 2.0 - ray->wall_height / 2.0);
-		ray->col_end = (int)(HEIGHT / 2.0 + ray->wall_height / 2.0);
-		if (ray->col_start < 0)
-			ray->col_start = 0;
+		ray->total_offset = ray->rays + ray->offset;
 		y_iter = ray->col_start;
-		if (ray->col_end > HEIGHT)
-			ray->col_end = HEIGHT;
 		while (y_iter < ray->col_end)
 		{
-			draw_cols_3d(game, ray, round(rays + ray->offset), y_iter, wall, texture_pos);
+			draw_cols_3d(game, ray, y_iter);
 			y_iter++;
 		}
-		rays += 1.0;
+		ray->rays += 1.0;
 	}
 }
 
 void	ray_3d(t_game *game, t_ray *ray)
 {
-
-	ray->dist = ft_distance(game, ray->x_wall, ray->y_wall);
-	ray->wall_height = MAX_WALL_HEIGHT / (ray->dist);
-	ray->decimal_x = ray->x_wall - round(ray->x_wall);
-	ray->decimal_y = ray->y_wall - round(ray->y_wall);
-
-	if (abs_min(ray->decimal_x, ray->decimal_y) == fabs(ray->decimal_x)
-		&& ray->decimal_x > 0)
-		columns(game, ray, WEST, ray->y_wall - floor(ray->y_wall));
-	else if (abs_min(ray->decimal_x, ray->decimal_y) == fabs(ray->decimal_x)
-		&& ray->decimal_x < 0)
-		columns(game, ray, EAST, ray->y_wall - floor(ray->y_wall));
-	else if (abs_min(ray->decimal_x, ray->decimal_y) == fabs(ray->decimal_y)
-		&& ray->decimal_y > 0)
-		columns(game, ray, NORTH, ray->x_wall - floor(ray->x_wall));
-	else if (abs_min(ray->decimal_x, ray->decimal_y) == fabs(ray->decimal_y)
-		&& ray->decimal_y < 0)
-		columns(game, ray, SOUTH, ray->x_wall - floor(ray->x_wall));
+	ft_set_ray_values(game, ray);
+	ft_set_orientation(ray);
+	columns(game, ray);
 }
-

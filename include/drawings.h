@@ -16,24 +16,28 @@
 
 typedef struct s_ray
 {
-	double	x_wall;
-	double	y_wall;
-	double	current_angle;
-	double	x_end;
-	double	y_end;
-	double	dist;
-	double	decimal_x;
-	double	decimal_y;
+	double		x_wall;
+	double		y_wall;
+	double		current_angle;
+	double		x_end;
+	double		y_end;
+	double		dist;
+	double		decimal_x;
+	double		decimal_y;
 	// 3D
-	int		offset;
-	double	wall_height;
-	int		col_start;
-	int		col_end;
+	int			offset;
+	double		rays;
+	double		total_offset;
+	double		wall_height;
+	int			col_start;
+	int			col_end;
 	// Texture
-	double	texture_pos;
-	double	relative_y;
-	double	tex_x;
-	double	tex_y;
+	double		texture_pos_y;
+	double		texture_pos_x;
+	int			orientation;
+	double		relative_y;
+	uint32_t	tex_x;
+	uint32_t	tex_y;
 }				t_ray;
 
 /* COLOR CONVERSION */
@@ -55,13 +59,18 @@ void		point_of_view(t_game *game);
 
 void		render_screen(t_game *game);
 
+/* RAY UTILS */
+void		ft_set_ray_values(t_game *game, t_ray *ray);
+void		ft_set_orientation(t_ray *ray);
+
+
 /* 3D WORLD DRAWINGS */
 void		draw_ceiling_3d(t_game *game);
 void		draw_floor_3d(t_game *game);
 void		fill_background_3d(t_game *game);
-void		draw_cols_3d(t_game *game, t_ray *ray, int x_offset, double y_iter, int wall, double texture_pos);// int x, double y, int wall, double wall_h, double y_const, double texture_pos);
+void		draw_cols_3d(t_game *game, t_ray *ray, double y_iter);
 void		put_pixel_ray_minimap(t_game *game, double x, double y);
-void		ray_3d(t_game *game, t_ray *ray);// double x, double y, int offset);
-void		columns(t_game *game, t_ray *ray, int wall, double texture_pos);
+void		ray_3d(t_game *game, t_ray *ray);
+void		columns(t_game *game, t_ray *ray);
 
 #endif 

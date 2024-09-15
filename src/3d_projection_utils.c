@@ -28,7 +28,7 @@ uint32_t	rgb_to_hex(char *str)
 		{
 			rgb[j] = ft_atoi(&str[i]);
 			j++;
-			while (ft_isdigit(str[i])) 
+			while (ft_isdigit(str[i]))
 				i++;
 		}
 		else

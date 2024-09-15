@@ -17,20 +17,21 @@ t_ray	*init_ray(void)
 	t_ray	*ray;
 
 	ray = malloc(sizeof(t_ray));
-	if (!ray)
-		return (NULL);
 	ray->x_wall = 0;
 	ray->y_wall = 0;
 	ray->current_angle = 0;
-	ray->x_end = 0;
-	ray->y_end = 0;
+	ray->dist = 0;
 	ray->offset = 0;
+	ray->rays = 0;
 	ray->wall_height = 0;
 	ray->decimal_x = 0;
 	ray->decimal_y = 0;
 	ray->col_start = 0;
 	ray->col_end = 0;
-	ray->texture_pos = 0;
+	ray->total_offset = 0;
+	ray->texture_pos_y = 0;
+	ray->texture_pos_x = 0;
+	ray->orientation = 0;
 	ray->relative_y = 0;
 	ray->tex_x = 0;
 	ray->tex_y = 0;
@@ -39,7 +40,6 @@ t_ray	*init_ray(void)
 
 static void	ray_2d(t_game *game, t_ray *ray)
 {
-	//Version of the brute force algorithm
 	double	i;
 	double	x;
 	double	y;
@@ -68,7 +68,6 @@ void	raycast(t_game *game, double angle, int offset)
 {
 	t_ray	*ray;
 
-	//if no ray...
 	ray = init_ray();
 	ray->x_end = game->player->x_pos + VISION_LENGTH * cos(angle);
 	ray->y_end = game->player->y_pos + VISION_LENGTH * sin(angle);

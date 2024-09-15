@@ -43,6 +43,7 @@ SRC_FILES = main.c \
 			minimap_draw_utils.c \
 			3d_projection.c \
 			3d_projection_utils.c \
+			ray_utils.c \
 
 
 PARSING_FILES = parsing.c \

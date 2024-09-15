@@ -44,4 +44,3 @@ void	render_screen(t_game *game)
 	draw_player_minimap(game);
 	mlx_image_to_window(game->mlx, game->img, 0, 0);
 }
-
