@@ -6,11 +6,11 @@ CFLAGS = -Wall -Wextra -Werror
 SRC_DIR = src
 OBJ_DIR = obj
 INCLUDE_DIR = include
-INCLUDE_MLX = MLX42/include/MLX42/
+INCLUDE_MLX = MLX/include/MLX42/
 PARSE_DIR = parsing/
 LIBFT_DIR = libft/
 LIBFT = libft/libft.a
-MLX_DIR = MLX42/build/
+MLX_DIR = MLX/build/
 LIBMLX = $(MLX_DIR)libmlx42.a
 
 #file´s directories
@@ -84,6 +84,7 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c $(INCLUDE_DIR)/*.h			# Remove later, wildcards no
 .PHONY: all clean fclean re run
 
 all: $(NAME)
+
 
 run:
 	./$(NAME) maps/map01.cub

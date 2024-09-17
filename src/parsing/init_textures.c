@@ -15,7 +15,6 @@
 
 static int	mlx_load(t_txtr *tmp, char *path)
 {
-	printf("path: %s\n", path);
 	tmp->img = mlx_load_png(path);
 	if (!tmp->img)
 		return (0);

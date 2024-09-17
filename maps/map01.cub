@@ -1,7 +1,7 @@
-NO ./NO.png
-SO ./SO.png
-WE ./WE.png
-EA ./EA.png
+NO ./cuadros/NO.png
+SO ./cuadros/SO.png
+WE ./cuadros/WE.png
+EA ./cuadros/EA.png
 
 F 37,129,67
 C 68,194,249
